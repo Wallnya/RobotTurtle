@@ -3,33 +3,48 @@ package modele;
 public class Plateau{
 
 	private Tuile[][] plateau;
+	private int nbJoueurs;
 	
 	/*
 	 * plateau[0][0]=new Obstacles();
-	 * if(plateau[0][0] instanceOf Obstacles()){
+	 * if(plateau[0][0] instanceof Obstacles){
 	 * Ostables o = (Obstacles) plateau[0][0];
 	 * o.getkflmkmlds();
 	 * */
 	
+	public int getNbJoueurs() {
+		return nbJoueurs;
+	}
+
+	public void setNbJoueurs(int nbJoueurs) {
+		this.nbJoueurs = nbJoueurs;
+	}
+
 	public Plateau(int nbJoueurs) {
 		plateau = new Tuile[8][8];
+		this.setNbJoueurs(nbJoueurs);
 		this.remplir();
 		switch(nbJoueurs) {
 		case 2:
 			setMur();
 			//Positionnement des joueurs
 			for(int i=0;i<nbJoueurs;i++) {
-				setJoueur(0,7,new Tortue(1));
-				setJoueur(0,5,new Tortue(2));
+				Tortue t1 = new Tortue(1,'S',0,1);
+				setJoueur(0,1,t1);
+				Tortue t2 = new Tortue(2,'S',0,5);
+				setJoueur(0,5,t2);
 			}
 			setJoyau(7,3);
 			break;
 		case 3:
 			//Positionnement des joueurs
 			for(int i=0;i<nbJoueurs;i++) {
-				setJoueur(0,0,new Tortue(1));
-				setJoueur(0,3,new Tortue(2));
-				setJoueur(0,6,new Tortue(3));
+				Tortue t1 = new Tortue(1,'S',0,0);
+				setJoueur(0,0,t1);
+				Tortue t2 = new Tortue(2,'S',0,3);
+				setJoueur(0,3,t2);
+				Tortue t3 = new Tortue(3,'S',0,6);
+				setJoueur(0,6,t3);
 			}
 			setJoyau(7,0);
 			setJoyau(7,3);
@@ -39,10 +54,14 @@ public class Plateau{
 		case 4:
 			//Positionnement des joueurs
 			for(int i=0;i<nbJoueurs;i++) {
-				setJoueur(0,0,new Tortue(1));
-				setJoueur(0,2,new Tortue(2));
-				setJoueur(0,5,new Tortue(3));
-				setJoueur(0,7,new Tortue(4));
+				Tortue t1 = new Tortue(1,'S',0,0);
+				setJoueur(0,0,t1);
+				Tortue t2 = new Tortue(2,'S',0,2);
+				setJoueur(0,2,t2);
+				Tortue t3 = new Tortue(3,'S',0,5);
+				setJoueur(0,5,t3);
+				Tortue t4 = new Tortue(4,'S',0,7);
+				setJoueur(0,7,t4);
 			}
 			setJoyau(7,1);
 			setJoyau(7,6);

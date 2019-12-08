@@ -21,12 +21,13 @@ public class Controlleur implements ActionListener {
 			panelNombresJoueurs.getCardLayout().show(panelNombresJoueurs,"panel_NbJoueurs");
 		}
 		
-		/*if(e.getActionCommand().equals(Data.VALIDER_PANEL_TAILLE)) {//choix de la taille de la matrice
-			chPanMatrice = new PanelMatrice(chPanTaille.getTaille());
+		if(e.getActionCommand().equals("panelNbJoueurs_valider")) {//choix de la taille de la matrice
+			System.out.println(			panelNombresJoueurs.getTaille());
+			/*chPanMatrice = new PanelMatrice(chPanTaille.getTaille());
 			chPanelChoix.add(chPanMatrice, "panel_matrice");
 			chPanMatrice.enregistreEcouteur(this);
-			chPanelChoix.getCardLayout().show(chPanelChoix, "panel_matrice");	
-		}*/		
+			chPanelChoix.getCardLayout().show(chPanelChoix, "panel_matrice");	*/
+		}	
 	}
 
 }

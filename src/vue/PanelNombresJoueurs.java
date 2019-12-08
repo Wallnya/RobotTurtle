@@ -12,10 +12,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controlleur.Controlleur;
-import modele.*;
 
 public class PanelNombresJoueurs extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3703370640778702506L;
 	private JButton valider = new JButton("valider");
     private JComboBox<String> comboTaille;
     private String taille[]= {"2","3","4"};
@@ -81,6 +84,11 @@ public class PanelNombresJoueurs extends JPanel{
 
 	public void setCardLayout(CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
+	}
+	
+	public int getTaille() {
+		int poids = comboTaille.getSelectedIndex();
+		return poids+2;
 	}
 
 }
