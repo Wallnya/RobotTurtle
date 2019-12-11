@@ -41,9 +41,7 @@ public class Joueur{
 			System.out.println("Choisis une action à faire"); 
 			val = scanner.nextInt(); 
 		}while(val < 0 || val >6);
-		
-		ArrayList result= new ArrayList();
-		
+				
 		while(compteur != val) {
 			System.out.println("Quelle carte");
 			val = scanner.nextInt(); 
