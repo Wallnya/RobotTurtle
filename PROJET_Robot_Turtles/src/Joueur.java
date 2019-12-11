@@ -3,14 +3,14 @@ import java.util.ArrayList;
 
 public class Joueur {
 
-	int num;
-	Tortue tortue;
-	ArrayDeque<Carte> pioche = new ArrayDeque<>();
-	ArrayDeque<Carte> defausse = new ArrayDeque<>();
-	ArrayList<Carte> main = new ArrayList<Carte>();
-	ArrayDeque<Carte> programme = new ArrayDeque<>();
-	int nbObstaclePierre = 3;
-	int nbObstacleGlace = 2;
+	private int num;
+	private Tortue tortue;
+	private ArrayDeque<Carte> pioche = new ArrayDeque<>();
+	private ArrayDeque<Carte> defausse = new ArrayDeque<>();
+	private ArrayList<Carte> main = new ArrayList<Carte>();
+	private ArrayDeque<Carte> programme = new ArrayDeque<>();
+	private int nbObstaclePierre = 3;
+	private int nbObstacleGlace = 2;
 	
 	public Joueur(int num, Tortue tortue) {
 		this.num = num;
@@ -57,6 +57,18 @@ public class Joueur {
 
 	public void setNbObstacleGlace(int nbObstacleGlace) {
 		this.nbObstacleGlace = nbObstacleGlace;
+	}
+
+	public ArrayDeque<Carte> getProgramme() {
+		return programme;
+	}
+
+	public Tortue getTortue() {
+		return tortue;
+	}
+
+	public ArrayList<Carte> getMain() {
+		return main;
 	}
 	
 	

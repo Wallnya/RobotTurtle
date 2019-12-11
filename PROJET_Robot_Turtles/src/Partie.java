@@ -26,11 +26,11 @@ public class Partie {
 
 	public void initialisation() {
 		
-		Tortue tortue1 = plateau.tortues.get(0);
-		Tortue tortue2 = plateau.tortues.get(1);
-		Joyau joyau1 = plateau.joyaux.get(0);
-		Joueur joueur1 = plateau.joueurs.get(0);
-		Joueur joueur2 = plateau.joueurs.get(1);
+		Tortue tortue1 = plateau.getTortues().get(0);
+		Tortue tortue2 = plateau.getTortues().get(1);
+		Joyau joyau1 = plateau.getJoyaux().get(0);
+		Joueur joueur1 = plateau.getJoueurs().get(0);
+		Joueur joueur2 = plateau.getJoueurs().get(1);
 		
 		switch (nbJoueurs) {
 			case 2: {
@@ -52,10 +52,10 @@ public class Partie {
 					ObstaclePierre obstaclePierre = new ObstaclePierre();
 					plateau.deplacerPion(obstaclePierre, i, 7);
 				}
-				Tortue tortue3 = plateau.tortues.get(2);
-				Joyau joyau2 = plateau.joyaux.get(1);
-				Joyau joyau3 = plateau.joyaux.get(2);
-				Joueur joueur3 = plateau.joueurs.get(2);
+				Tortue tortue3 = plateau.getTortues().get(2);
+				Joyau joyau2 = plateau.getJoyaux().get(1);
+				Joyau joyau3 = plateau.getJoyaux().get(2);
+				Joueur joueur3 = plateau.getJoueurs().get(2);
 				plateau.deplacerPion(tortue1, 0, 0);
 				plateau.deplacerPion(tortue2, 0, 3);
 				plateau.deplacerPion(tortue3, 0, 6);
@@ -71,11 +71,11 @@ public class Partie {
 				break;
 			}
 			case 4 :{
-				Tortue tortue3 = plateau.tortues.get(2);
-				Tortue tortue4 = plateau.tortues.get(3);
-				Joyau joyau2 = plateau.joyaux.get(1);
-				Joueur joueur3 = plateau.joueurs.get(2);
-				Joueur joueur4 = plateau.joueurs.get(3);
+				Tortue tortue3 = plateau.getTortues().get(2);
+				Tortue tortue4 = plateau.getTortues().get(3);
+				Joyau joyau2 = plateau.getJoyaux().get(1);
+				Joueur joueur3 = plateau.getJoueurs().get(2);
+				Joueur joueur4 = plateau.getJoueurs().get(3);
 				plateau.deplacerPion(tortue1, 0, 0);
 				plateau.deplacerPion(tortue2, 0, 2);
 				plateau.deplacerPion(tortue3, 0, 5);
@@ -119,6 +119,7 @@ public class Partie {
 					break;
 				case 3 :
 					executerProgramme();
+					plateau.afficherPlateau();
 					break;
 			}
 			changementTour();	
@@ -126,14 +127,103 @@ public class Partie {
 	}
 	
 	public void executerProgramme(){
-		System.out.println(joueurEnCours.programme);
-		plateau.afficherPlateau();
-		for (Carte carte : joueurEnCours.programme) {
+		System.out.println(joueurEnCours.getProgramme());
+		for (Carte carte : joueurEnCours.getProgramme()) {
+			Tortue tortue = joueurEnCours.getTortue();
+			char orientation = tortue.getOrientation();
 			switch (carte.getCouleur()) {
-			// ................................
+				case ("Jaune") : 
+					plateau.tournerTortueGauche(tortue);
+					break;
+				case ("Violet") : 
+					plateau.tournerTortueDroite(tortue);
+					break;
+				case ("Bleu") : 
+					plateau.deplacerTortue(tortue);
+					break;
+				case ("Laser") : 
+					utilisationLaser();
+					break;
 			}
 		}
 	}
+	
+	public void utilisationLaser() {
+		Tortue tortue = joueurEnCours.getTortue();
+		char orientation = tortue.getOrientation();
+		int ligne = tortue.getLigne();
+		int colonne = tortue.getColonne();
+		
+		int i;
+		Pion premierPion = new Pion();
+		Pion pionCaseActuelle;
+		boolean pionTrouve = false;
+		
+		switch(tortue.getOrientation()) {
+			case ('H') : 
+				for (i = ligne - 1; i >= 0; i--) {
+					pionCaseActuelle = plateau.getContenuCase(i, colonne);
+					if (pionCaseActuelle.getSymbole() != " ") {
+						premierPion = pionCaseActuelle;
+						pionTrouve = true;
+						break;
+					}
+				}
+				break;
+			case ('G') : 
+				for (i = colonne - 1; i >= 0; i--) {
+					pionCaseActuelle = plateau.getContenuCase(ligne, i);
+					if (pionCaseActuelle.getSymbole() != " ") {
+						premierPion = pionCaseActuelle;
+						pionTrouve = true;
+						break;
+					}
+				}
+				break;
+			case ('B') : 
+				for (i = ligne + 1; i <= 7; i++) {
+					pionCaseActuelle = plateau.getContenuCase(i, colonne);
+					if (pionCaseActuelle.getSymbole() != " ") {
+						premierPion = pionCaseActuelle;
+						pionTrouve = true;
+						break;
+					}
+				}
+				break;
+			case ('D') : 
+				for (i = colonne + 1; i <= 7; i++) {
+					pionCaseActuelle = plateau.getContenuCase(ligne, i);
+					if (pionCaseActuelle.getSymbole() != " ") {
+						premierPion = pionCaseActuelle;
+						pionTrouve = true;
+						break;
+					}
+				}
+				break;
+		};
+		if (pionTrouve == false) {
+			System.out.println("Aucun obstacle en vue !");
+		} else {
+			switch (premierPion.getSymbole()) {
+				case "1" : case "2" : case "3" : case "4" :
+					System.out.println("Un joueur a bloqué votre laser.");
+					break;
+				case "R" : case "V" : case "B" :
+					System.out.println("Un joyau a bloqué votre laser.");
+					break;
+				case "P" :
+					System.out.println("Le mur de pierre est indestructible !");
+					break;
+				case "G" :
+					plateau.viderCase(premierPion.getLigne(), premierPion.getColonne());
+					System.out.println("Le mur de glace a été détruit !");
+					break;
+			}
+		}
+			
+		
+	}
+
 	
 	public void placerObstacle() {
 		String reponse;
@@ -176,14 +266,18 @@ public class Partie {
 				} while (ligne > 7 || ligne < 0 || colonne > 7 || colonne < 0);
 				
 				if (plateau.caseLibre(ligne, colonne)) {
-					if (reponse.equals("Pierre")) {
-						ObstaclePierre pierre = new ObstaclePierre();
-						plateau.deplacerPion(pierre, ligne, colonne);
-						continuer = true;
+					if (plateau.caseNonBlocante(ligne, colonne)) {
+						if (reponse.equals("Pierre")) {
+							ObstaclePierre pierre = new ObstaclePierre();
+							plateau.deplacerPion(pierre, ligne, colonne);
+							continuer = true;
+						} else {
+							ObstacleGlace glace = new ObstacleGlace();
+							plateau.deplacerPion(glace, ligne, colonne);
+							continuer = true;
+						}
 					} else {
-						ObstacleGlace glace = new ObstacleGlace();
-						plateau.deplacerPion(glace, ligne, colonne);
-						continuer = true;
+						System.out.println("Case blocante.");
 					}
 				} else {
 					System.out.println("Case déjà occupée.");
@@ -196,7 +290,7 @@ public class Partie {
 	
 	public void completerProgramme() {
 		
-		System.out.println("Votre main : " + joueurEnCours.main);
+		System.out.println("Votre main : " + joueurEnCours.getMain());
 		
 		String reponseCouleur;
 		Carte reponseCarte;
@@ -214,13 +308,13 @@ public class Partie {
 				if (!isCarteInMain(reponseCarte)) {
 					System.out.println("Carte indisponible.");
 				} else {
-					joueurEnCours.programme.addLast(reponseCarte);
+					joueurEnCours.getProgramme().addLast(reponseCarte);
 					removeCarteFromMain(reponseCarte);
 					i++;
 				}
 			}
-			System.out.println("Programme : " + joueurEnCours.programme);
-			System.out.println("Main : " + joueurEnCours.main);
+			System.out.println("Programme : " + joueurEnCours.getProgramme());
+			System.out.println("Main : " + joueurEnCours.getMain());
 			
 		} while ((i <= 5 && !reponseCouleur.equals("stop")) || (i == 1 && reponseCouleur.equals("stop")));
 		
@@ -273,7 +367,7 @@ public class Partie {
 	}
 
 	public boolean isCarteInMain(Carte carte) {
-		Iterator<Carte> iterator = joueurEnCours.main.iterator();
+		Iterator<Carte> iterator = joueurEnCours.getMain().iterator();
         while (iterator.hasNext()) {
         	Carte carteMain = iterator.next();
             if (carteMain.getCouleur().equals(carte.getCouleur())) {
@@ -284,9 +378,9 @@ public class Partie {
 	}
 
 	public void removeCarteFromMain(Carte carte) {
-		for (Carte carteMain : joueurEnCours.main) {
+		for (Carte carteMain : joueurEnCours.getMain()) {
 			if (carteMain.getCouleur().equals(carte.getCouleur())) {
-            	joueurEnCours.main.remove(carteMain);
+            	joueurEnCours.getMain().remove(carteMain);
             	break;
             }
 		}

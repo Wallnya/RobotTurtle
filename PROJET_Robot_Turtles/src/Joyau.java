@@ -1,7 +1,7 @@
 
 public class Joyau extends Pion {
 
-	String couleur;
+	private String couleur;
 	
 	public Joyau(String symbole, String couleur) {
 		this.symbole = symbole;

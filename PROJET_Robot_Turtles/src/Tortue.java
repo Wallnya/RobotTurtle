@@ -1,11 +1,13 @@
 
 public class Tortue extends Pion {
 	
-	String couleur;
+	private String couleur;
+	private char orientation;
 	
-	public Tortue(String symbole, String couleur) {
+	public Tortue(String symbole, String couleur, char orientation) {
 		this.symbole = symbole;
 		this.couleur = couleur;
+		this.orientation = orientation;
 	}
 	public Tortue() {
 		
@@ -15,6 +17,12 @@ public class Tortue extends Pion {
 	}
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
+	}
+	public void setOrientation(char orientation) {
+		this.orientation = orientation;
+	}
+	public char getOrientation() {
+		return orientation;
 	}
 
 }
