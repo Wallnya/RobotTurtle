@@ -2,20 +2,24 @@ package modele;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Joueur{
 	public static Scanner scanner = new Scanner(System.in);
+	private ArrayList<Carte> main;
 	private ArrayDeque<Carte> programme;
-	private List<Carte> main = new ArrayList<Carte>();
 	private Tortue tortue;
 	
-	public Tortue getTortue() {
-		return tortue;
+	public Joueur(int pNum){
+		this.main = new ArrayList<Carte>();
+		this.programme = new ArrayDeque<Carte>();
+		this.tortue = new Tortue(pNum);
 	}
-	public void setTortue(Tortue tortue) {
-		this.tortue = tortue;
+	public ArrayList<Carte> getMain() {
+		return main;
+	}
+	public void setMain(ArrayList<Carte> main) {
+		this.main = main;
 	}
 	public ArrayDeque<Carte> getProgramme() {
 		return programme;
@@ -23,16 +27,14 @@ public class Joueur{
 	public void setProgramme(ArrayDeque<Carte> programme) {
 		this.programme = programme;
 	}
-	public List<Carte> getMain() {
-		return main;
+	public Tortue getTortue() {
+		return tortue;
 	}
-	public void setMain(List<Carte> main) {
-		this.main = main;
+	public void setTortue(Tortue tortue) {
+		this.tortue = tortue;
 	}
-	public void test() {
-		System.out.print("Joueur ");
-	}
-	public void completProgram() {
+	
+	/*public void completProgram() {
 		System.out.println("Voici tes cartes : "+main.toString());
 		System.out.println("Combien de cartes veux-tu selectionner (dans l'ordre)?");
 		int val=-1;
@@ -48,6 +50,6 @@ public class Joueur{
 			compteur++;
 		}
 		
-	}
+	}*/
 	
 }

@@ -32,10 +32,10 @@ public class Jeu {
 	
 	public static void lancerPartie() {
 		int nb = 2;
-		Joueur j1 = new Joueur();
+		Joueur j1 = new Joueur(1);
 		Plateau p = new Plateau(nb);
 		j1.setTortue(new Tortue(1,'S',0,1));
-		Joueur j2 = new Joueur();
+		Joueur j2 = new Joueur(2);
 		joueurs = new ArrayList<Joueur>();
 		joueurs.add(j1);
 		joueurs.add(j2);
@@ -69,7 +69,7 @@ public class Jeu {
 			}while((val < 0 || val >4));
 			switch(val) {
 			case 1:
-				j1.completProgram();
+				/*j1.completProgram();*/
 				System.out.println();
 			case 2:
 				break;

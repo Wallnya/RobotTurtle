@@ -10,17 +10,18 @@ import controlleur.Controlleur;
 
 public class PanelJeu extends JPanel{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int nbJoueur;
 	
+	private PanelAction action;
+	private PanelPlateau plateau;
+	private PanelMain main;
+
 	public PanelJeu(int taille) throws IOException {
 		nbJoueur = taille;
-		PanelPlateau plateau = new PanelPlateau(nbJoueur);
-		PanelMain main = new PanelMain();
-		PanelAction action = new PanelAction();
+		plateau = new PanelPlateau(nbJoueur);
+		main = new PanelMain(plateau.getP().getJoueurs().iterator().next());
+		action = new PanelAction();
 		
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(100, 100, 100, 100));
@@ -28,12 +29,35 @@ public class PanelJeu extends JPanel{
 		this.add(plateau, BorderLayout.CENTER);
 		this.add(main, BorderLayout.SOUTH);
 		this.add(action, BorderLayout.EAST);
-
-		}
-
-	public void enregistreEcouteur(Controlleur controlleur) {
-		// TODO Auto-generated method stub
 		
+		plateau.getP().getJoueurs();
 	}
 
+	public PanelPlateau getPlateau() {
+		return plateau;
+	}
+
+	public void setPlateau(PanelPlateau plateau) {
+		this.plateau = plateau;
+	}
+
+	public void enregistreEcouteur(Controlleur controlleur) {
+		action.enregistreEcouteur(controlleur);
+		
+	}
+	public PanelAction getAction() {
+		return action;
+	}
+
+	public void setAction(PanelAction action) {
+		this.action = action;
+	}
+
+	public PanelMain getMain() {
+		return main;
+	}
+
+	public void setMain(PanelMain main) {
+		this.main = main;
+	}
 }

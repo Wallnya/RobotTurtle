@@ -2,8 +2,6 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.swing.JPanel;
@@ -17,12 +15,8 @@ import modele.*;
 
 public class PanelPlateau extends JPanel implements TableModelListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Plateau p;
-	private BufferedImage image;
 	private JTable table;
 	private DefaultTableModel tableur;
 
@@ -43,11 +37,10 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		table.setRowHeight(100);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setAutoResizeMode(JTable.WIDTH);
-		image();
-
+		updatePlateau();
 	}
 	
-	public void image() throws IOException{
+	public void updatePlateau() throws IOException{
 		for(int i=0;i<8;i++){
 			for (int j=0;j<8;j++){
 				if (p.getPlateau()[i][j] instanceof Tortue){
@@ -67,5 +60,12 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	public void tableChanged(TableModelEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	public Plateau getP() {
+		return p;
+	}
+
+	public void setP(Plateau p) {
+		this.p = p;
 	}
 }
