@@ -27,7 +27,7 @@ public class PanelAction extends JPanel{
 		this.setBorder(BorderFactory.createCompoundBorder(raisedbevel, loweredbevel));
 		
 		this.setLayout(new BorderLayout());
-		boutons = new JButton[4];
+		boutons = new JButton[5];
 
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -45,9 +45,31 @@ public class PanelAction extends JPanel{
 		this.add(panel, BorderLayout.CENTER);
 	}
 	
+	public JButton[] getBoutons() {
+		return boutons;
+	}
+
+	public void setBoutons(JButton[] boutons) {
+		this.boutons = boutons;
+	}
+
 	public void enregistreEcouteur(Controlleur pControleur) {
 		for (int i = 0; i < Data.ACTION.length; i++) {
 			boutons[i].addActionListener(pControleur);// boutons des op�rateurs
 		}
+	}
+	
+	public void oneBoutonDisabled(JButton button){
+		button.setEnabled(false);
+	}
+	public void oneBoutonAble(JButton button){
+		button.setEnabled(true);
+	}
+	
+	public void boutonFinDefausseTrue(){
+		boutons[4].setEnabled(true);
+	}
+	public void boutonFinDefausseFalse(){
+		boutons[4].setEnabled(false);
 	}
 }

@@ -10,14 +10,7 @@ public class Plateau{
 	private int nbJoueurs;
 	private  List<Joueur> joueurs;
 	private List<Carte> pioche = new ArrayList<Carte>();
-
-	public int getNbJoueurs() {
-		return nbJoueurs;
-	}
-
-	public void setNbJoueurs(int nbJoueurs) {
-		this.nbJoueurs = nbJoueurs;
-	}
+	private List<Carte> defausse = new ArrayList<Carte>();
 
 	public Plateau(int nbJoueurs) {
 		for(int i=0;i<17;i++) {
@@ -196,5 +189,42 @@ public class Plateau{
 			pioche.remove(i-1);
 		}
 		System.out.println(joueur.getMain().toString());
+	}
+	
+	public void piocheUneCarte(Joueur joueur){
+		joueur.getMain().add(pioche.get(0));
+		pioche.remove(0);
+		System.out.println(joueur.getMain().toString());
+	}
+	
+	public Carte piocheUneCarte(){
+		Carte carte = pioche.get(0);
+		pioche.remove(0);
+		return carte;
+	}
+	
+
+	public List<Carte> getPioche() {
+		return pioche;
+	}
+
+	public void setPioche(List<Carte> pioche) {
+		this.pioche = pioche;
+	}
+
+	public List<Carte> getDefausse() {
+		return defausse;
+	}
+
+	public void setDefausse(List<Carte> defausse) {
+		this.defausse = defausse;
+	}
+
+	public int getNbJoueurs() {
+		return nbJoueurs;
+	}
+
+	public void setNbJoueurs(int nbJoueurs) {
+		this.nbJoueurs = nbJoueurs;
 	}
 }

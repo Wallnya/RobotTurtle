@@ -1,24 +1,14 @@
 package vue;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.ComponentOrientation;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
+import controlleur.Controlleur;
 import modele.Carte;
-import modele.Data;
 import modele.Joueur;
 
 public class PanelMain extends JPanel{
@@ -47,20 +37,59 @@ public class PanelMain extends JPanel{
 		for(int i=0;i<5;i++){
 			main.add(i, joueur.getMain().get(i));
 		}
+		boutonEnableFalse();
 		affichageMain(main);
 	}
 	
 	public void affichageMain(ArrayList<Carte> main){
 		for(int i=0;i<5;i++){
 			label[i].setText(main.get(i).toString());
-			label[i].setActionCommand(main.get(i).toString());
+			label[i].setActionCommand(i+"");
 			container.add(label[i]);
 		}
 		this.add(container);
 	}
 
-	public void affichageMain(Joueur joueur) {
-		// TODO Auto-generated method stub
+	public void enregistreEcouteur(Controlleur controlleur) {
+		for (int i = 0; i < 5; i++) {
+			label[i].addActionListener(controlleur);
+		}		
+	}
+	
+	public void boutonEnableFalse(){
+		for (int i = 0; i < 5; i++) {
+			label[i].setEnabled(false);
+		}	
+	}
+	public void boutonEnableTrue(){
+		for (int i = 0; i < 5; i++) {
+			label[i].setEnabled(true);
+		}	
+	}
+	
+	public void oneBoutonDisabled(JButton button){
+		button.setEnabled(false);
+	}
+	public void oneBoutonAble(JButton button){
+		button.setEnabled(true);
+	}	
+	
+
+	public JButton[] getLabel() {
+		return label;
+	}
+
+	public void setLabel(JButton[] label) {
+		this.label = label;
+	}
+	
+	public int nombreCarteSelectionnee(){
+		int compteur=0;
+		for(int i=0;i<5;i++){
+			if (!label[i].isEnabled())
+				compteur++;
+		}
+		return compteur;
 		
 	}
 }

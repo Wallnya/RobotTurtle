@@ -43,7 +43,7 @@ public class PanelJeu extends JPanel{
 
 	public void enregistreEcouteur(Controlleur controlleur) {
 		action.enregistreEcouteur(controlleur);
-		
+		main.enregistreEcouteur(controlleur);
 	}
 	public PanelAction getAction() {
 		return action;

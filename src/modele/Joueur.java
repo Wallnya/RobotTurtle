@@ -33,23 +33,4 @@ public class Joueur{
 	public void setTortue(Tortue tortue) {
 		this.tortue = tortue;
 	}
-	
-	/*public void completProgram() {
-		System.out.println("Voici tes cartes : "+main.toString());
-		System.out.println("Combien de cartes veux-tu selectionner (dans l'ordre)?");
-		int val=-1;
-		int compteur=0;
-		do {
-			System.out.println("Choisis une action à faire"); 
-			val = scanner.nextInt(); 
-		}while(val < 0 || val >6);
-				
-		while(compteur != val) {
-			System.out.println("Quelle carte");
-			val = scanner.nextInt(); 
-			compteur++;
-		}
-		
-	}*/
-	
 }

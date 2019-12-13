@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import modele.*;
 
@@ -19,6 +20,7 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	private Plateau p;
 	private JTable table;
 	private DefaultTableModel tableur;
+	private TableModel tm;
 
 	public PanelPlateau(int nbJoueur) throws IOException {	
 		p = new Plateau(nbJoueur);
@@ -37,9 +39,23 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		table.setRowHeight(100);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setAutoResizeMode(JTable.WIDTH);
+        table.setModel(tableur);
+        tm = table.getModel();
 		updatePlateau();
 	}
 	
+	public TableModel getTm() {
+		return tm;
+	}
+
+	public void setTm(TableModel tm) {
+		this.tm = tm;
+	}
+	
+    public void refresh() {
+        tableur.fireTableDataChanged();
+    }
+
 	public void updatePlateau() throws IOException{
 		for(int i=0;i<8;i++){
 			for (int j=0;j<8;j++){
@@ -52,6 +68,9 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 				else if (p.getPlateau()[i][j] instanceof Joyau){
 					tableur.setValueAt("joyau", i, j);
 				}
+				else{
+					tableur.setValueAt("", i, j);
+				}
 			}
 		}
 	}
@@ -61,6 +80,22 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		// TODO Auto-generated method stub
 		
 	}
+	public DefaultTableModel getTableur() {
+		return tableur;
+	}
+
+	public void setTableur(DefaultTableModel tableur) {
+		this.tableur = tableur;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
 	public Plateau getP() {
 		return p;
 	}
