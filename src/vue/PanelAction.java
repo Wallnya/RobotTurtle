@@ -42,8 +42,17 @@ public class PanelAction extends JPanel{
 			boutons[i].setFont(new Font(Font.SERIF, 0, 20));
 			panel.add(boutons[i]);
 		}
+		
 		this.add(panel, BorderLayout.CENTER);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public JButton[] getBoutons() {
 		return boutons;
