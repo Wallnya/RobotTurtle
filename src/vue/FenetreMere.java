@@ -7,6 +7,7 @@ import java.awt.Frame;
 public class FenetreMere extends JFrame{
 	private static final long serialVersionUID = 1L;
 	PanelNombresJoueurs contentPane;
+	
 	public FenetreMere (){
 		contentPane = new PanelNombresJoueurs();
 		this.add(contentPane);

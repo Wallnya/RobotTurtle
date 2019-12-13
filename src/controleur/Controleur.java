@@ -22,16 +22,19 @@ public class Controleur implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//choix du lancement du jeu
+		//Choix du lancement du jeu
 		if(e.getActionCommand().equals(Data.CHOIX[0])) {
 			panelNombresJoueurs.add(panelNombresJoueurs,"panel_NbJoueurs");
 			panelNombresJoueurs.getCardLayout().show(panelNombresJoueurs,"panel_NbJoueurs");
 		}
-		//choix du nombre de joueur
+		
+		//Choix du nombre de joueurs
 		else if(e.getActionCommand().equals("panelNbJoueurs_valider")) {
 			try {
 				chPanJeu = new PanelJeu(panelNombresJoueurs.getTaille());
-			} catch (IOException e1) {e1.printStackTrace();}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			panelNombresJoueurs.add(chPanJeu, "panel_jeu");
 			chPanJeu.enregistreEcouteur(this);
 			panelNombresJoueurs.getCardLayout().show(panelNombresJoueurs, "panel_jeu");
@@ -39,6 +42,12 @@ public class Controleur implements ActionListener {
 			chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[3]);
 		}
 
+		
+		
+		
+		
+		
+		
 		//Si on appuie sur completer programme
 		else if(e.getActionCommand().equals(Data.ACTION[0])) {
 			chPanJeu.getMain().boutonEnableTrue();

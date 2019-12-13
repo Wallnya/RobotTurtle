@@ -12,7 +12,6 @@ public class PanelJeu extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private int nbJoueur;
-	
 	private PanelAction action;
 	private PanelPlateau plateau;
 	private PanelMain main;
@@ -33,6 +32,11 @@ public class PanelJeu extends JPanel{
 		plateau.getP().getJoueurs();
 	}
 
+	
+	
+	
+	
+	
 	public PanelPlateau getPlateau() {
 		return plateau;
 	}

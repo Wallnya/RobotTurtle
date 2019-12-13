@@ -30,23 +30,25 @@ public class PanelNombresJoueurs extends JPanel{
 		cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
 		chControleur = new Controleur(this);
-		contrainte.fill = GridBagConstraints.BOTH; contrainte.insets = new Insets(10,10,10,10);
-		contrainte.ipady = contrainte.anchor = GridBagConstraints.CENTER;
 		
+		// Création du panel
 		JPanel pan = new JPanel();
 		pan.setLayout(new GridBagLayout());
 			
 		contrainte.fill = GridBagConstraints.BOTH; contrainte.insets = new Insets(10,10,10,10);
 		contrainte.ipady = contrainte.anchor = GridBagConstraints.CENTER;
 
+		// Liste déroulante
 		comboTaille = new JComboBox<String>(taille);
 
+		// Boutons
 		comboTaille.addActionListener(chControleur);
 		comboTaille.setActionCommand("champs_taille");
 			
 		valider.addActionListener(chControleur);
 		valider.setActionCommand("panelNbJoueurs_valider");
 			
+		// Affichage
 		contrainte.gridx = 0; contrainte.gridy = 0;
 		contrainte.gridheight = 2; contrainte.gridwidth = 2;
 		pan.add(new JLabel("Veuillez choisir un nombre de joueurs (entre 2 et 4)",SwingConstants.CENTER),contrainte);
@@ -62,6 +64,13 @@ public class PanelNombresJoueurs extends JPanel{
 		this.add(pan);
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public Controleur getChControleur() {
 		return chControleur;
 	}
@@ -78,9 +87,21 @@ public class PanelNombresJoueurs extends JPanel{
 		this.cardLayout = cardLayout;
 	}
 	
+	
+	
+	
+	
+	
+	
 	public CardLayout getCardLayout() {
 		return cardLayout;
 	}
+	
+	
+	
+	
+	
+	
 
 	public void setCardLayout(CardLayout cardLayout) {
 		this.cardLayout = cardLayout;

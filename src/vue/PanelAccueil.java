@@ -14,51 +14,65 @@ import javax.swing.SwingConstants;
 
 public class PanelAccueil extends JFrame implements ActionListener{
 
-		private static final long serialVersionUID = 1L;
-		JButton lancer_partie = new JButton("Lancer une partie");
-		JButton quitter_jeu = new JButton("Quitter le jeu");
-		
-		public GridBagConstraints contrainte = new GridBagConstraints() ;
-		/**
-		 * Construit un objet API correspondant Ã  un GridBagLayout qui est l'accueil de l'application
-		 */
-		public PanelAccueil() {
-			super("Accueil du jeu Robot Turtle");
-			JPanel pan = new JPanel();
-			pan.setLayout(new GridBagLayout());
-			
-			contrainte.fill = GridBagConstraints.BOTH; contrainte.insets = new Insets(10,10,10,10);
-			contrainte.ipady = contrainte.anchor = GridBagConstraints.CENTER;
-			
-			lancer_partie.addActionListener(this);
-			lancer_partie.setActionCommand("lancer");
-			
-			quitter_jeu.addActionListener(this);
-			quitter_jeu.setActionCommand("quitter");
-			
-			contrainte.gridx = 0; contrainte.gridy = 0;
-			contrainte.gridheight = 2; contrainte.gridwidth = 2;
-			pan.add(new JLabel("Bienvenue dans le jeu Robot Turtle!",SwingConstants.CENTER),
-					contrainte);
-			
-			contrainte.gridx = 0; contrainte.gridy = 2;
-			contrainte.gridheight = 1; contrainte.gridwidth = 1;
-			pan.add(lancer_partie,contrainte);
-			
-			contrainte.gridx = 1; contrainte.gridy = 2;
-			contrainte.gridheight = 1; contrainte.gridwidth = 1;
-			pan.add(quitter_jeu,contrainte);
-			
-			this.add(pan);
-			this.setVisible(true);
-			this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-			this.setSize(800,400);
-	}
+	private static final long serialVersionUID = 1L;
+	private JButton lancer_partie = new JButton("Lancer une partie");
+	private JButton quitter_jeu = new JButton("Quitter le jeu");
+	public GridBagConstraints contrainte = new GridBagConstraints() ;
+	
 	public static void main(String[] args) {
 		new PanelAccueil();
-
 	}
+	
+	/**
+	 * Construit un objet API correspondant à un GridBagLayout qui est l'accueil de l'application
+	 */
+	public PanelAccueil() {
+		super("Accueil du jeu Robot Turtle");
+		JPanel pan = new JPanel();
+		pan.setLayout(new GridBagLayout());
+		
+		// Taille
+		contrainte.fill = GridBagConstraints.BOTH; 
+		// Padding externe (bottom, left, right, top)
+		contrainte.insets = new Insets(10,10,10,10);
+		// Padding interne
+		contrainte.ipady = contrainte.anchor = GridBagConstraints.CENTER;
+		
+		lancer_partie.addActionListener(this);
+		lancer_partie.setActionCommand("lancer");
+		
+		quitter_jeu.addActionListener(this);
+		quitter_jeu.setActionCommand("quitter");
+		
+		// Cellule où commence l'affichage
+		contrainte.gridx = 0; contrainte.gridy = 0;
+		// Nombre de cellules par colonne / ligne
+		contrainte.gridheight = 2; contrainte.gridwidth = 2;
+		pan.add(new JLabel("Bienvenue dans le jeu Robot Turtle!",SwingConstants.CENTER),contrainte);
+		
+		contrainte.gridx = 0; contrainte.gridy = 2;
+		contrainte.gridheight = 1; contrainte.gridwidth = 1;
+		pan.add(lancer_partie,contrainte);
+		
+		contrainte.gridx = 1; contrainte.gridy = 2;
+		contrainte.gridheight = 1; contrainte.gridwidth = 1;
+		pan.add(quitter_jeu,contrainte);
+		
+		this.add(pan);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setSize(800,400);
+	}
+		
 
+
+		
+		
+		
+		
+		
+		
+		
 	public void actionPerformed(ActionEvent ev) {
 		if(ev.getActionCommand().equals("lancer")) {
 			new FenetreMere();
