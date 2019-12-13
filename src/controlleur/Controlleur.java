@@ -15,7 +15,7 @@ public class Controlleur implements ActionListener {
 	private PanelNombresJoueurs panelNombresJoueurs;
 	private PanelJeu chPanJeu;
 	private int etat=1;
-
+	
 	public Controlleur(PanelNombresJoueurs pPanNbJoueurs) {
 		panelNombresJoueurs = pPanNbJoueurs;
 	}
