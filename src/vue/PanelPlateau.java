@@ -17,64 +17,31 @@ import modele.*;
 public class PanelPlateau extends JPanel implements TableModelListener{
 
 	private static final long serialVersionUID = 1L;
-	private Plateau plateau;
+	private Plateau p;
 	private JTable table;
 	private DefaultTableModel tableur;
 	private TableModel tm;
 
 	public PanelPlateau(int nbJoueur) throws IOException {	
-		plateau = new Plateau(nbJoueur);
-		plateau.affichage();
-		
-		// Affichage
+		p = new Plateau(nbJoueur);
+		p.affichage();
 		tableur = new DefaultTableModel();
 		for(int i=0;i<8;i++){
 			tableur.addColumn("");
 		}
 		tableur.setRowCount(8);
-		
 		table = new JTable(tableur);
 		table.setPreferredScrollableViewportSize(new Dimension(800, 800));
 		add(new JScrollPane(table), BorderLayout.CENTER);
-		
 		tableur.addTableModelListener(this);
 		setLocation(200, 300);
 		setVisible(true);
 		table.setRowHeight(100);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setAutoResizeMode(JTable.WIDTH);
-		
         table.setModel(tableur);
         tm = table.getModel();
-        
-        // Update
 		updatePlateau();
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	public void updatePlateau() throws IOException{
-		for(int i=0;i<8;i++){
-			for (int j=0;j<8;j++){
-				if (plateau.getPlateau()[i][j] instanceof Tortue){
-					tableur.setValueAt("tortue", i, j);
-				}
-				else if (plateau.getPlateau()[i][j] instanceof Obstacle){
-					tableur.setValueAt("mur", i, j);
-				}
-				else if (plateau.getPlateau()[i][j] instanceof Joyau){
-					tableur.setValueAt("joyau", i, j);
-				}
-				else{
-					tableur.setValueAt("", i, j);
-				}
-			}
-		}
 	}
 	
 	public TableModel getTm() {
@@ -89,7 +56,24 @@ public class PanelPlateau extends JPanel implements TableModelListener{
         tableur.fireTableDataChanged();
     }
 
-	
+	public void updatePlateau() throws IOException{
+		for(int i=0;i<8;i++){
+			for (int j=0;j<8;j++){
+				if (p.getPlateau()[i][j] instanceof Tortue){
+					tableur.setValueAt("tortue", i, j);
+				}
+				else if (p.getPlateau()[i][j] instanceof Obstacle){
+					tableur.setValueAt("mur", i, j);
+				}
+				else if (p.getPlateau()[i][j] instanceof Joyau){
+					tableur.setValueAt("joyau", i, j);
+				}
+				else{
+					tableur.setValueAt("", i, j);
+				}
+			}
+		}
+	}
 
 	@Override
 	public void tableChanged(TableModelEvent arg0) {
@@ -113,10 +97,10 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	}
 
 	public Plateau getP() {
-		return plateau;
+		return p;
 	}
 
-	public void setP(Plateau plateau) {
-		this.plateau = plateau;
+	public void setP(Plateau p) {
+		this.p = p;
 	}
 }

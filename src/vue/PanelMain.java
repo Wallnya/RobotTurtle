@@ -23,32 +23,22 @@ public class PanelMain extends JPanel{
 		label[2] = new JButton("");
 		label[3] = new JButton("");
 		label[4] = new JButton("");
-		boutonEnableFalse();
-		
         container = new JPanel();
+        this.setSize(600, 500);
         container.setLayout(new GridLayout(1,5, 60, 60));
 		container.add(label[0]);
 		container.add(label[1]);
 		container.add(label[2]);
 		container.add(label[3]);
 		container.add(label[4]);
-		
-		this.setSize(600, 500);
         this.add(container);
         this.setVisible(true);
-
-        // Affichage de la main du joueur
 		main = new ArrayList<Carte>();
 		for(int i=0;i<5;i++){
 			main.add(i, joueur.getMain().get(i));
 		}
+		boutonEnableFalse();
 		affichageMain(main);
-	}
-	
-	public void boutonEnableFalse(){
-		for (int i = 0; i < 5; i++) {
-			label[i].setEnabled(false);
-		}	
 	}
 	
 	public void affichageMain(ArrayList<Carte> main){
@@ -60,20 +50,17 @@ public class PanelMain extends JPanel{
 		this.add(container);
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	public void enregistreEcouteur(Controleur controleur) {
 		for (int i = 0; i < 5; i++) {
 			label[i].addActionListener(controleur);
 		}		
 	}
 	
-	
+	public void boutonEnableFalse(){
+		for (int i = 0; i < 5; i++) {
+			label[i].setEnabled(false);
+		}	
+	}
 	public void boutonEnableTrue(){
 		for (int i = 0; i < 5; i++) {
 			label[i].setEnabled(true);
