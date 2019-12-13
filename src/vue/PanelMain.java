@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import controlleur.Controlleur;
+import controleur.Controleur;
 import modele.Carte;
 import modele.Joueur;
 
@@ -50,9 +50,9 @@ public class PanelMain extends JPanel{
 		this.add(container);
 	}
 
-	public void enregistreEcouteur(Controlleur controlleur) {
+	public void enregistreEcouteur(Controleur controleur) {
 		for (int i = 0; i < 5; i++) {
-			label[i].addActionListener(controlleur);
+			label[i].addActionListener(controleur);
 		}		
 	}
 	

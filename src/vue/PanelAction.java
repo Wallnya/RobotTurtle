@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import controlleur.Controlleur;
+import controleur.Controleur;
 import modele.Data;
 
 public class PanelAction extends JPanel{
@@ -53,7 +53,7 @@ public class PanelAction extends JPanel{
 		this.boutons = boutons;
 	}
 
-	public void enregistreEcouteur(Controlleur pControleur) {
+	public void enregistreEcouteur(Controleur pControleur) {
 		for (int i = 0; i < Data.ACTION.length; i++) {
 			boutons[i].addActionListener(pControleur);// boutons des op�rateurs
 		}

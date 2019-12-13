@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlleur.Controlleur;
+import controleur.Controleur;
 
 public class PanelJeu extends JPanel{
 	
@@ -41,9 +41,9 @@ public class PanelJeu extends JPanel{
 		this.plateau = plateau;
 	}
 
-	public void enregistreEcouteur(Controlleur controlleur) {
-		action.enregistreEcouteur(controlleur);
-		main.enregistreEcouteur(controlleur);
+	public void enregistreEcouteur(Controleur controleur) {
+		action.enregistreEcouteur(controleur);
+		main.enregistreEcouteur(controleur);
 	}
 	public PanelAction getAction() {
 		return action;

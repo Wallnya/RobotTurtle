@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controlleur.Controlleur;
+import controleur.Controleur;
 
 public class PanelNombresJoueurs extends JPanel{
 	
@@ -23,13 +23,13 @@ public class PanelNombresJoueurs extends JPanel{
     private JComboBox<String> comboTaille;
     private String taille[]= {"2","3","4"};
 	private CardLayout cardLayout;
-	private Controlleur chControleur;
+	private Controleur chControleur;
 	public GridBagConstraints contrainte = new GridBagConstraints() ;
 	
 	public PanelNombresJoueurs() {
 		cardLayout = new CardLayout();
 		this.setLayout(cardLayout);
-		chControleur = new Controlleur(this);
+		chControleur = new Controleur(this);
 		contrainte.fill = GridBagConstraints.BOTH; contrainte.insets = new Insets(10,10,10,10);
 		contrainte.ipady = contrainte.anchor = GridBagConstraints.CENTER;
 		
@@ -62,11 +62,11 @@ public class PanelNombresJoueurs extends JPanel{
 		this.add(pan);
 	}
 
-	public Controlleur getChControleur() {
+	public Controleur getChControleur() {
 		return chControleur;
 	}
 
-	public void setChControleur(Controlleur chControleur) {
+	public void setChControleur(Controleur chControleur) {
 		this.chControleur = chControleur;
 	}
 
