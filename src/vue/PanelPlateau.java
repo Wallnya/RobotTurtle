@@ -25,7 +25,7 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	public PanelPlateau(int nbJoueur) throws IOException {	
 		plateau = new Plateau();
 		plateau.preparationPlateau(nbJoueur);
-		plateau.affichage();
+		
 		
 		// Affichage
 		tableur = new DefaultTableModel();
@@ -48,32 +48,16 @@ public class PanelPlateau extends JPanel implements TableModelListener{
         table.setModel(tableur);
         tm = table.getModel();
         
-        // Update
-		updatePlateau();
+        // Affichage
+        afficherPlateau();
+        plateau.afficherPlateauConsole();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	public void updatePlateau() throws IOException{
-		for(int i=0;i<8;i++){
-			for (int j=0;j<8;j++){
-				if (plateau.getPlateau()[i][j] instanceof Tortue){
-					tableur.setValueAt("tortue", i, j);
-				}
-				else if (plateau.getPlateau()[i][j] instanceof Obstacle){
-					tableur.setValueAt("mur", i, j);
-				}
-				else if (plateau.getPlateau()[i][j] instanceof Joyau){
-					tableur.setValueAt("joyau", i, j);
-				}
-				else{
-					tableur.setValueAt("", i, j);
-				}
+	public void afficherPlateau() throws IOException{
+		for (int i = 0; i < 8; i++){
+			for (int j = 0; j < 8; j++){
+				Tuile tuile = plateau.getPlateau()[i][j];
+				tableur.setValueAt(tuile, i, j);
 			}
 		}
 	}

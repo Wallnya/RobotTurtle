@@ -74,10 +74,10 @@ public class Controleur implements ActionListener {
 				chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getProgramme().removeFirst();
 			}
 			try {
-				chPanJeu.getPlateau().updatePlateau();
+				chPanJeu.getPlateau().afficherPlateau();
 			} catch (IOException e1) {e1.printStackTrace();}
 			chPanJeu.getPlateau().refresh();
-			chPanJeu.getPlateau().getPlateau().affichage();
+			//chPanJeu.getPlateau().getPlateau().affichage();
 		}
 		//Si on appuie sur fin du tour 
 		else if(e.getActionCommand().equals(Data.ACTION[3])) {

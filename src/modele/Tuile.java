@@ -3,30 +3,30 @@ package modele;
 public class Tuile {
 	
 	protected String symbole;
-	private int x;
-	private int y;
+	protected int ligne;
+	protected int colonne;
 	
-	public int getX() {
-		return x;
+	public void setLigne(int ligne) {
+		this.ligne = ligne;
 	}
-	
-	public void setX(int x) {
-		this.x = x;
+	public void setColonne(int colonne) {
+		this.colonne = colonne;
 	}
-	
-	public int getY() {
-		return y;
+	public void setSymbole(String symbole) {
+		this.symbole = symbole;
 	}
-	
-	public void setY(int y) {
-		this.y = y;
+
+	public int getLigne() {
+		return ligne;
 	}
-	
+	public int getColonne() {
+		return colonne;
+	}
 	public String getSymbole() {
 		return symbole;
 	}
 	
-	public void setSymbole(String symbole) {
-		this.symbole = symbole;
+	public String toString() {
+		return this.symbole;
 	}
 }

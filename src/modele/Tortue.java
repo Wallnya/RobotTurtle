@@ -1,27 +1,33 @@
 package modele;
 
-public class Tortue extends Tuile{
-	private int numero_joueur;
-	private char sens = 'S';
-	private int x;
-	private int y;
-	private final int x_debut;
-	private final int y_debut;
+public class Tortue extends Tuile {
 	
-	public int getX() {
-		return x;
+	private int numero_joueur;
+	private String couleur;
+	private char sens = 'S';
+	private final int ligne_debut;
+	private final int colonne_debut;
+	
+	
+	public Tortue(int parNumero_joueur) {
+		numero_joueur = parNumero_joueur;
+		ligne_debut=0;
+		colonne_debut=0;
 	}
-	public void setX(int x) {
-		this.x = x;
+	
+	public Tortue(int numero_joueur, String symbole, String couleur, char sens, int ligne, int colonne) {
+		this.numero_joueur = numero_joueur;
+		this.symbole = symbole;
+		this.couleur = couleur;
+		this.sens = sens;
+		this.ligne=ligne;
+		this.colonne=colonne;
+		ligne_debut=ligne;
+		colonne_debut=colonne;
 	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-	public int getNumero_joueur() {
-		return numero_joueur;
+	
+	public void setSens(char sens) {
+		this.sens = sens;
 	}
 	public char getSens() {
 		return sens;
@@ -29,33 +35,23 @@ public class Tortue extends Tuile{
 	public void setNumero_joueur(int numero_joueur) {
 		this.numero_joueur = numero_joueur;
 	}
-	public void setSens(char sens) {
-		this.sens = sens;
+	public int getNumero_joueur() {
+		return numero_joueur;
 	}
-	public Tortue(int parNumero_joueur) {
-		numero_joueur = parNumero_joueur;
-		x_debut=0;
-		y_debut=0;
-	}
-	public Tortue(int numero_joueur, char sens, int x, int y) {
-		this.numero_joueur = numero_joueur;
-		this.sens = sens;
-		this.x=x;
-		this.y=y;
-		x_debut=x;
-		y_debut=y;
-	}
+
+	
 	public void test() {
 		System.out.print("tortue ");
 	}
+	
 	public void coucou() {
 		
 	}
-	public int getX_debut() {
-		return x_debut;
+	public int getLigne_debut() {
+		return ligne_debut;
 	}
-	public int getY_debut() {
-		return y_debut;
+	public int getColonne_debut() {
+		return colonne_debut;
 	}
 	
 }

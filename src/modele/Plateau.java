@@ -20,15 +20,19 @@ public class Plateau{
 		joueurs = new ArrayList<Joueur>();
 		
 		switch(nbJoueurs) {
-			case 2:
+			case 2: {
+				for (int i = 0; i <= 7; i++){
+					ObstaclePierre obstaclePierre = new ObstaclePierre();
+					deplacerTuile(obstaclePierre, i, 7);
+				}
 				
 				Joueur joueur1 = new Joueur(1);
-				Tortue tortue1 = new Tortue(1,'S',0,1);
+				Tortue tortue1 = new Tortue(1,"1","Rouge",'S',0,1);
 				joueur1.setTortue(tortue1);
 				setJoueur(0,1,tortue1);
 				
 				Joueur joueur2 = new Joueur(2);
-				Tortue tortue2 = new Tortue(2,'S',0,5);
+				Tortue tortue2 = new Tortue(2,"2","Bleu",'S',0,5);
 				joueur2.setTortue(tortue2);
 				setJoueur(0,5,tortue2);
 				
@@ -38,29 +42,32 @@ public class Plateau{
 				melangerCartes(joueur1);
 				melangerCartes(joueur2);
 
-				setJoyau(7,3);
-				setMur();
+				Joyau joyau1 = new Joyau("V","Vert");
+				deplacerTuile(joyau1, 7, 3);
 	
 				for (int i = 1; i <= 5; i++) {
 					piocherCarte(joueur1);
 					piocherCarte(joueur2);
 				}
 				break;
-				
-			case 3:
-				
-				joueur1 = new Joueur(1);
-				tortue1 = new Tortue(1,'S',0,0);
+			}
+			case 3: {
+				for (int i = 0; i <= 7; i++){
+					ObstaclePierre obstaclePierre = new ObstaclePierre();
+					deplacerTuile(obstaclePierre, i, 7);
+				}
+				Joueur joueur1 = new Joueur(1);
+				Tortue tortue1 = new Tortue(1,"1","Rouge",'S',0,0);
 				joueur1.setTortue(tortue1);
 				setJoueur(0,0,tortue1);
 	
-				joueur2 = new Joueur(2);
-				tortue2 = new Tortue(2,'S',0,3);
+				Joueur joueur2 = new Joueur(2);
+				Tortue tortue2 = new Tortue(2,"2","Bleu",'S',0,3);
 				joueur2.setTortue(tortue2);
 				setJoueur(0,3,tortue2);
 	
 				Joueur joueur3 = new Joueur(3);
-				Tortue tortue3 = new Tortue(3,'S',0,6);
+				Tortue tortue3 = new Tortue(3,"3","Rose",'S',0,6);
 				joueur3.setTortue(tortue3);
 				setJoueur(0,6,tortue3);
 	
@@ -72,10 +79,13 @@ public class Plateau{
 				melangerCartes(joueur2);
 				melangerCartes(joueur3);
 				
-				setMur();
-				setJoyau(7,0);
-				setJoyau(7,3);
-				setJoyau(7,6);
+				Joyau joyau1 = new Joyau("R","Rose");
+				Joyau joyau2 = new Joyau("V","Vert");
+				Joyau joyau3 = new Joyau("B","Bleu");
+				
+				deplacerTuile(joyau1, 7, 0);
+				deplacerTuile(joyau2, 7, 3);
+				deplacerTuile(joyau3, 7, 6);
 
 				for (int i = 1; i <= 5; i++) {
 					piocherCarte(joueur1);
@@ -84,25 +94,26 @@ public class Plateau{
 				}
 	
 				break;
-			case 4:
+			}
+			case 4: {
 	
-				joueur1 = new Joueur(1);
-				tortue1 = new Tortue(1,'S',0,0);
+				Joueur joueur1 = new Joueur(1);
+				Tortue tortue1 = new Tortue(1,"1","Rouge",'S',0,0);
 				joueur1.setTortue(tortue1);
 				setJoueur(0,0,tortue1);
 	
-				joueur2 = new Joueur(2);
-				tortue2 = new Tortue(2,'S',0,2);
+				Joueur joueur2 = new Joueur(2);
+				Tortue tortue2 = new Tortue(2,"2","Bleu",'S',0,2);
 				joueur2.setTortue(tortue2);
 				setJoueur(0,2,tortue2);
 	
-				joueur3 = new Joueur(3);
-				tortue3 = new Tortue(3,'S',0,5);
+				Joueur joueur3 = new Joueur(3);
+				Tortue tortue3 = new Tortue(3,"3","Rose",'S',0,5);
 				setJoueur(0,5,tortue3);
 				joueur3.setTortue(tortue3);
 	
 				Joueur joueur4 = new Joueur(4);
-				Tortue tortue4 = new Tortue(4,'S',0,7);
+				Tortue tortue4 = new Tortue(4,"4","Vert",'S',0,7);
 				joueur4.setTortue(tortue4);
 				setJoueur(0,7,tortue4);
 				
@@ -116,8 +127,10 @@ public class Plateau{
 				melangerCartes(joueur3);
 				melangerCartes(joueur4);
 				
-				setJoyau(7,1);
-				setJoyau(7,6);
+				Joyau joyau1 = new Joyau("R","Rose");
+				Joyau joyau2 = new Joyau("B","Bleu");
+				deplacerTuile(joyau1, 7, 1);
+				deplacerTuile(joyau2, 7, 6);
 				
 				for (int i = 1; i <= 5; i++) {
 					piocherCarte(joueur1);
@@ -127,9 +140,23 @@ public class Plateau{
 				}
 	
 				break;
+			}
 		}
 	}
 
+	public void deplacerTuile(Tuile tuile, int ligne, int colonne) {
+		if (tuile.getLigne() != -1) {
+			int ancienneLigne = tuile.getLigne();
+			int ancienneColonne = tuile.getColonne();
+			Tuile pionVide = new Tuile();
+			pionVide.setSymbole(" ");
+			plateau[ancienneLigne][ancienneColonne] = pionVide;
+		}
+		tuile.setLigne(ligne);
+		tuile.setColonne(colonne);
+		plateau[ligne][colonne] = tuile;
+	}
+	
 	public void initialisationPlateau() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -196,12 +223,22 @@ public class Plateau{
 		return carte;
 	}*/
 	
-	
-	
-	
-	
+	public void afficherPlateauConsole() {
+    	System.out.println("    0 1 2 3 4 5 6 7 \n  +-----------------+");
+    	String total = "";
+    	for (int i = 0; i <= 7; i++) {
+    		String ligne = i + " | ";
+        	for (int j = 0; j <= 7; j++) {
+        		ligne = ligne + plateau[i][j] + " ";
+        	}
+        	total = total + ligne + "| \n";
+        }
+    	System.out.println(total + "  +-----------------+");
+    }
 
-
+	
+	
+	
 	
 	
 	
@@ -222,7 +259,7 @@ public class Plateau{
 		plateau[i][j] = v;
 	}
 
-	public void affichage() {
+	/*public void affichage() {
 		for(int i=0;i<8;i++) {
 			for(int j =0;j<8;j++) {
 				if(plateau[i][j] instanceof Tortue){
@@ -233,7 +270,7 @@ public class Plateau{
 			}
 			System.out.println();
 		}
-	}
+	}*/
 
 	
 
@@ -245,19 +282,19 @@ public class Plateau{
 		this.plateau = plateau;
 	}
 
-	public void setMur() {
+	/*public void setMur() {
 		for(int i=0;i<8;i++) {
 			for(int j=7;j<=7;j++) {
 				Tuile mur = new Mur();
 				plateau[i][j]= mur;
 			}
 		}
-	}
+	}*/
 
-	public void setJoyau(int i, int j){
+	/*public void setJoyau(int i, int j){
 		Tuile joyau = new Joyau();
 		plateau[i][j] = joyau;
-	}
+	}*/
 	
 	
 
