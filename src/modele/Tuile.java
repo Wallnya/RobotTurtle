@@ -6,6 +6,11 @@ public class Tuile {
 	protected int ligne;
 	protected int colonne;
 	
+	public String toString() {
+		return this.symbole;
+	}
+	
+	// Getters et setters
 	public void setLigne(int ligne) {
 		this.ligne = ligne;
 	}
@@ -15,7 +20,6 @@ public class Tuile {
 	public void setSymbole(String symbole) {
 		this.symbole = symbole;
 	}
-
 	public int getLigne() {
 		return ligne;
 	}
@@ -26,7 +30,4 @@ public class Tuile {
 		return symbole;
 	}
 	
-	public String toString() {
-		return this.symbole;
-	}
 }

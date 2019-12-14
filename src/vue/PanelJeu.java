@@ -40,36 +40,14 @@ public class PanelJeu extends JPanel{
 		panelMain.enregistreEcouteur(controleur);
 	}
 	
-	public PanelAction getAction() {
-		return panelAction;
-	}
-	
-
-
-	
-	
-	
-	
-	
+	// Getters et setters
 	public PanelPlateau getPanelPlateau() {
 		return panelPlateau;
 	}
-
-	public void setPanelPlateau(PanelPlateau panelPlateau) {
-		this.panelPlateau = panelPlateau;
-	}
-
-
-
-	/*public void setPanelAction(PanelAction panelAction) {
-		this.panelAction = panelAction;
-	}*/
-
 	public PanelMain getPanelMain() {
 		return panelMain;
 	}
-
-	public void setPanelMain(PanelMain panelMain) {
-		this.panelMain = panelMain;
+	public PanelAction getAction() {
+		return panelAction;
 	}
 }

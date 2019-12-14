@@ -61,53 +61,38 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	public TableModel getTm() {
-		return tm;
-	}
-
-	public void setTm(TableModel tm) {
-		this.tm = tm;
+	public void refresh() {
+		tableur.fireTableDataChanged();
 	}
 	
-    public void refresh() {
-        tableur.fireTableDataChanged();
-    }
-
-	
-
 	@Override
 	public void tableChanged(TableModelEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	// Getters et setters
+	public TableModel getTm() {
+		return tm;
+	}
+	public void setTm(TableModel tm) {
+		this.tm = tm;
+	}
 	public DefaultTableModel getTableur() {
 		return tableur;
 	}
-
 	public void setTableur(DefaultTableModel tableur) {
 		this.tableur = tableur;
 	}
-
 	public JTable getTable() {
 		return table;
 	}
-
 	public void setTable(JTable table) {
 		this.table = table;
 	}
-
 	public Plateau getPlateau() {
 		return plateau;
 	}
-
 	public void setP(Plateau plateau) {
 		this.plateau = plateau;
 	}

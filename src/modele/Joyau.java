@@ -9,6 +9,7 @@ public class Joyau extends Tuile{
 		this.couleur = couleur;
 	}
 	
+	// Getters et setters
 	public void setSymbole(String symbole) {
 		this.symbole = symbole;
 	}
@@ -16,8 +17,4 @@ public class Joyau extends Tuile{
 		this.couleur = couleur;
 	}
 	
-	
-	/*public void test() {
-		System.out.print("joyau ");
-	}*/
 }

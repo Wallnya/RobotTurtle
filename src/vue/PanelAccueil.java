@@ -14,10 +14,11 @@ import javax.swing.SwingConstants;
 
 public class PanelAccueil extends JFrame implements ActionListener{
 
+	public GridBagConstraints contrainte = new GridBagConstraints();
 	private static final long serialVersionUID = 1L;
 	private JButton lancer_partie = new JButton("Lancer une partie");
 	private JButton quitter_jeu = new JButton("Quitter le jeu");
-	public GridBagConstraints contrainte = new GridBagConstraints() ;
+	
 	
 	public static void main(String[] args) {
 		new PanelAccueil();
@@ -63,15 +64,6 @@ public class PanelAccueil extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(800,400);
 	}
-		
-
-
-		
-		
-		
-		
-		
-		
 		
 	public void actionPerformed(ActionEvent ev) {
 		if(ev.getActionCommand().equals("lancer")) {

@@ -12,8 +12,9 @@ import modele.Carte;
 import modele.Joueur;
 
 public class PanelMain extends JPanel{
-	private JButton[] label = new JButton[5];
+	
 	private static final long serialVersionUID = 1L;
+	private JButton[] label = new JButton[5];
 	private ArrayList<Carte> main;
 	private JPanel container;
 
@@ -57,6 +58,12 @@ public class PanelMain extends JPanel{
 		}	
 	}
 	
+	public void boutonEnableTrue(){
+		for (int i = 0; i < 5; i++) {
+			label[i].setEnabled(true);
+		}	
+	}
+	
 	public int nombreCartesSelectionnees(){
 		int compteur = 0;
 		for (int i = 0; i < 5; i++){
@@ -66,41 +73,22 @@ public class PanelMain extends JPanel{
 		return compteur;
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	public void enregistreEcouteur(Controleur controleur) {
 		for (int i = 0; i < 5; i++) {
 			label[i].addActionListener(controleur);
 		}		
 	}
 	
-	
-	public void boutonEnableTrue(){
-		for (int i = 0; i < 5; i++) {
-			label[i].setEnabled(true);
-		}	
-	}
-	
 	public void oneBoutonDisabled(JButton button){
 		button.setEnabled(false);
 	}
-	public void oneBoutonAble(JButton button){
-		button.setEnabled(true);
-	}	
 	
-
+	// Getters et setters
 	public JButton[] getLabel() {
 		return label;
 	}
-
 	public void setLabel(JButton[] label) {
 		this.label = label;
-	}
-	
+	}	
 
 }

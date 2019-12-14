@@ -15,16 +15,14 @@ import controleur.Controleur;
 
 public class PanelNombresJoueurs extends JPanel{
 	
-	/**
-	 * 
-	 */
+	public GridBagConstraints contrainte = new GridBagConstraints();
 	private static final long serialVersionUID = 3703370640778702506L;
 	private JButton valider = new JButton("valider");
     private JComboBox<String> comboTaille;
     private String taille[]= {"2","3","4"};
 	private CardLayout cardLayout;
 	private Controleur chControleur;
-	public GridBagConstraints contrainte = new GridBagConstraints() ;
+	
 	
 	public PanelNombresJoueurs() {
 		cardLayout = new CardLayout();
@@ -64,51 +62,28 @@ public class PanelNombresJoueurs extends JPanel{
 	}
 
 	
-	
-	
-	
-	
-	
-	
+	// Getters et setters
 	public Controleur getChControleur() {
 		return chControleur;
 	}
-
 	public void setChControleur(Controleur chControleur) {
 		this.chControleur = chControleur;
 	}
-
 	public CardLayout getCardLayout1() {
 		return cardLayout;
 	}
-
 	public void setCardLayout1(CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
 	}
-	
-	
-	
-	
-	
-	
-	
 	public CardLayout getCardLayout() {
 		return cardLayout;
 	}
-	
 	public int getTaille() {
 		int poids = comboTaille.getSelectedIndex();
 		return poids+2;
 	}
-	
-	
-	
-	
-
 	public void setCardLayout(CardLayout cardLayout) {
 		this.cardLayout = cardLayout;
 	}
-	
-
 
 }

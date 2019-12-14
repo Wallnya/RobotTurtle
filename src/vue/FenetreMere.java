@@ -13,7 +13,7 @@ public class FenetreMere extends JFrame{
 		this.add(contentPane);
 		this.setVisible(true);
 	
-		//On fait en sorte que cela s'affiche sur l'écran en entier
+		// On fait en sorte que cela s'affiche sur l'écran en entier
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		this.pack();
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);

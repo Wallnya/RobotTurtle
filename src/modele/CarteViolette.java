@@ -9,23 +9,23 @@ public class CarteViolette extends Carte{
 		return couleur;
 	}
 	
-	/*Droite*/
+	// Pivoter vers la droite
 	@Override
-	public void action(Tortue t,Plateau p) {
-		switch(t.getSens()) {
-		case 'S':
-			t.setSens('O');
-			break;
-		case 'N':
-			t.setSens('E');
-			break;
-		case 'E':
-			t.setSens('S');
-			break;
-		case 'O':
-			t.setSens('N');
-			break;
-		}		
+	public void action(Tortue tortue, Plateau plateau) {
+		switch(tortue.getSens()) {
+			case 'S':
+				tortue.setSens('O');
+				break;
+			case 'N':
+				tortue.setSens('E');
+				break;
+			case 'E':
+				tortue.setSens('S');
+				break;
+			case 'O':
+				tortue.setSens('N');
+				break;
+			}		
 	}
 
 

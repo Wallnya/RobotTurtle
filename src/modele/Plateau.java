@@ -2,7 +2,6 @@ package modele;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Plateau{
@@ -212,9 +211,7 @@ public class Plateau{
 	}*/
 	
 	public Carte cartePiochee(Joueur joueur){
-		ArrayDeque<Carte> pioche = joueur.getPioche();
-		ArrayList<Carte> main = new ArrayList<Carte>();
-		
+		ArrayDeque<Carte> pioche = joueur.getPioche();	
 		Carte carte = pioche.getFirst();
 		pioche.removeFirst();
 		return carte;
@@ -233,82 +230,28 @@ public class Plateau{
     	System.out.println(total + "  +-----------------+");
     }
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public  List<Joueur> getJoueurs() {
-		return joueurs;
-	}
-
-	public  void setJoueurs(List<Joueur> joueurs) {
-		this.joueurs = joueurs;
-	}
-
+	// Getters et setters
 	public void setJoueur(int i, int j, Tortue joueur){
 		plateau[i][j] = joueur;
 	}
-
 	public void setVide(int i, int j, Vide v){
 		plateau[i][j] = v;
 	}
-
-	/*public void affichage() {
-		for(int i=0;i<8;i++) {
-			for(int j =0;j<8;j++) {
-				if(plateau[i][j] instanceof Tortue){
-					Tortue o = (Tortue) plateau[i][j];
-					o.coucou();
-				}
-				//plateau[i][j].test();
-			}
-			System.out.println();
-		}
-	}*/
-
-	
-
+	public List<Joueur> getJoueurs() {
+		return joueurs;
+	}
+	public void setJoueurs(List<Joueur> joueurs) {
+		this.joueurs = joueurs;
+	}
 	public Tuile[][] getPlateau() {
 		return plateau;
 	}
-
 	public void setPlateau(Tuile[][] plateau) {
 		this.plateau = plateau;
 	}
-
-	/*public void setMur() {
-		for(int i=0;i<8;i++) {
-			for(int j=7;j<=7;j++) {
-				Tuile mur = new Mur();
-				plateau[i][j]= mur;
-			}
-		}
-	}*/
-
-	/*public void setJoyau(int i, int j){
-		Tuile joyau = new Joyau();
-		plateau[i][j] = joyau;
-	}*/
-	
-	
-
-
-	
-	
-	
-
-	
-
 	public int getNbJoueurs() {
 		return nbJoueurs;
 	}
-
 	public void setNbJoueurs(int nbJoueurs) {
 		this.nbJoueurs = nbJoueurs;
 	}

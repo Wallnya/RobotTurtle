@@ -26,6 +26,7 @@ public class Tortue extends Tuile {
 		colonne_debut=colonne;
 	}
 	
+	// Getters et setters
 	public void setSens(char sens) {
 		this.sens = sens;
 	}
@@ -37,15 +38,6 @@ public class Tortue extends Tuile {
 	}
 	public int getNumero_joueur() {
 		return numero_joueur;
-	}
-
-	
-	public void test() {
-		System.out.print("tortue ");
-	}
-	
-	public void coucou() {
-		
 	}
 	public int getLigne_debut() {
 		return ligne_debut;

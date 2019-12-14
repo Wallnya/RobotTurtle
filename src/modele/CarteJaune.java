@@ -9,23 +9,24 @@ public class CarteJaune extends Carte{
 		return couleur;
 	}
 	
-	/*Gauche*/
+	// Pivoter vers la gauche
 	@Override
-	public void action(Tortue t,Plateau p) {
-		switch(t.getSens()) {
-		case 'S':
-			t.setSens('E');
-			break;
-		case 'N':
-			t.setSens('O');
-			break;
-		case 'E':
-			t.setSens('N');
-			break;
-		case 'O':
-			t.setSens('S');
-			break;
-		}		
+	public void action(Tortue tortue, Plateau plateau) {
+		
+		switch(tortue.getSens()) {
+			case 'S':
+				tortue.setSens('E');
+				break;
+			case 'N':
+				tortue.setSens('O');
+				break;
+			case 'E':
+				tortue.setSens('N');
+				break;
+			case 'O':
+				tortue.setSens('S');
+				break;
+			}		
 	}
 
 

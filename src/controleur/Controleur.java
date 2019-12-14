@@ -100,43 +100,44 @@ public class Controleur implements ActionListener {
 				completerProgramme(4);
 			}
 			
-			
-			
-			
-			
-			
-			
-			//Si on appuie sur contruire un mur 
+			// Si on appuie sur contruire un mur 
 			else if(e.getActionCommand().equals(Data.ACTION[1])) {
 				System.out.println(Data.ACTION[1].toString());
-				chPanJeu.getAction().oneBoutonAbled(bouton4);
-				chPanJeu.getAction().oneBoutonDisabled(bouton1);
-				chPanJeu.getAction().oneBoutonDisabled(bouton3);
-			}
-			//Si on appuie sur executer le programme 
-			else if(e.getActionCommand().equals(Data.ACTION[2])) {
-				chPanJeu.getAction().oneBoutonAbled(bouton4);
 				chPanJeu.getAction().oneBoutonDisabled(bouton1);
 				chPanJeu.getAction().oneBoutonDisabled(bouton2);
+				chPanJeu.getAction().oneBoutonDisabled(bouton3);
+				chPanJeu.getAction().oneBoutonAbled(bouton4);
 				
-				for(Carte str : chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme()){
-					System.out.println(str.toString());
-					str.action(chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue(), chPanJeu.getPanelPlateau().getPlateau());
-					chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme().removeFirst();
+				/**************************************/
+				/*               A FAIRE              */
+				/**************************************/
+			}
+			
+			
+			// Si on appuie sur executer le programme 
+			else if(e.getActionCommand().equals(Data.ACTION[2])) {
+				
+				chPanJeu.getAction().oneBoutonDisabled(bouton1);
+				chPanJeu.getAction().oneBoutonDisabled(bouton2);
+				chPanJeu.getAction().oneBoutonDisabled(bouton3);
+				chPanJeu.getAction().oneBoutonAbled(bouton4);
+				
+				ArrayDeque<Carte> programmeJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme();
+				Tortue tortueJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue();
+				Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
+				
+				for(Carte carte : programmeJoueur){
+					carte.action(tortueJoueur, plateau);
+					programmeJoueur.removeFirst();
 				}
 				try {
 					chPanJeu.getPanelPlateau().afficherPlateau();
-				} catch (IOException e1) {e1.printStackTrace();}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				chPanJeu.getPanelPlateau().refresh();
-				//chPanJeu.getPlateau().getPlateau().affichage();
+				chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
 			}
-			
-			
-			
-			
-			
-			
-			
 			
 			// Si on appuie sur fin du tour 
 			else if(e.getActionCommand().equals(Data.ACTION[3])) {
@@ -153,9 +154,9 @@ public class Controleur implements ActionListener {
 					int resultat = JOptionPane.showConfirmDialog(null,"Voulez-vous défausser des cartes ?", "Le choix est à vous!",JOptionPane.YES_NO_OPTION);
 					// Si oui
 					if (resultat == JOptionPane.YES_OPTION){
-						/***********************************/
-						/*		EN COURS				*/
-						/*************************************/
+						/**************************************/
+						/*              EN COURS              */
+						/**************************************/
 						chPanJeu.getAction().oneBoutonAbled(bouton5);
 						
 					}
@@ -171,47 +172,32 @@ public class Controleur implements ActionListener {
 					}
 				}
 				
+				// On passe au joueur suivant
+				changementTour();
 				
-				/*On va changer l'état pour savoir quel joueur doit jouer*/
-				switch(panelNombresJoueurs.getTaille()){
-				case 2:
-					if (numJoueurEnCours == 1){
-						numJoueurEnCours = 2;
-					}
-					else{
-						numJoueurEnCours =1;
-					}
-					break;
-				case 3:
-					if (numJoueurEnCours == 1)
-						numJoueurEnCours =2;
-					else if (numJoueurEnCours  == 2)
-						numJoueurEnCours =3;
-					else
-						numJoueurEnCours = 1;
-					break;
-				case 4:
-					if (numJoueurEnCours == 1)
-						numJoueurEnCours =2;
-					else if (numJoueurEnCours  == 2)
-						numJoueurEnCours =3;
-					else if (numJoueurEnCours == 3)
-						numJoueurEnCours = 4;	
-					else
-						numJoueurEnCours =1;
-					break;
-				}
+				// On réinitialise la vue pour le nouveau tour
+				Joueur nouveauJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours - 1);
+				ArrayList<Carte> mainNouveauJoueur = nouveauJoueur.getMain();
+				
 				chPanJeu.getPanelMain().boutonEnableFalse();
-				chPanJeu.getPanelMain().affichageMain(chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getMain());
-				/*On réaffiche tous les boutons.*/
+				chPanJeu.getPanelMain().affichageMain(mainNouveauJoueur);
 				chPanJeu.getAction().oneBoutonAbled(bouton1);
 				chPanJeu.getAction().oneBoutonAbled(bouton2);
 				chPanJeu.getAction().oneBoutonAbled(bouton3);
 				chPanJeu.getAction().oneBoutonDisabled(bouton4);
-	
-	
+
 			}
 			
+		}
+	}
+
+	public void changementTour() {
+		int nbJoueurs = panelNombresJoueurs.getTaille();
+		
+		if (numJoueurEnCours < nbJoueurs) {
+			numJoueurEnCours++;
+		} else {
+			numJoueurEnCours = 1;
 		}
 	}
 
@@ -241,5 +227,4 @@ public class Controleur implements ActionListener {
 		System.out.println("Programme : " + programmeJoueur);	
 		System.out.println("Main : " + mainJoueur);
 	}
-
 }
