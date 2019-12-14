@@ -21,6 +21,7 @@ public class PanelAction extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	public PanelAction(){
+		
 		this.setPreferredSize(new Dimension(250, 10));
 		Border raisedbevel = BorderFactory.createRaisedBevelBorder();
 		Border loweredbevel = BorderFactory.createLoweredBevelBorder();
@@ -42,11 +43,10 @@ public class PanelAction extends JPanel{
 			boutons[i].setFont(new Font(Font.SERIF, 0, 20));
 			panel.add(boutons[i]);
 		}
-		
 		this.add(panel, BorderLayout.CENTER);
 	}
 	
-	/* Inutile 
+	/* 
 	public void boutonFinDefausseTrue(){
 		boutons[4].setEnabled(true);
 	}
@@ -65,6 +65,12 @@ public class PanelAction extends JPanel{
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	public JButton[] getBoutons() {
 		return boutons;
 	}
@@ -77,11 +83,6 @@ public class PanelAction extends JPanel{
 		for (int i = 0; i < Data.ACTION.length; i++) {
 			boutons[i].addActionListener(pControleur);// boutons des opérateurs
 		}
-	}
-	
-
-	public void oneBoutonAble(JButton button){
-		button.setEnabled(true);
 	}
 	
 

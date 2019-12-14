@@ -7,38 +7,41 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controleur.Controleur;
+import modele.Joueur;
 
 public class PanelJeu extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private int nbJoueur;
-	private PanelAction action;
-	private PanelPlateau plateau;
-	private PanelMain main;
+	private PanelAction panelAction;
+	private PanelPlateau panelPlateau;
+	private PanelMain panelMain;
 
 	public PanelJeu(int taille) throws IOException {
+		
 		nbJoueur = taille;
-		plateau = new PanelPlateau(nbJoueur);
-		//main = new PanelMain(plateau.getPlateau().getJoueurs().iterator().next());
-		//action = new PanelAction();
+		panelPlateau = new PanelPlateau(nbJoueur);
+		Joueur joueurEnCours = panelPlateau.getPlateau().getJoueurs().iterator().next();
+		panelMain = new PanelMain(joueurEnCours);
+		panelAction = new PanelAction();
 		
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(100, 100, 100, 100));
 		
-		this.add(plateau, BorderLayout.CENTER);
-		//this.add(main, BorderLayout.SOUTH);
-		//this.add(action, BorderLayout.EAST);
+		this.add(panelPlateau, BorderLayout.CENTER);
+		this.add(panelMain, BorderLayout.SOUTH);
+		this.add(panelAction, BorderLayout.EAST);
 		
-		plateau.getPlateau().getJoueurs();
+		//panelPlateau.getPlateau().getJoueurs();
 	}
 
 	public void enregistreEcouteur(Controleur controleur) {
-		//action.enregistreEcouteur(controleur);
-		//main.enregistreEcouteur(controleur);
+		panelAction.enregistreEcouteur(controleur);
+		panelMain.enregistreEcouteur(controleur);
 	}
 	
 	public PanelAction getAction() {
-		return action;
+		return panelAction;
 	}
 	
 
@@ -48,25 +51,25 @@ public class PanelJeu extends JPanel{
 	
 	
 	
-	public PanelPlateau getPlateau() {
-		return plateau;
+	public PanelPlateau getPanelPlateau() {
+		return panelPlateau;
 	}
 
-	public void setPlateau(PanelPlateau plateau) {
-		this.plateau = plateau;
+	public void setPanelPlateau(PanelPlateau panelPlateau) {
+		this.panelPlateau = panelPlateau;
 	}
 
 
 
-	public void setAction(PanelAction action) {
-		this.action = action;
+	/*public void setPanelAction(PanelAction panelAction) {
+		this.panelAction = panelAction;
+	}*/
+
+	public PanelMain getPanelMain() {
+		return panelMain;
 	}
 
-	public PanelMain getMain() {
-		return main;
-	}
-
-	public void setMain(PanelMain main) {
-		this.main = main;
+	public void setPanelMain(PanelMain panelMain) {
+		this.panelMain = panelMain;
 	}
 }

@@ -1,11 +1,14 @@
 package modele;
 
 public class CarteBleue extends Carte{
+	
+	public String couleur = "Bleu";
+	
 	@Override
 	public String toString() {
-		return "bleu";
+		return couleur;
 	}
-
+	
 	/*Avancer*/
 	@Override
 	public void action(Tortue t,Plateau p) {

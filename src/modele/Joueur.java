@@ -25,7 +25,9 @@ public class Joueur {
 		return pioche;
 	}
 	
-
+	public ArrayList<Carte> getMain() {
+		return main;
+	}
 	
 	
 	
@@ -36,9 +38,7 @@ public class Joueur {
 		this.tortue = new Tortue(pNum);
 	}
 	
-	public ArrayList<Carte> getMain() {
-		return main;
-	}
+	
 	public void setMain(ArrayList<Carte> main) {
 		this.main = main;
 	}

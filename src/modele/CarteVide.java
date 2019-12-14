@@ -8,8 +8,7 @@ public class CarteVide extends Carte{
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "vide";
+		return "";
 	}
 
 }

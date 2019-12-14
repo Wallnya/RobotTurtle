@@ -17,7 +17,8 @@ public class PanelMain extends JPanel{
 	private ArrayList<Carte> main;
 	private JPanel container;
 
-	public PanelMain(Joueur joueur) throws IOException{
+	public PanelMain(Joueur joueurEnCours) throws IOException{
+		
 		label[0] = new JButton("");
 		label[1] = new JButton("");
 		label[2] = new JButton("");
@@ -38,11 +39,16 @@ public class PanelMain extends JPanel{
         this.setVisible(true);
 
         // Affichage de la main du joueur
-		main = new ArrayList<Carte>();
-		for(int i=0;i<5;i++){
-			main.add(i, joueur.getMain().get(i));
+		affichageMain(joueurEnCours.getMain());
+	}
+	
+	public void affichageMain(ArrayList<Carte> main){
+		for (int i = 0; i < 5; i++){
+			label[i].setText(main.get(i).toString());
+			label[i].setActionCommand(i+"");
+			container.add(label[i]);
 		}
-		affichageMain(main);
+		this.add(container);
 	}
 	
 	public void boutonEnableFalse(){
@@ -51,13 +57,13 @@ public class PanelMain extends JPanel{
 		}	
 	}
 	
-	public void affichageMain(ArrayList<Carte> main){
-		for(int i=0;i<5;i++){
-			label[i].setText(main.get(i).toString());
-			label[i].setActionCommand(i+"");
-			container.add(label[i]);
+	public int nombreCartesSelectionnees(){
+		int compteur = 0;
+		for (int i = 0; i < 5; i++){
+			if (!label[i].isEnabled())
+				compteur++;
 		}
-		this.add(container);
+		return compteur;
 	}
 
 	
@@ -96,13 +102,5 @@ public class PanelMain extends JPanel{
 		this.label = label;
 	}
 	
-	public int nombreCarteSelectionnee(){
-		int compteur=0;
-		for(int i=0;i<5;i++){
-			if (!label[i].isEnabled())
-				compteur++;
-		}
-		return compteur;
-		
-	}
+
 }

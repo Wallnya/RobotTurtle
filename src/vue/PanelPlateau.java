@@ -26,7 +26,6 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		plateau = new Plateau();
 		plateau.preparationPlateau(nbJoueur);
 		
-		
 		// Affichage
 		tableur = new DefaultTableModel();
 		for(int i=0;i<8;i++){
@@ -61,6 +60,14 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public TableModel getTm() {
 		return tm;

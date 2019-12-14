@@ -2,6 +2,13 @@ package modele;
 
 public class CarteViolette extends Carte{
 
+	public String couleur = "Violet";
+	
+	@Override
+	public String toString() {
+		return couleur;
+	}
+	
 	/*Droite*/
 	@Override
 	public void action(Tortue t,Plateau p) {
@@ -21,10 +28,5 @@ public class CarteViolette extends Carte{
 		}		
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "violette";
-	}
 
 }

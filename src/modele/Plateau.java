@@ -45,10 +45,9 @@ public class Plateau{
 				Joyau joyau1 = new Joyau("V","Vert");
 				deplacerTuile(joyau1, 7, 3);
 	
-				for (int i = 1; i <= 5; i++) {
-					piocherCarte(joueur1);
-					piocherCarte(joueur2);
-				}
+				piocherCartes(joueur1);
+				piocherCartes(joueur2);
+
 				break;
 			}
 			case 3: {
@@ -87,11 +86,9 @@ public class Plateau{
 				deplacerTuile(joyau2, 7, 3);
 				deplacerTuile(joyau3, 7, 6);
 
-				for (int i = 1; i <= 5; i++) {
-					piocherCarte(joueur1);
-					piocherCarte(joueur2);
-					piocherCarte(joueur3);
-				}
+				piocherCartes(joueur1);
+				piocherCartes(joueur2);
+				piocherCartes(joueur3);
 	
 				break;
 			}
@@ -132,12 +129,10 @@ public class Plateau{
 				deplacerTuile(joyau1, 7, 1);
 				deplacerTuile(joyau2, 7, 6);
 				
-				for (int i = 1; i <= 5; i++) {
-					piocherCarte(joueur1);
-					piocherCarte(joueur2);
-					piocherCarte(joueur3);
-					piocherCarte(joueur4);
-				}
+				piocherCartes(joueur1);
+				piocherCartes(joueur2);
+				piocherCartes(joueur3);
+				piocherCartes(joueur4);
 	
 				break;
 			}
@@ -183,19 +178,18 @@ public class Plateau{
 		}
 		
 		joueur.setPioche(pioche);
-		System.out.println(pioche);
+		//System.out.println("Pioche : " + pioche);
 	}
 	
 	public void piocherCarte(Joueur joueur) {
 		
 		ArrayDeque<Carte> pioche = joueur.getPioche();
-		ArrayList<Carte> main = new ArrayList<Carte>();
+		ArrayList<Carte> main = joueur.getMain();
 		
 		main.add(pioche.getFirst());
 		pioche.removeFirst();
 		
-		System.out.println(main);
-		joueur.setMain(main);
+		joueur.setMain(main); // Inutile ?
 	}
 	
 	public void piocherCartes(Joueur joueur) {
@@ -207,21 +201,24 @@ public class Plateau{
 			main.add(pioche.getFirst());
 			pioche.removeFirst();
 		}
-		System.out.println(main);
-		joueur.setMain(main);
+
+		joueur.setMain(main); // Inutile ?
 	}
 	
 	/*public void piocheUneCarte(Joueur joueur){
 		joueur.getMain().add(pioche.get(0));
 		pioche.remove(0);
 		System.out.println(joueur.getMain().toString());
-	}
-	
-	public Carte piocheUneCarte(){
-		Carte carte = pioche.get(0);
-		pioche.remove(0);
-		return carte;
 	}*/
+	
+	public Carte cartePiochee(Joueur joueur){
+		ArrayDeque<Carte> pioche = joueur.getPioche();
+		ArrayList<Carte> main = new ArrayList<Carte>();
+		
+		Carte carte = pioche.getFirst();
+		pioche.removeFirst();
+		return carte;
+	}
 	
 	public void afficherPlateauConsole() {
     	System.out.println("    0 1 2 3 4 5 6 7 \n  +-----------------+");
@@ -236,6 +233,9 @@ public class Plateau{
     	System.out.println(total + "  +-----------------+");
     }
 
+	
+	
+	
 	
 	
 	
