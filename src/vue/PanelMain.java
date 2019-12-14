@@ -15,7 +15,6 @@ public class PanelMain extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private JButton[] label = new JButton[5];
-	private ArrayList<Carte> main;
 	private JPanel container;
 
 	public PanelMain(Joueur joueurEnCours) throws IOException{

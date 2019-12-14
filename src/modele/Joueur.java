@@ -11,6 +11,8 @@ public class Joueur {
 	private ArrayList<Carte> main;
 	private ArrayDeque<Carte> programme;
 	private Tortue tortue;
+	private int nbObstaclePierre = 3;
+	private int nbObstacleGlace = 2;
 	
 	public Joueur(int pNum){
 		this.main = new ArrayList<Carte>();
