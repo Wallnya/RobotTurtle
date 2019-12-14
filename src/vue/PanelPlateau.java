@@ -23,7 +23,8 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	private TableModel tm;
 
 	public PanelPlateau(int nbJoueur) throws IOException {	
-		plateau = new Plateau(nbJoueur);
+		plateau = new Plateau();
+		plateau.preparationPlateau(nbJoueur);
 		plateau.affichage();
 		
 		// Affichage
@@ -112,7 +113,7 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		this.table = table;
 	}
 
-	public Plateau getP() {
+	public Plateau getPlateau() {
 		return plateau;
 	}
 

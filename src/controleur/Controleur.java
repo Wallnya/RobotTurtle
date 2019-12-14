@@ -38,8 +38,8 @@ public class Controleur implements ActionListener {
 			panelNombresJoueurs.add(chPanJeu, "panel_jeu");
 			chPanJeu.enregistreEcouteur(this);
 			panelNombresJoueurs.getCardLayout().show(panelNombresJoueurs, "panel_jeu");
-			chPanJeu.getAction().boutonFinDefausseFalse();
-			chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[3]);
+			//chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[3]);
+			//chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[4]);
 		}
 
 		
@@ -68,16 +68,16 @@ public class Controleur implements ActionListener {
 			chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[0]);
 			chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[1]);
 			
-			for(Carte str : chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getProgramme()){
+			for(Carte str : chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getProgramme()){
 				System.out.println(str.toString());
-				str.action(chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getTortue(), chPanJeu.getPlateau().getP());
-				chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getProgramme().removeFirst();
+				str.action(chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getTortue(), chPanJeu.getPlateau().getPlateau());
+				chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getProgramme().removeFirst();
 			}
 			try {
 				chPanJeu.getPlateau().updatePlateau();
 			} catch (IOException e1) {e1.printStackTrace();}
 			chPanJeu.getPlateau().refresh();
-			chPanJeu.getPlateau().getP().affichage();
+			chPanJeu.getPlateau().getPlateau().affichage();
 		}
 		//Si on appuie sur fin du tour 
 		else if(e.getActionCommand().equals(Data.ACTION[3])) {
@@ -87,8 +87,8 @@ public class Controleur implements ActionListener {
 			System.out.println("joueur"+(etat-1));
 
 			if (chPanJeu.getMain().nombreCarteSelectionnee() == 5){
-				chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().clear();
-				chPanJeu.getPlateau().getP().piocherCartes(chPanJeu.getPlateau().getP().getJoueurs().get(etat-1));
+				chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().clear();
+				chPanJeu.getPlateau().getPlateau().piocherCartes(chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1));
 			}
 			//Sinon on lui demande s'il veut défausser des cartes en plus
 			else {
@@ -98,14 +98,14 @@ public class Controleur implements ActionListener {
 					/***********************************/
 					/*		EN COURS				*/
 					/*************************************/
-					chPanJeu.getAction().boutonFinDefausseTrue();
-
+					chPanJeu.getAction().oneBoutonAbled(chPanJeu.getAction().getBoutons()[4]);
+					
 				}
 				//S'il ne veut pas défausser des cartes
 				else{
 					for (int i=0;i<5;i++){
-						if(chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().get(i) instanceof CarteVide){
-							chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().set(i,chPanJeu.getPlateau().getP().piocheUneCarte());
+						if(chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().get(i) instanceof CarteVide){
+							//chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().set(i,chPanJeu.getPlateau().getPlateau().piocheUneCarte());
 						}
 					}
 				}
@@ -140,7 +140,7 @@ public class Controleur implements ActionListener {
 				break;
 			}
 			chPanJeu.getMain().boutonEnableFalse();
-			chPanJeu.getMain().affichageMain(chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain());
+			chPanJeu.getMain().affichageMain(chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain());
 			/*On réaffiche tous les boutons.*/
 			chPanJeu.getAction().oneBoutonAble(chPanJeu.getAction().getBoutons()[0]);
 			chPanJeu.getAction().oneBoutonAble(chPanJeu.getAction().getBoutons()[1]);
@@ -155,40 +155,40 @@ public class Controleur implements ActionListener {
 			//On ajoute la carte au programme
 			ajoutProgramm(0);
 			//et on l'enlève de la main du joueur.
-			chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().set(0, new CarteVide());
+			chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().set(0, new CarteVide());
 		}
 		/*S'il clique sur la deuxième carte*/
 		else if(e.getActionCommand().equals(1+"")) {
 			chPanJeu.getMain().oneBoutonDisabled(chPanJeu.getMain().getLabel()[1]);
 			ajoutProgramm(1);
 			//et on l'enlève de la main du joueur.
-			chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().set(1, new CarteVide());
+			chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().set(1, new CarteVide());
 		}
 		/*S'il clique sur la troisième carte*/
 		else if(e.getActionCommand().equals(2+"")) {
 			chPanJeu.getMain().oneBoutonDisabled(chPanJeu.getMain().getLabel()[2]);
 			ajoutProgramm(2);
 			//et on l'enlève de la main du joueur.
-			chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().set(2, new CarteVide());
+			chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().set(2, new CarteVide());
 		}
 		/*S'il clique sur la quatrième carte*/
 		else if(e.getActionCommand().equals(3+"")) {
 			chPanJeu.getMain().oneBoutonDisabled(chPanJeu.getMain().getLabel()[3]);
 			ajoutProgramm(3);
 			//et on l'enlève de la main du joueur.
-			chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().set(3, new CarteVide());
+			chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().set(3, new CarteVide());
 		}
 		/*S'il clique sur la cinquième carte*/
 		else if(e.getActionCommand().equals(4+"")) {
 			chPanJeu.getMain().oneBoutonDisabled(chPanJeu.getMain().getLabel()[4]);
 			ajoutProgramm(4);
 			//et on l'enlève de la main du joueur.
-			chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getMain().set(4, new CarteVide());
+			chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getMain().set(4, new CarteVide());
 		}
 	}
 
 	public void ajoutProgramm(int i){
-		ArrayDeque<Carte> programmeJoueur = chPanJeu.getPlateau().getP().getJoueurs().get(etat-1).getProgramme();
+		ArrayDeque<Carte> programmeJoueur = chPanJeu.getPlateau().getPlateau().getJoueurs().get(etat-1).getProgramme();
 		String couleurCarte = chPanJeu.getMain().getLabel()[i].getText().toString();
 		switch (couleurCarte){
 		case "bleu":
@@ -201,7 +201,7 @@ public class Controleur implements ActionListener {
 			programmeJoueur.add(new CarteRouge());
 			break;
 		case "violette":
-			programmeJoueur.add(new CarteViolete());
+			programmeJoueur.add(new CarteViolette());
 			break;
 		}
 		System.out.println(programmeJoueur);	

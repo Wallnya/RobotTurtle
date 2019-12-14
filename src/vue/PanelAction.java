@@ -46,11 +46,22 @@ public class PanelAction extends JPanel{
 		this.add(panel, BorderLayout.CENTER);
 	}
 	
+	/* Inutile 
+	public void boutonFinDefausseTrue(){
+		boutons[4].setEnabled(true);
+	}
 	
+	public void boutonFinDefausseFalse(){
+		boutons[4].setEnabled(false);
+	}
+	*/
+	public void oneBoutonDisabled(JButton button){
+		button.setEnabled(false);
+	}
 	
-	
-	
-	
+	public void oneBoutonAbled(JButton button){
+		button.setEnabled(true);
+	}
 	
 	
 	
@@ -64,21 +75,14 @@ public class PanelAction extends JPanel{
 
 	public void enregistreEcouteur(Controleur pControleur) {
 		for (int i = 0; i < Data.ACTION.length; i++) {
-			boutons[i].addActionListener(pControleur);// boutons des opï¿½rateurs
+			boutons[i].addActionListener(pControleur);// boutons des opérateurs
 		}
 	}
 	
-	public void oneBoutonDisabled(JButton button){
-		button.setEnabled(false);
-	}
+
 	public void oneBoutonAble(JButton button){
 		button.setEnabled(true);
 	}
 	
-	public void boutonFinDefausseTrue(){
-		boutons[4].setEnabled(true);
-	}
-	public void boutonFinDefausseFalse(){
-		boutons[4].setEnabled(false);
-	}
+
 }

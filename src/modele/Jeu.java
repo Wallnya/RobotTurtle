@@ -21,6 +21,12 @@ public class Jeu {
 		pioche = parPioche;
 	}
 	
+	/*public static void main(String[] args) {
+		lancerPartie();
+	}*/
+	
+	
+	
 	public int getNbJoueurs() {
 		return nbJoueurs;
 	}
@@ -30,7 +36,7 @@ public class Jeu {
 		pioche.remove(0);
 	}
 	
-	public static void lancerPartie() {
+	/*public static void lancerPartie() {
 		int nb = 2;
 		Joueur j1 = new Joueur(1);
 		Plateau p = new Plateau(nb);
@@ -47,11 +53,11 @@ public class Jeu {
 			pioche.add(new CarteJaune());
 		}
 		for(int i=0;i<7;i++) {
-			pioche.add(new CarteViolete());
+			pioche.add(new CarteViolette());
 		}
-		/*for(int i=0;i<2;i++) {
-			pioche.add(new CarteRouge());
-		}*/
+		//for(int i=0;i<2;i++) {
+		//	pioche.add(new CarteRouge());
+		//}
 		Collections.shuffle(pioche);
 		System.out.println(pioche.toString());
 		Jeu j = new Jeu(nb,p,pioche);
@@ -69,7 +75,7 @@ public class Jeu {
 			}while((val < 0 || val >4));
 			switch(val) {
 			case 1:
-				/*j1.completProgram();*/
+				//j1.completProgram();
 				System.out.println();
 			case 2:
 				break;
@@ -77,15 +83,13 @@ public class Jeu {
 				
 			}
 		}
-		/*for(Carte str : j1.getMain()){
-			   System.out.println(str.toString());
-			   str.action(j1.getTortue(), p);
-			   j.plateau.affichage();
-			   System.out.println(j1.getTortue().getSens()+"------------------------");
-		}*/
-	}
+		//for(Carte str : j1.getMain()){
+		//	   System.out.println(str.toString());
+		//	   str.action(j1.getTortue(), p);
+		//	   j.plateau.affichage();
+		//	   System.out.println(j1.getTortue().getSens()+"------------------------");
+		//}
+	}*/
 	
-	public static void main(String[] args) {
-		lancerPartie();
-	}
+	
 }

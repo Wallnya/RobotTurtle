@@ -19,18 +19,29 @@ public class PanelJeu extends JPanel{
 	public PanelJeu(int taille) throws IOException {
 		nbJoueur = taille;
 		plateau = new PanelPlateau(nbJoueur);
-		main = new PanelMain(plateau.getP().getJoueurs().iterator().next());
-		action = new PanelAction();
+		//main = new PanelMain(plateau.getPlateau().getJoueurs().iterator().next());
+		//action = new PanelAction();
 		
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(100, 100, 100, 100));
 		
 		this.add(plateau, BorderLayout.CENTER);
-		this.add(main, BorderLayout.SOUTH);
-		this.add(action, BorderLayout.EAST);
+		//this.add(main, BorderLayout.SOUTH);
+		//this.add(action, BorderLayout.EAST);
 		
-		plateau.getP().getJoueurs();
+		plateau.getPlateau().getJoueurs();
 	}
+
+	public void enregistreEcouteur(Controleur controleur) {
+		//action.enregistreEcouteur(controleur);
+		//main.enregistreEcouteur(controleur);
+	}
+	
+	public PanelAction getAction() {
+		return action;
+	}
+	
+
 
 	
 	
@@ -45,13 +56,7 @@ public class PanelJeu extends JPanel{
 		this.plateau = plateau;
 	}
 
-	public void enregistreEcouteur(Controleur controleur) {
-		action.enregistreEcouteur(controleur);
-		main.enregistreEcouteur(controleur);
-	}
-	public PanelAction getAction() {
-		return action;
-	}
+
 
 	public void setAction(PanelAction action) {
 		this.action = action;

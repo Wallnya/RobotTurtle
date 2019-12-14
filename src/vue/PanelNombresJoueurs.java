@@ -40,11 +40,10 @@ public class PanelNombresJoueurs extends JPanel{
 
 		// Liste déroulante
 		comboTaille = new JComboBox<String>(taille);
-
-		// Boutons
 		comboTaille.addActionListener(chControleur);
 		comboTaille.setActionCommand("champs_taille");
-			
+		
+		// Bouton
 		valider.addActionListener(chControleur);
 		valider.setActionCommand("panelNbJoueurs_valider");
 			
@@ -97,7 +96,10 @@ public class PanelNombresJoueurs extends JPanel{
 		return cardLayout;
 	}
 	
-	
+	public int getTaille() {
+		int poids = comboTaille.getSelectedIndex();
+		return poids+2;
+	}
 	
 	
 	
@@ -107,9 +109,6 @@ public class PanelNombresJoueurs extends JPanel{
 		this.cardLayout = cardLayout;
 	}
 	
-	public int getTaille() {
-		int poids = comboTaille.getSelectedIndex();
-		return poids+2;
-	}
+
 
 }
