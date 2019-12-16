@@ -7,7 +7,9 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 
 import modele.*;
 import vue.*;
@@ -16,7 +18,7 @@ public class Controleur implements ActionListener {
 
 	private PanelNombresJoueurs panelNombresJoueurs;
 	private PanelJeu chPanJeu;
-	private int numJoueurEnCours=1;
+	private int numJoueurEnCours = 1;
 	
 	public Controleur(PanelNombresJoueurs pPanNbJoueurs) {
 		panelNombresJoueurs = pPanNbJoueurs;
@@ -55,6 +57,10 @@ public class Controleur implements ActionListener {
 			panelNombresJoueurs.getCardLayout().show(panelNombresJoueurs, "panel_jeu");
 			chPanJeu.getAction().oneBoutonDisabled(bouton4);
 			chPanJeu.getAction().oneBoutonDisabled(bouton5);
+			
+			System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
+			JLabel labelJoueurEnCours = chPanJeu.getAction().getLabels()[0];
+			labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 		}
 
 		else {
@@ -151,17 +157,17 @@ public class Controleur implements ActionListener {
 				}
 				// Sinon, demande si on veut défausser des cartes
 				else {
-					int resultat = JOptionPane.showConfirmDialog(null,"Voulez-vous défausser des cartes ?", "Le choix est à vous!",JOptionPane.YES_NO_OPTION);
+					//int resultat = JOptionPane.showConfirmDialog(null,"Voulez-vous défausser des cartes ?", "Le choix est à vous!",JOptionPane.YES_NO_OPTION);
 					// Si oui
-					if (resultat == JOptionPane.YES_OPTION){
+					//if (resultat == JOptionPane.YES_OPTION){
 						/**************************************/
 						/*              EN COURS              */
 						/**************************************/
-						chPanJeu.getAction().oneBoutonAbled(bouton5);
-						
-					}
-					// Sinon, on remplace quand même les cartes "vides"
-					else {
+						//chPanJeu.getAction().oneBoutonAbled(bouton5);
+					
+					//}
+					// Sinon, on remplace quand même les cartes "vides" utilisées
+					//else {
 						Joueur joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
 						ArrayList<Carte> mainJoueur = joueurEnCours.getMain();
 						for (int i = 0; i < 5; i++){
@@ -169,7 +175,7 @@ public class Controleur implements ActionListener {
 								mainJoueur.set(i,chPanJeu.getPanelPlateau().getPlateau().cartePiochee(joueurEnCours));
 							}
 						}
-					}
+					//}
 				}
 				
 				// On passe au joueur suivant
@@ -186,6 +192,9 @@ public class Controleur implements ActionListener {
 				chPanJeu.getAction().oneBoutonAbled(bouton3);
 				chPanJeu.getAction().oneBoutonDisabled(bouton4);
 
+				JLabel labelJoueurEnCours = chPanJeu.getAction().getLabels()[0];
+				labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", à vous de jouer !");
+				System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 			}
 			
 		}

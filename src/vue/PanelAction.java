@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -8,7 +9,9 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import controleur.Controleur;
@@ -18,6 +21,7 @@ public class PanelAction extends JPanel{
 
 	private JPanel panel;
 	private JButton[] boutons;
+	private JLabel[] labels;
 	private static final long serialVersionUID = 1L;
 
 	public PanelAction(){
@@ -29,6 +33,7 @@ public class PanelAction extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		boutons = new JButton[5];
+		labels = new JLabel[1];
 
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -36,6 +41,11 @@ public class PanelAction extends JPanel{
 		int height = (int)dimension.getHeight();
 		System.out.println(height/2);*/
 		
+		labels[0] = new JLabel(); 
+		labels[0].setVerticalAlignment(SwingConstants.CENTER);
+		labels[0].setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(labels[0]);
+	    
 		panel.add(Box.createVerticalStrut(350));
 		for (int i = 0; i < Data.ACTION.length; i++) {
 			boutons[i] = new JButton(Data.ACTION[i]);
@@ -63,6 +73,9 @@ public class PanelAction extends JPanel{
 	// Getters et setters
 	public JButton[] getBoutons() {
 		return boutons;
+	}
+	public JLabel[] getLabels() {
+		return labels;
 	}
 	public void setBoutons(JButton[] boutons) {
 		this.boutons = boutons;

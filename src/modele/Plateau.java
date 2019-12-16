@@ -255,4 +255,11 @@ public class Plateau{
 	public void setNbJoueurs(int nbJoueurs) {
 		this.nbJoueurs = nbJoueurs;
 	}
+	public Tuile getContenuCase(int ligne, int colonne) {
+		return plateau[ligne][colonne];
+	}
+	public void viderCase(int ligne, int colonne) {
+		Tuile pionVide = new Vide();
+		plateau[ligne][colonne] = pionVide;
+	}
 }
