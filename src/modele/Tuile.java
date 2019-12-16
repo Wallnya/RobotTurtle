@@ -3,8 +3,8 @@ package modele;
 public class Tuile {
 	
 	protected String symbole;
-	protected int ligne;
-	protected int colonne;
+	protected int ligne = -1;
+	protected int colonne = -1;
 	
 	public String toString() {
 		return this.symbole;

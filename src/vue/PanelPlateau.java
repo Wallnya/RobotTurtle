@@ -36,7 +36,7 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		table = new JTable(tableur);
 		table.setPreferredScrollableViewportSize(new Dimension(800, 800));
 		add(new JScrollPane(table), BorderLayout.CENTER);
-		
+
 		tableur.addTableModelListener(this);
 		setLocation(200, 300);
 		setVisible(true);
@@ -55,7 +55,7 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	public void afficherPlateau() throws IOException{
 		for (int i = 0; i < 8; i++){
 			for (int j = 0; j < 8; j++){
-				Tuile tuile = plateau.getPlateau()[i][j];
+				Tuile tuile = plateau.getContenuPlateau()[i][j];
 				tableur.setValueAt(tuile, i, j);
 			}
 		}

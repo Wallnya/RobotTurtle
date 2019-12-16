@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Plateau{
 
-	private Tuile[][] plateau;
+	private Tuile[][] contenuPlateau;
 	private int nbJoueurs;
 	private List<Joueur> joueurs;
 	
 
 	public void preparationPlateau(int nbJoueurs) {
 		
-		plateau = new Tuile[8][8];
+		contenuPlateau = new Tuile[8][8];
 		setNbJoueurs(nbJoueurs);
 		initialisationPlateau();
 		joueurs = new ArrayList<Joueur>();
@@ -144,18 +144,18 @@ public class Plateau{
 			int ancienneColonne = tuile.getColonne();
 			Tuile pionVide = new Tuile();
 			pionVide.setSymbole(" ");
-			plateau[ancienneLigne][ancienneColonne] = pionVide;
+			contenuPlateau[ancienneLigne][ancienneColonne] = pionVide;
 		}
 		tuile.setLigne(ligne);
 		tuile.setColonne(colonne);
-		plateau[ligne][colonne] = tuile;
+		contenuPlateau[ligne][colonne] = tuile;
 	}
 	
 	public void initialisationPlateau() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				Tuile vide = new Vide();
-				plateau[i][j] = vide;
+				contenuPlateau[i][j] = vide;
 			}
 		}
 	}
@@ -223,19 +223,41 @@ public class Plateau{
     	for (int i = 0; i <= 7; i++) {
     		String ligne = i + " | ";
         	for (int j = 0; j <= 7; j++) {
-        		ligne = ligne + plateau[i][j] + " ";
+        		ligne = ligne + contenuPlateau[i][j] + " ";
         	}
         	total = total + ligne + "| \n";
         }
     	System.out.println(total + "  +-----------------+");
     }
 
+	public boolean caseLibre(int ligne, int colonne) {
+		if (contenuPlateau[ligne][colonne].getSymbole() == " ") {
+			return true;
+		}
+		return false;
+	}
+	
+	/* A faire */
+	public boolean caseNonBlocante(int ligne, int colonne) {
+
+		int ligneCaseHaut = ligne - 1;
+		int colonneCaseHaut = colonne;
+		int ligneCaseBas = ligne + 1;
+		int colonneCaseBas = colonne;
+		int ligneCaseGauche = ligne;
+		int colonneCaseGauche = colonne - 1;
+		int ligneCaseDroite = ligne;
+		int colonneCaseDroite = colonne + 1;
+		
+		return true;
+	}
+	
 	// Getters et setters
 	public void setJoueur(int i, int j, Tortue joueur){
-		plateau[i][j] = joueur;
+		contenuPlateau[i][j] = joueur;
 	}
 	public void setVide(int i, int j, Vide v){
-		plateau[i][j] = v;
+		contenuPlateau[i][j] = v;
 	}
 	public List<Joueur> getJoueurs() {
 		return joueurs;
@@ -243,11 +265,8 @@ public class Plateau{
 	public void setJoueurs(List<Joueur> joueurs) {
 		this.joueurs = joueurs;
 	}
-	public Tuile[][] getPlateau() {
-		return plateau;
-	}
-	public void setPlateau(Tuile[][] plateau) {
-		this.plateau = plateau;
+	public Tuile[][] getContenuPlateau() {
+		return contenuPlateau;
 	}
 	public int getNbJoueurs() {
 		return nbJoueurs;
@@ -256,10 +275,10 @@ public class Plateau{
 		this.nbJoueurs = nbJoueurs;
 	}
 	public Tuile getContenuCase(int ligne, int colonne) {
-		return plateau[ligne][colonne];
+		return contenuPlateau[ligne][colonne];
 	}
 	public void viderCase(int ligne, int colonne) {
 		Tuile pionVide = new Vide();
-		plateau[ligne][colonne] = pionVide;
+		contenuPlateau[ligne][colonne] = pionVide;
 	}
 }

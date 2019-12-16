@@ -17,15 +17,15 @@ public class CarteBleue extends Carte{
 			case 'S':
 				// Si obstacle ou sortie de terrain : demi-tour
 				if ((tortue.getLigne() + 1 > 7) 
-						|| (plateau.getPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstaclePierre)
-						|| (plateau.getPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstacleGlace)){
+						|| (plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstaclePierre)
+						|| (plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstacleGlace)){
 					tortue.setSens('N');
 				}
 				
 				// Si rencontre une tortue
-				else if ((plateau.getPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof Tortue)) {
+				else if ((plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof Tortue)) {
 					// On les remet au départ
-					Tortue tortue2 = (Tortue) plateau.getPlateau()[tortue.getLigne()+1][tortue.getColonne()];
+					Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()];
 					plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 					plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
 					// Et on met les anciennes cases à vide
@@ -48,14 +48,14 @@ public class CarteBleue extends Carte{
 			case 'N':
 				// Si obstacle ou sortie de terrain : demi-tour
 				if((tortue.getLigne()-1 < 0) 
-						|| (plateau.getPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstaclePierre)
-						|| (plateau.getPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstacleGlace)){
+						|| (plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstaclePierre)
+						|| (plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstacleGlace)){
 					tortue.setSens('S');
 				}
 				
 				// Si rencontre une tortue
-				else if ((plateau.getPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof Tortue)) {
-						Tortue tortue2 = (Tortue) plateau.getPlateau()[tortue.getLigne()-1][tortue.getColonne()];
+				else if ((plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof Tortue)) {
+						Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()];
 						plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 						plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
 						
@@ -78,14 +78,14 @@ public class CarteBleue extends Carte{
 			case 'E':
 				// Si obstacle ou sortie de terrain : demi-tour
 				if( (tortue.getColonne()+1 > 7) 
-						|| (plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstaclePierre)
-						|| (plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstacleGlace)){
+						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstaclePierre)
+						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstacleGlace)){
 					tortue.setSens('O');
 				}
 				
 				// Si rencontre une tortue
-				else if ((plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof Tortue)) {
-						Tortue tortue2 = (Tortue) plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()+1];
+				else if ((plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof Tortue)) {
+						Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1];
 						plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 						plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
 						
@@ -108,14 +108,14 @@ public class CarteBleue extends Carte{
 			case 'O':
 				// Si obstacle ou sortie de terrain : demi-tour
 				if((tortue.getColonne()-1 < 0 ) 
-						|| (plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstaclePierre)
-						|| (plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstacleGlace)){ 
+						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstaclePierre)
+						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstacleGlace)){ 
 					tortue.setSens('E');
 				}
 				
 				// Si rencontre une tortue
-				else if ((plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof Tortue)) {
-						Tortue tortue2 = (Tortue) plateau.getPlateau()[tortue.getLigne()][tortue.getColonne()-1];
+				else if ((plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof Tortue)) {
+						Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1];
 						plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 						plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
 						

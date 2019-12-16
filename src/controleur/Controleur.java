@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import modele.*;
@@ -113,10 +114,7 @@ public class Controleur implements ActionListener {
 				chPanJeu.getAction().oneBoutonDisabled(bouton2);
 				chPanJeu.getAction().oneBoutonDisabled(bouton3);
 				chPanJeu.getAction().oneBoutonAbled(bouton4);
-				
-				/**************************************/
-				/*               A FAIRE              */
-				/**************************************/
+				placerObstacle();
 			}
 			
 			
@@ -235,5 +233,68 @@ public class Controleur implements ActionListener {
 		
 		System.out.println("Programme : " + programmeJoueur);	
 		System.out.println("Main : " + mainJoueur);
+	}
+	
+	public void placerObstacle() {
+		
+		boolean ok = false;	
+		/*
+		if (reponse.equals("Pierre")) {
+			int nbPierre = joueurEnCours.getNbObstaclePierre();
+			if (nbPierre > 0) {
+				joueurEnCours.setNbObstaclePierre(nbPierre - 1);
+				ok = true;
+			} else {
+				System.out.println("Aucun mur de pierre à poser.");
+			}
+			
+		} else {
+			int nbGlace = joueurEnCours.getNbObstacleGlace();
+			if (nbGlace > 0) {
+				joueurEnCours.setNbObstaclePierre(nbGlace - 1);
+				
+				ok = true;
+			} else {
+				System.out.println("Aucun mur de glace à poser.");
+			}
+		}*/
+		ok = true;
+		
+		Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
+		JTable table = chPanJeu.getPanelPlateau().getTable();
+	
+		if (ok) {
+			table.addMouseListener(new java.awt.event.MouseAdapter() {
+			    @Override
+			    public void mouseClicked(java.awt.event.MouseEvent evt) {
+			    	
+			        int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
+			        int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
+			        
+					if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
+						if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
+							if (true) { // Gérer pierre ou glace
+								ObstaclePierre pierre = new ObstaclePierre();
+								plateau.deplacerTuile(pierre, ligneSelectionnee, colonneSelectionnee);
+							} else {
+								ObstacleGlace glace = new ObstacleGlace();
+								plateau.deplacerTuile(glace, ligneSelectionnee, colonneSelectionnee);
+							}
+							try {
+								chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
+							// Rendre tableau non cliquable après avoir poser l'obstacle
+						} else {
+							System.out.println("Case blocante.");
+						}
+					} else {
+						System.out.println("Case déjà occupée.");
+					}
+			    }
+			});
+		}
 	}
 }
