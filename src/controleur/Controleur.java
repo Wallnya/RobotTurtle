@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 
 import modele.*;
 import vue.*;
@@ -20,6 +18,7 @@ public class Controleur implements ActionListener {
 	private PanelNombresJoueurs panelNombresJoueurs;
 	private PanelJeu chPanJeu;
 	private int numJoueurEnCours = 1;
+	private boolean defausse = false;
 	
 	public Controleur(PanelNombresJoueurs pPanNbJoueurs) {
 		panelNombresJoueurs = pPanNbJoueurs;
@@ -78,6 +77,7 @@ public class Controleur implements ActionListener {
 				chPanJeu.getAction().oneBoutonDisabled(bouton2);
 				chPanJeu.getAction().oneBoutonDisabled(bouton3);
 				chPanJeu.getAction().oneBoutonAbled(bouton4);
+				chPanJeu.getAction().oneBoutonAbled(bouton5);
 			} 
 			
 			// Si on choisit la première carte
@@ -114,6 +114,7 @@ public class Controleur implements ActionListener {
 				chPanJeu.getAction().oneBoutonDisabled(bouton2);
 				chPanJeu.getAction().oneBoutonDisabled(bouton3);
 				chPanJeu.getAction().oneBoutonAbled(bouton4);
+				chPanJeu.getAction().oneBoutonAbled(bouton5);
 				placerObstacle();
 			}
 			
@@ -125,6 +126,7 @@ public class Controleur implements ActionListener {
 				chPanJeu.getAction().oneBoutonDisabled(bouton2);
 				chPanJeu.getAction().oneBoutonDisabled(bouton3);
 				chPanJeu.getAction().oneBoutonAbled(bouton4);
+				chPanJeu.getAction().oneBoutonAbled(bouton5);
 				
 				ArrayDeque<Carte> programmeJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme();
 				Tortue tortueJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue();
@@ -194,6 +196,18 @@ public class Controleur implements ActionListener {
 				labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 				System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 			}
+			//Si on appuie sur défausser des cartes
+			else if(e.getActionCommand().equals(Data.ACTION[4])){
+				chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[4]);
+				defausse=true;
+				//Si toutes les cartes ont été selectionnées, on lui fait piocher toutes les cartes
+				//car il ne peut pas défausser des cartes
+				if (chPanJeu.getPanelMain().nombreCartesSelectionnees() == 5){
+					chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getDefausse().addAll(chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours).getMain());
+					chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getMain().clear();
+					chPanJeu.getPanelPlateau().getPlateau().piocherCartes(chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1));
+				}
+			}
 			
 		}
 	}
@@ -260,8 +274,8 @@ public class Controleur implements ActionListener {
 		}*/
 		ok = true;
 		
-		Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
-		JTable table = chPanJeu.getPanelPlateau().getTable();
+		final Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
+		final JTable table = chPanJeu.getPanelPlateau().getTable();
 	
 		if (ok) {
 			table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -276,10 +290,10 @@ public class Controleur implements ActionListener {
 							if (true) { // Gérer pierre ou glace
 								ObstaclePierre pierre = new ObstaclePierre();
 								plateau.deplacerTuile(pierre, ligneSelectionnee, colonneSelectionnee);
-							} else {
+							} /*else {
 								ObstacleGlace glace = new ObstacleGlace();
 								plateau.deplacerTuile(glace, ligneSelectionnee, colonneSelectionnee);
-							}
+							}*/
 							try {
 								chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
 							} catch (IOException e) {

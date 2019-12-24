@@ -13,17 +13,17 @@ public class CarteViolette extends Carte{
 	@Override
 	public void action(Tortue tortue, Plateau plateau) {
 		switch(tortue.getSens()) {
-			case 'S':
-				tortue.setSens('O');
+			case SUD:
+				tortue.setSens(Sens.OUEST);
 				break;
-			case 'N':
-				tortue.setSens('E');
+			case NORD:
+				tortue.setSens(Sens.EST);
 				break;
-			case 'E':
-				tortue.setSens('S');
+			case EST:
+				tortue.setSens(Sens.SUD);
 				break;
-			case 'O':
-				tortue.setSens('N');
+			case OUEST:
+				tortue.setSens(Sens.NORD);
 				break;
 			}		
 	}

@@ -26,12 +26,12 @@ public class Plateau{
 				}
 				
 				Joueur joueur1 = new Joueur(1);
-				Tortue tortue1 = new Tortue(1,"1","Rouge",'S',0,1);
+				Tortue tortue1 = new Tortue(1,"1","Rouge",Sens.SUD,0,1);
 				joueur1.setTortue(tortue1);
 				setJoueur(0,1,tortue1);
 				
 				Joueur joueur2 = new Joueur(2);
-				Tortue tortue2 = new Tortue(2,"2","Bleu",'S',0,5);
+				Tortue tortue2 = new Tortue(2,"2","Bleu",Sens.SUD,0,5);
 				joueur2.setTortue(tortue2);
 				setJoueur(0,5,tortue2);
 				
@@ -55,17 +55,17 @@ public class Plateau{
 					deplacerTuile(obstaclePierre, i, 7);
 				}
 				Joueur joueur1 = new Joueur(1);
-				Tortue tortue1 = new Tortue(1,"1","Rouge",'S',0,0);
+				Tortue tortue1 = new Tortue(1,"1","Rouge",Sens.SUD,0,0);
 				joueur1.setTortue(tortue1);
 				setJoueur(0,0,tortue1);
 	
 				Joueur joueur2 = new Joueur(2);
-				Tortue tortue2 = new Tortue(2,"2","Bleu",'S',0,3);
+				Tortue tortue2 = new Tortue(2,"2","Bleu",Sens.SUD,0,3);
 				joueur2.setTortue(tortue2);
 				setJoueur(0,3,tortue2);
 	
 				Joueur joueur3 = new Joueur(3);
-				Tortue tortue3 = new Tortue(3,"3","Rose",'S',0,6);
+				Tortue tortue3 = new Tortue(3,"3","Rose",Sens.SUD,0,6);
 				joueur3.setTortue(tortue3);
 				setJoueur(0,6,tortue3);
 	
@@ -94,22 +94,22 @@ public class Plateau{
 			case 4: {
 	
 				Joueur joueur1 = new Joueur(1);
-				Tortue tortue1 = new Tortue(1,"1","Rouge",'S',0,0);
+				Tortue tortue1 = new Tortue(1,"1","Rouge",Sens.SUD,0,0);
 				joueur1.setTortue(tortue1);
 				setJoueur(0,0,tortue1);
 	
 				Joueur joueur2 = new Joueur(2);
-				Tortue tortue2 = new Tortue(2,"2","Bleu",'S',0,2);
+				Tortue tortue2 = new Tortue(2,"2","Bleu",Sens.SUD,0,2);
 				joueur2.setTortue(tortue2);
 				setJoueur(0,2,tortue2);
 	
 				Joueur joueur3 = new Joueur(3);
-				Tortue tortue3 = new Tortue(3,"3","Rose",'S',0,5);
+				Tortue tortue3 = new Tortue(3,"3","Rose",Sens.SUD,0,5);
 				setJoueur(0,5,tortue3);
 				joueur3.setTortue(tortue3);
 	
 				Joueur joueur4 = new Joueur(4);
-				Tortue tortue4 = new Tortue(4,"4","Vert",'S',0,7);
+				Tortue tortue4 = new Tortue(4,"4","Vert",Sens.SUD,0,7);
 				joueur4.setTortue(tortue4);
 				setJoueur(0,7,tortue4);
 				

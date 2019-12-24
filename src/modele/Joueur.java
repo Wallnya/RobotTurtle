@@ -2,12 +2,14 @@ package modele;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Joueur {
 	
 	public static Scanner scanner = new Scanner(System.in);
 	private ArrayDeque<Carte> pioche = new ArrayDeque<>();
+	private List<Carte> defausse = new ArrayList<Carte>();
 	private ArrayList<Carte> main;
 	private ArrayDeque<Carte> programme;
 	private Tortue tortue;
@@ -44,5 +46,27 @@ public class Joueur {
 	}
 	public void setTortue(Tortue tortue) {
 		this.tortue = tortue;
+	}
+	public int getNbObstaclePierre() {
+		return nbObstaclePierre;
+	}
+
+	public void setNbObstaclePierre(int nbObstaclePierre) {
+		this.nbObstaclePierre = nbObstaclePierre;
+	}
+
+	public int getNbObstacleGlace() {
+		return nbObstacleGlace;
+	}
+
+	public void setNbObstacleGlace(int nbObstacleGlace) {
+		this.nbObstacleGlace = nbObstacleGlace;
+	}
+	public List<Carte> getDefausse() {
+		return defausse;
+	}
+
+	public void setDefausse(List<Carte> defausse) {
+		this.defausse = defausse;
 	}
 }

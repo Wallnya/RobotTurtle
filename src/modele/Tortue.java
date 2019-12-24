@@ -4,7 +4,7 @@ public class Tortue extends Tuile {
 	
 	private int numero_joueur;
 	private String couleur;
-	private char sens = 'S';
+	private Sens sens = Sens.SUD;
 	private final int ligne_debut;
 	private final int colonne_debut;
 	
@@ -15,10 +15,10 @@ public class Tortue extends Tuile {
 		colonne_debut=0;
 	}
 	
-	public Tortue(int numero_joueur, String symbole, String couleur, char sens, int ligne, int colonne) {
+	public Tortue(int numero_joueur, String symbole, String couleur, Sens sens, int ligne, int colonne) {
 		this.numero_joueur = numero_joueur;
 		this.symbole = symbole;
-		this.couleur = couleur;
+		this.setCouleur(couleur);
 		this.sens = sens;
 		this.ligne=ligne;
 		this.colonne=colonne;
@@ -27,10 +27,10 @@ public class Tortue extends Tuile {
 	}
 	
 	// Getters et setters
-	public void setSens(char sens) {
+	public void setSens(Sens sens) {
 		this.sens = sens;
 	}
-	public char getSens() {
+	public Sens getSens() {
 		return sens;
 	}
 	public void setNumero_joueur(int numero_joueur) {
@@ -44,6 +44,14 @@ public class Tortue extends Tuile {
 	}
 	public int getColonne_debut() {
 		return colonne_debut;
+	}
+
+	public String getCouleur() {
+		return couleur;
+	}
+
+	public void setCouleur(String couleur) {
+		this.couleur = couleur;
 	}
 	
 }

@@ -14,12 +14,12 @@ public class CarteBleue extends Carte{
 	public void action(Tortue tortue, Plateau plateau) {
 		
 		switch(tortue.getSens()) {
-			case 'S':
+			case SUD:
 				// Si obstacle ou sortie de terrain : demi-tour
 				if ((tortue.getLigne() + 1 > 7) 
 						|| (plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstaclePierre)
 						|| (plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstacleGlace)){
-					tortue.setSens('N');
+					tortue.setSens(Sens.NORD);
 				}
 				
 				// Si rencontre une tortue
@@ -45,12 +45,12 @@ public class CarteBleue extends Carte{
 				}
 				break;
 				
-			case 'N':
+			case NORD:
 				// Si obstacle ou sortie de terrain : demi-tour
 				if((tortue.getLigne()-1 < 0) 
 						|| (plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstaclePierre)
 						|| (plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstacleGlace)){
-					tortue.setSens('S');
+					tortue.setSens(Sens.SUD);
 				}
 				
 				// Si rencontre une tortue
@@ -75,12 +75,12 @@ public class CarteBleue extends Carte{
 				}
 				break;
 				
-			case 'E':
+			case EST:
 				// Si obstacle ou sortie de terrain : demi-tour
 				if( (tortue.getColonne()+1 > 7) 
 						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstaclePierre)
 						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstacleGlace)){
-					tortue.setSens('O');
+					tortue.setSens(Sens.OUEST);
 				}
 				
 				// Si rencontre une tortue
@@ -105,12 +105,12 @@ public class CarteBleue extends Carte{
 				}
 				break;
 				
-			case 'O':
+			case OUEST:
 				// Si obstacle ou sortie de terrain : demi-tour
 				if((tortue.getColonne()-1 < 0 ) 
 						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstaclePierre)
 						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstacleGlace)){ 
-					tortue.setSens('E');
+					tortue.setSens(Sens.EST);
 				}
 				
 				// Si rencontre une tortue

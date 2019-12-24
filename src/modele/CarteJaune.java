@@ -14,17 +14,17 @@ public class CarteJaune extends Carte{
 	public void action(Tortue tortue, Plateau plateau) {
 		
 		switch(tortue.getSens()) {
-			case 'S':
-				tortue.setSens('E');
+			case SUD:
+				tortue.setSens(Sens.EST);
 				break;
-			case 'N':
-				tortue.setSens('O');
+			case NORD:
+				tortue.setSens(Sens.OUEST);
 				break;
-			case 'E':
-				tortue.setSens('N');
+			case EST:
+				tortue.setSens(Sens.NORD);
 				break;
-			case 'O':
-				tortue.setSens('S');
+			case OUEST:
+				tortue.setSens(Sens.SUD);
 				break;
 			}		
 	}

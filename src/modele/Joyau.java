@@ -16,5 +16,8 @@ public class Joyau extends Tuile{
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
 	}
+	public String getCouleur() {
+		return couleur;
+	}
 	
 }

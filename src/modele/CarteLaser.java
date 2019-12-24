@@ -13,7 +13,7 @@ public class CarteLaser extends Carte {
 	@Override
 	public void action(Tortue tortue, Plateau plateau) {
 		
-		char sens = tortue.getSens();
+		Sens sens = tortue.getSens();
 		int ligne = tortue.getLigne();
 		int colonne = tortue.getColonne();
 		
@@ -23,7 +23,7 @@ public class CarteLaser extends Carte {
 		boolean tuileTrouve = false;
 		
 		switch(sens) {
-			case ('N') : 
+			case NORD: 
 				for (i = ligne - 1; i >= 0; i--) {
 					tuileCaseActuelle = plateau.getContenuCase(i, colonne);
 					if (tuileCaseActuelle.getSymbole() != " ") {
@@ -33,7 +33,7 @@ public class CarteLaser extends Carte {
 					}
 				}
 				break;
-			case ('O') : 
+			case OUEST: 
 				for (i = colonne - 1; i >= 0; i--) {
 					tuileCaseActuelle = plateau.getContenuCase(ligne, i);
 					if (tuileCaseActuelle.getSymbole() != " ") {
@@ -43,7 +43,7 @@ public class CarteLaser extends Carte {
 					}
 				}
 				break;
-			case ('S') : 
+			case SUD :
 				for (i = ligne + 1; i <= 7; i++) {
 					tuileCaseActuelle = plateau.getContenuCase(i, colonne);
 					if (tuileCaseActuelle.getSymbole() != " ") {
@@ -53,7 +53,7 @@ public class CarteLaser extends Carte {
 					}
 				}
 				break;
-			case ('E') : 
+			case EST:
 				for (i = colonne + 1; i <= 7; i++) {
 					tuileCaseActuelle = plateau.getContenuCase(ligne, i);
 					if (tuileCaseActuelle.getSymbole() != " ") {
@@ -75,10 +75,10 @@ public class CarteLaser extends Carte {
 					// Si 2 joueurs, demi-tour
 					if (plateau.getNbJoueurs() == 2) {
 						switch (tortueTouchee.getSens()) {
-						case 'N' : tortueTouchee.setSens('S'); break;
-						case 'S' : tortueTouchee.setSens('N'); break;
-						case 'O' : tortueTouchee.setSens('E'); break;
-						case 'E' : tortueTouchee.setSens('O'); break;
+						case NORD : tortueTouchee.setSens(Sens.SUD); break;
+						case SUD : tortueTouchee.setSens(Sens.NORD); break;
+						case OUEST : tortueTouchee.setSens(Sens.EST); break;
+						case EST : tortueTouchee.setSens(Sens.OUEST); break;
 						}
 					} 
 					// Sinon, case départ
