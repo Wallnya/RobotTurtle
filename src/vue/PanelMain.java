@@ -77,9 +77,9 @@ public class PanelMain extends JPanel{
 	}
 
 	public void enregistreEcouteur(Controleur controleur) {
-		//for (int i = 0; i < 5; i++) {
-			boutonsMain[1].addActionListener(controleur);
-		//}		
+		for (int i = 0; i < 5; i++) {
+			boutonsMain[i].addActionListener(controleur);
+		}		
 	}
 	
 	public void oneBoutonDisabled(JButton button){
