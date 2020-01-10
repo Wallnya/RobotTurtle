@@ -46,38 +46,42 @@ public class Controleur implements ActionListener {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			bouton1 = chPanJeu.getAction().getBoutons()[0];
-			bouton2 = chPanJeu.getAction().getBoutons()[1];
-			bouton3 = chPanJeu.getAction().getBoutons()[2];
-			bouton4 = chPanJeu.getAction().getBoutons()[3];
-			bouton5 = chPanJeu.getAction().getBoutons()[4];
+			bouton1 = chPanJeu.getPanelAction().getBoutons()[0];
+			bouton2 = chPanJeu.getPanelAction().getBoutons()[1];
+			bouton3 = chPanJeu.getPanelAction().getBoutons()[2];
+			bouton4 = chPanJeu.getPanelAction().getBoutons()[3];
+			bouton5 = chPanJeu.getPanelAction().getBoutons()[4];
 			
 			panelNombresJoueurs.add(chPanJeu, "panel_jeu");
 			chPanJeu.enregistreEcouteur(this);
 			panelNombresJoueurs.getCardLayout().show(panelNombresJoueurs, "panel_jeu");
-			chPanJeu.getAction().oneBoutonDisabled(bouton4);
-			chPanJeu.getAction().oneBoutonDisabled(bouton5);
+			chPanJeu.getPanelAction().oneBoutonDisabled(bouton4);
+			chPanJeu.getPanelAction().oneBoutonDisabled(bouton5);
 			
 			System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
-			JLabel labelJoueurEnCours = chPanJeu.getAction().getLabels()[0];
+			JLabel labelJoueurEnCours = chPanJeu.getPanelAction().getLabels()[0];
 			labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", à vous de jouer !");
+			
+			JLabel labelNbCartesPioche = chPanJeu.getPanelMain().getLabels()[0];
+			int nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
+			labelNbCartesPioche.setText("Pioche : " + nbCartesPioche + " cartes restantes");
 		}
 
 		else {
-			bouton1 = chPanJeu.getAction().getBoutons()[0];
-			bouton2 = chPanJeu.getAction().getBoutons()[1];
-			bouton3 = chPanJeu.getAction().getBoutons()[2];
-			bouton4 = chPanJeu.getAction().getBoutons()[3];
-			bouton5 = chPanJeu.getAction().getBoutons()[4];
+			bouton1 = chPanJeu.getPanelAction().getBoutons()[0];
+			bouton2 = chPanJeu.getPanelAction().getBoutons()[1];
+			bouton3 = chPanJeu.getPanelAction().getBoutons()[2];
+			bouton4 = chPanJeu.getPanelAction().getBoutons()[3];
+			bouton5 = chPanJeu.getPanelAction().getBoutons()[4];
 			
 			// Si on appuie sur compléter programme
 			if(e.getActionCommand().equals(Data.ACTION[0])) {
 				chPanJeu.getPanelMain().boutonEnableTrue();	
-				chPanJeu.getAction().oneBoutonDisabled(bouton1);
-				chPanJeu.getAction().oneBoutonDisabled(bouton2);
-				chPanJeu.getAction().oneBoutonDisabled(bouton3);
-				chPanJeu.getAction().oneBoutonAbled(bouton4);
-				chPanJeu.getAction().oneBoutonAbled(bouton5);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton1);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton2);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton3);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton4);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton5);
 			} 
 			
 			// Si on choisit la première carte
@@ -110,11 +114,11 @@ public class Controleur implements ActionListener {
 			// Si on appuie sur contruire un mur 
 			else if(e.getActionCommand().equals(Data.ACTION[1])) {
 				System.out.println(Data.ACTION[1].toString());
-				chPanJeu.getAction().oneBoutonDisabled(bouton1);
-				chPanJeu.getAction().oneBoutonDisabled(bouton2);
-				chPanJeu.getAction().oneBoutonDisabled(bouton3);
-				chPanJeu.getAction().oneBoutonAbled(bouton4);
-				chPanJeu.getAction().oneBoutonAbled(bouton5);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton1);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton2);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton3);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton4);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton5);
 				placerObstacle();
 			}
 			
@@ -122,11 +126,11 @@ public class Controleur implements ActionListener {
 			// Si on appuie sur executer le programme 
 			else if(e.getActionCommand().equals(Data.ACTION[2])) {
 				
-				chPanJeu.getAction().oneBoutonDisabled(bouton1);
-				chPanJeu.getAction().oneBoutonDisabled(bouton2);
-				chPanJeu.getAction().oneBoutonDisabled(bouton3);
-				chPanJeu.getAction().oneBoutonAbled(bouton4);
-				chPanJeu.getAction().oneBoutonAbled(bouton5);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton1);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton2);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton3);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton4);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton5);
 				
 				ArrayDeque<Carte> programmeJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme();
 				Tortue tortueJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue();
@@ -163,7 +167,7 @@ public class Controleur implements ActionListener {
 						/**************************************/
 						/*              EN COURS              */
 						/**************************************/
-						//chPanJeu.getAction().oneBoutonAbled(bouton5);
+						//chPanJeu.getPanelAction().oneBoutonAbled(bouton5);
 					
 					//}
 					// Sinon, on remplace quand même les cartes "vides" utilisées
@@ -187,18 +191,22 @@ public class Controleur implements ActionListener {
 				
 				chPanJeu.getPanelMain().boutonEnableFalse();
 				chPanJeu.getPanelMain().affichageMain(mainNouveauJoueur);
-				chPanJeu.getAction().oneBoutonAbled(bouton1);
-				chPanJeu.getAction().oneBoutonAbled(bouton2);
-				chPanJeu.getAction().oneBoutonAbled(bouton3);
-				chPanJeu.getAction().oneBoutonDisabled(bouton4);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton1);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton2);
+				chPanJeu.getPanelAction().oneBoutonAbled(bouton3);
+				chPanJeu.getPanelAction().oneBoutonDisabled(bouton4);
 
-				JLabel labelJoueurEnCours = chPanJeu.getAction().getLabels()[0];
+				JLabel labelJoueurEnCours = chPanJeu.getPanelAction().getLabels()[0];
 				labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 				System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
+				
+				JLabel labelNbCartesPioche = chPanJeu.getPanelMain().getLabels()[0];
+				int nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
+				labelNbCartesPioche.setText("Pioche : " + nbCartesPioche + " cartes restantes");
 			}
 			//Si on appuie sur défausser des cartes
 			else if(e.getActionCommand().equals(Data.ACTION[4])){
-				chPanJeu.getAction().oneBoutonDisabled(chPanJeu.getAction().getBoutons()[4]);
+				chPanJeu.getPanelAction().oneBoutonDisabled(chPanJeu.getPanelAction().getBoutons()[4]);
 				defausse=true;
 				//Si toutes les cartes ont été selectionnées, on lui fait piocher toutes les cartes
 				//car il ne peut pas défausser des cartes

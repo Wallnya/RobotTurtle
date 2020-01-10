@@ -47,7 +47,7 @@ public class PanelJeu extends JPanel{
 	public PanelMain getPanelMain() {
 		return panelMain;
 	}
-	public PanelAction getAction() {
+	public PanelAction getPanelAction() {
 		return panelAction;
 	}
 }
