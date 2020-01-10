@@ -15,20 +15,29 @@ public class CarteBleue extends Carte{
 		
 		switch(tortue.getSens()) {
 			case SUD:
-				// Si obstacle ou sortie de terrain : demi-tour
-				if ((tortue.getLigne() + 1 > 7) 
-						|| (plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstaclePierre)
+				// Si on sort du terrain : position de départ.
+				if ((tortue.getLigne() + 1 > 7) ) {
+					// On la remet au départ.
+					plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
+					// Et on met l'ancienne case à vide
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
+					// On synchronise l positions
+					tortue.setLigne(tortue.getLigne_debut());
+					tortue.setColonne(tortue.getColonne_debut());
+				}
+				/* Si obstacle, on fait demi-tour*/
+				else if((plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstaclePierre)
 						|| (plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof ObstacleGlace)){
 					tortue.setSens(Sens.NORD);
 				}
 				
 				// Si rencontre une tortue
 				else if ((plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()] instanceof Tortue)) {
-					// On les remet au d�part
+					// On les remet au d�part
 					Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()+1][tortue.getColonne()];
 					plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 					plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
-					// Et on met les anciennes cases � vide
+					// Et on met les anciennes cases � vide
 					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
 					plateau.setVide(tortue.getLigne()+1, tortue.getColonne(), new Vide());
 					// On synchronise les positions
@@ -46,9 +55,19 @@ public class CarteBleue extends Carte{
 				break;
 				
 			case NORD:
-				// Si obstacle ou sortie de terrain : demi-tour
-				if((tortue.getLigne()-1 < 0) 
-						|| (plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstaclePierre)
+				// Si on sort du terrain : position de départ.
+				if(tortue.getLigne()-1 < 0) {
+					// On la remet au départ.
+					plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
+					// Et on met l'ancienne case à vide
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
+					// On synchronise l positions
+					tortue.setLigne(tortue.getLigne_debut());
+					tortue.setColonne(tortue.getColonne_debut());
+					tortue.setSens(Sens.SUD);
+				}
+				/* Si obstacle, on fait demi-tour*/
+				else if((plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstaclePierre)
 						|| (plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()] instanceof ObstacleGlace)){
 					tortue.setSens(Sens.SUD);
 				}
@@ -76,15 +95,19 @@ public class CarteBleue extends Carte{
 				break;
 				
 			case EST:
-				// Si obstacle ou sortie de terrain : demi-tour
-				if( (tortue.getColonne()+1 > 7) 
-						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstaclePierre)
-						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof ObstacleGlace)){
-					tortue.setSens(Sens.OUEST);
+				// Si on sort du terrain : position de départ.
+				if (tortue.getColonne()+1 > 7) {
+					// On la remet au départ.
+					plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
+					// Et on met l'ancienne case à vide
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
+					// On synchronise l positions
+					tortue.setLigne(tortue.getLigne_debut());
+					tortue.setColonne(tortue.getColonne_debut());
+					tortue.setSens(Sens.SUD);
 				}
-				
-				// Si rencontre une tortue
-				else if ((plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof Tortue)) {
+				/* Si obstacle, on fait demi-tour*/
+				else if((plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1] instanceof Tortue)) {
 						Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1];
 						plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 						plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
@@ -106,15 +129,20 @@ public class CarteBleue extends Carte{
 				break;
 				
 			case OUEST:
-				// Si obstacle ou sortie de terrain : demi-tour
-				if((tortue.getColonne()-1 < 0 ) 
-						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstaclePierre)
-						|| (plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof ObstacleGlace)){ 
-					tortue.setSens(Sens.EST);
-				}
 				
-				// Si rencontre une tortue
-				else if ((plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof Tortue)) {
+				// Si on sort du terrain : position de départ.
+				if(tortue.getColonne()-1 < 0 ) {
+					// On la remet au départ.
+					plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
+					// Et on met l'ancienne case à vide
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
+					// On synchronise l positions
+					tortue.setLigne(tortue.getLigne_debut());
+					tortue.setColonne(tortue.getColonne_debut());
+					tortue.setSens(Sens.SUD);
+				}
+				/* Si obstacle, on fait demi-tour*/
+				else if((plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1] instanceof Tortue)) {
 						Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1];
 						plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 						plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
