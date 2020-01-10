@@ -1,20 +1,29 @@
 package vue;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import controleur.Controleur;
 import modele.Carte;
+import modele.Data;
 import modele.Joueur;
 
 public class PanelMain extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
+	private JPanel panel;
 	private JButton[] label = new JButton[5];
+	private JLabel[] labels;
 	private JPanel container;
 
 	public PanelMain(Joueur joueurEnCours) throws IOException{
@@ -26,6 +35,12 @@ public class PanelMain extends JPanel{
 		label[4] = new JButton("");
 		boutonEnableFalse();
 		
+		labels = new JLabel[1];
+
+		labels[0] = new JLabel(); 
+		labels[0].setVerticalAlignment(SwingConstants.CENTER);
+		labels[0].setHorizontalAlignment(SwingConstants.CENTER);
+	
         container = new JPanel();
         container.setLayout(new GridLayout(1,5, 60, 60));
 		container.add(label[0]);
@@ -33,6 +48,7 @@ public class PanelMain extends JPanel{
 		container.add(label[2]);
 		container.add(label[3]);
 		container.add(label[4]);
+		container.add(labels[0]);
 		
 		this.setSize(600, 500);
         this.add(container);
@@ -89,5 +105,8 @@ public class PanelMain extends JPanel{
 	public void setLabel(JButton[] label) {
 		this.label = label;
 	}	
+	public JLabel[] getLabels() {
+		return labels;
+	}
 
 }
