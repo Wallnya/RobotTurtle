@@ -62,9 +62,9 @@ public class Controleur implements ActionListener {
 			JLabel labelJoueurEnCours = chPanJeu.getPanelAction().getLabels()[0];
 			labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 			
-			JLabel labelNbCartesPioche = chPanJeu.getPanelMain().getLabels()[0];
+			JButton boutonPioche = chPanJeu.getPanelMain().getBoutonPioche();
 			int nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
-			labelNbCartesPioche.setText("Pioche : " + nbCartesPioche + " cartes restantes");
+			boutonPioche.setText("Pioche (" + nbCartesPioche + ")");
 		}
 
 		else {
@@ -86,28 +86,28 @@ public class Controleur implements ActionListener {
 			
 			// Si on choisit la première carte
 			else if(e.getActionCommand().equals(0+"")) {
-				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getLabel()[0]);
+				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getBoutonsMain()[0]);
 				completerProgramme(0);
 			}
 			
 			// Si on choisit la deuxième carte
 			else if(e.getActionCommand().equals(1+"")) {
-				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getLabel()[1]);
+				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getBoutonsMain()[1]);
 				completerProgramme(1);
 			}
 			// Si on choisit troisième carte
 			else if(e.getActionCommand().equals(2+"")) {
-				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getLabel()[2]);
+				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getBoutonsMain()[2]);
 				completerProgramme(2);
 			}
 			// Si on choisit la quatrième carte
 			else if(e.getActionCommand().equals(3+"")) {
-				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getLabel()[3]);
+				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getBoutonsMain()[3]);
 				completerProgramme(3);
 			}
 			// Si on choisit la cinquième carte
 			else if(e.getActionCommand().equals(4+"")) {
-				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getLabel()[4]);
+				chPanJeu.getPanelMain().oneBoutonDisabled(chPanJeu.getPanelMain().getBoutonsMain()[4]);
 				completerProgramme(4);
 			}
 			
@@ -200,9 +200,9 @@ public class Controleur implements ActionListener {
 				labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 				System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
 				
-				JLabel labelNbCartesPioche = chPanJeu.getPanelMain().getLabels()[0];
+				JButton boutonPioche = chPanJeu.getPanelMain().getBoutonPioche();
 				int nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
-				labelNbCartesPioche.setText("Pioche : " + nbCartesPioche + " cartes restantes");
+				boutonPioche.setText("Pioche (" + nbCartesPioche + ")");
 			}
 			//Si on appuie sur défausser des cartes
 			else if(e.getActionCommand().equals(Data.ACTION[4])){
@@ -233,7 +233,7 @@ public class Controleur implements ActionListener {
 	public void completerProgramme(int numCarte){
 		ArrayDeque<Carte> programmeJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme();
 		ArrayList<Carte> mainJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getMain();
-		String couleurCarte = chPanJeu.getPanelMain().getLabel()[numCarte].getText().toString();
+		String couleurCarte = chPanJeu.getPanelMain().getBoutonsMain()[numCarte].getText().toString();
 		
 		// Ajout au programme
 		switch (couleurCarte){

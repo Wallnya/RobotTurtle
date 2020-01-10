@@ -50,22 +50,18 @@ public class Joueur {
 	public int getNbObstaclePierre() {
 		return nbObstaclePierre;
 	}
-
 	public void setNbObstaclePierre(int nbObstaclePierre) {
 		this.nbObstaclePierre = nbObstaclePierre;
 	}
-
 	public int getNbObstacleGlace() {
 		return nbObstacleGlace;
 	}
-
 	public void setNbObstacleGlace(int nbObstacleGlace) {
 		this.nbObstacleGlace = nbObstacleGlace;
 	}
 	public List<Carte> getDefausse() {
 		return defausse;
 	}
-
 	public void setDefausse(List<Carte> defausse) {
 		this.defausse = defausse;
 	}

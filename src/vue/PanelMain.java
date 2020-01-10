@@ -16,33 +16,27 @@ import modele.Joueur;
 public class PanelMain extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
-	private JButton[] label = new JButton[5];
-	private JLabel[] labels;
+	private JButton[] boutonsMain = new JButton[5];
+	private JButton boutonPioche = new JButton();
 	private JPanel container;
 
 	public PanelMain(Joueur joueurEnCours) throws IOException{
 		
-		label[0] = new JButton("");
-		label[1] = new JButton("");
-		label[2] = new JButton("");
-		label[3] = new JButton("");
-		label[4] = new JButton("");
+		boutonsMain[0] = new JButton("");
+		boutonsMain[1] = new JButton("");
+		boutonsMain[2] = new JButton("");
+		boutonsMain[3] = new JButton("");
+		boutonsMain[4] = new JButton("");
 		boutonEnableFalse();
-		
-		labels = new JLabel[1];
-		labels[0] = new JLabel(); 
-		labels[0].setVerticalAlignment(SwingConstants.CENTER);
-		labels[0].setHorizontalAlignment(SwingConstants.CENTER);
-		
-		
+
         container = new JPanel();
         container.setLayout(new GridLayout(1,5, 60, 60));
-		container.add(label[0]);
-		container.add(label[1]);
-		container.add(label[2]);
-		container.add(label[3]);
-		container.add(label[4]);
-		container.add(labels[0]);
+		container.add(boutonsMain[0]);
+		container.add(boutonsMain[1]);
+		container.add(boutonsMain[2]);
+		container.add(boutonsMain[3]);
+		container.add(boutonsMain[4]);
+		container.add(boutonPioche);
 		
 		this.setSize(600, 500);
         this.add(container);
@@ -54,38 +48,38 @@ public class PanelMain extends JPanel{
 	
 	public void affichageMain(ArrayList<Carte> main){
 		for (int i = 0; i < 5; i++){
-			label[i].setText(main.get(i).toString());
-			label[i].setActionCommand(i+"");
-			container.add(label[i]);
+			boutonsMain[i].setText(main.get(i).toString());
+			boutonsMain[i].setActionCommand(i+"");
+			container.add(boutonsMain[i]);
 		}
 		this.add(container);
 	}
 	
 	public void boutonEnableFalse(){
 		for (int i = 0; i < 5; i++) {
-			label[i].setEnabled(false);
+			boutonsMain[i].setEnabled(false);
 		}	
 	}
 	
 	public void boutonEnableTrue(){
 		for (int i = 0; i < 5; i++) {
-			label[i].setEnabled(true);
+			boutonsMain[i].setEnabled(true);
 		}	
 	}
 	
 	public int nombreCartesSelectionnees(){
 		int compteur = 0;
 		for (int i = 0; i < 5; i++){
-			if (!label[i].isEnabled())
+			if (!boutonsMain[i].isEnabled())
 				compteur++;
 		}
 		return compteur;
 	}
 
 	public void enregistreEcouteur(Controleur controleur) {
-		for (int i = 0; i < 5; i++) {
-			label[i].addActionListener(controleur);
-		}		
+		//for (int i = 0; i < 5; i++) {
+			boutonsMain[1].addActionListener(controleur);
+		//}		
 	}
 	
 	public void oneBoutonDisabled(JButton button){
@@ -93,14 +87,14 @@ public class PanelMain extends JPanel{
 	}
 	
 	// Getters et setters
-	public JButton[] getLabel() {
-		return label;
+	public JButton[] getBoutonsMain() {
+		return boutonsMain;
 	}
-	public void setLabel(JButton[] label) {
-		this.label = label;
+	public void setBoutonsMain(JButton[] boutonsMain) {
+		this.boutonsMain = boutonsMain;
 	}	
-	public JLabel[] getLabels() {
-		return labels;
+	public JButton getBoutonPioche() {
+		return boutonPioche;
 	}
 
 }
