@@ -22,14 +22,15 @@ public class Controleur implements ActionListener {
 	private int numJoueurEnCours = 1;
 	private boolean defausse = false;
 	private static int valeurObstacle =-1;
+	private boolean mur = false;	
+
 	
 	public Controleur(PanelNombresJoueurs pPanNbJoueurs) {
 		panelNombresJoueurs = pPanNbJoueurs;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
+	public void actionPerformed(ActionEvent e) {	
 		JButton bouton1 = new JButton();
 		JButton bouton2 = new JButton();
 		JButton bouton3 = new JButton();
@@ -121,6 +122,8 @@ public class Controleur implements ActionListener {
 				chPanJeu.getPanelAction().oneBoutonDisabled(bouton3);
 				chPanJeu.getPanelAction().oneBoutonAbled(bouton4);
 				chPanJeu.getPanelAction().oneBoutonAbled(bouton5);
+				//Cellule disponible
+				chPanJeu.getPanelPlateau().getTable().setEnabled(true);
 				Object[] possibleValues = { "Pierre", "Glace"};	
 				valeurObstacle = -1;
 				while (valeurObstacle == -1) {
@@ -131,7 +134,10 @@ public class Controleur implements ActionListener {
 			                JOptionPane.QUESTION_MESSAGE, 
 			                null, possibleValues, possibleValues[0]);
 				}
+				mur = true;
+
 				placerObstacle();
+				chPanJeu.getPanelPlateau().refresh();
 			}
 			
 			
@@ -272,66 +278,45 @@ public class Controleur implements ActionListener {
 	public void placerObstacle() {
 		boolean ok = false;	
 		ok = true;
-
-		
 		final Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
 		final JTable table = chPanJeu.getPanelPlateau().getTable();
-		table.setEnabled(true);
-		chPanJeu.getPanelPlateau().refresh();
 		if (ok) {
 			table.addMouseListener(new java.awt.event.MouseAdapter() {
 			    @Override
 			    public void mouseClicked(java.awt.event.MouseEvent evt) {
-			        int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
-			        int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
-			        
-					if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
-						if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
-							Tuile obstacle = null;
-							// Si pierre
-							if (valeurObstacle == 0){
-								 obstacle = new ObstaclePierre();
+			    	if (mur){
+			    		System.out.println(evt.toString());
+				        int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
+				        int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
+				        
+						if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
+							if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
+								Tuile obstacle = null;
+								// Si pierre
+								if (valeurObstacle == 0){
+									 obstacle = new ObstaclePierre();
+								}
+								else if (valeurObstacle == 1) {
+									 obstacle = new ObstacleGlace();
+								}
+								plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
+								try {
+									chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+								chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
+								// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
+							} else {
+								System.out.println("Case blocante.");
 							}
-							else if (valeurObstacle == 1) {
-								 obstacle = new ObstacleGlace();
-							}
-							plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
-							try {
-								chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-							chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
-							// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
 						} else {
-							System.out.println("Case blocante.");
+							System.out.println("Case déjà occupée.");
 						}
-					} else {
-						System.out.println("Case dï¿½jï¿½ occupï¿½e.");
-					}
-					table.setEnabled(false);
-					Object[][] data = new Object[8][8];
-
-					for(int i = 0;i<8;i++) {
-						for(int j=0;j<8;j++) {
-							data[i][j]=table.getValueAt(i, j);
-						}
-					}
-					Object[] columnNames = new Object[8];
-					for(int j=0;j<8;j++) {
-						columnNames[j]="";
-					}
-
-					DefaultTableModel tableModel = new DefaultTableModel(data, columnNames) {
-
-					    @Override
-					    public boolean isCellEditable(int row, int column) {
-					       return false;
-					    }
-					};
-
-					table.setModel(tableModel);
-
+						mur=false;
+						//Cellule indisponible
+						chPanJeu.getPanelPlateau().getTable().setEnabled(false);
+			    	}
 			    }
 			});
 		}

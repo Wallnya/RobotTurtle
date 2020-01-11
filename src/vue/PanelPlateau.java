@@ -2,6 +2,8 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.io.IOException;
 
 import javax.swing.JPanel;
@@ -12,14 +14,15 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import controleur.Controleur;
 import modele.*;
 
-public class PanelPlateau extends JPanel implements TableModelListener{
+public class PanelPlateau extends JPanel implements AdjustmentListener{
 
 	private static final long serialVersionUID = 1L;
 	private Plateau plateau;
 	private JTable table;
-	private DefaultTableModel tableur;
+	private ModelAffichageMatrices tableur;
 	private TableModel tm;
 
 	public PanelPlateau(int nbJoueur) throws IOException {	
@@ -27,17 +30,17 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		plateau.preparationPlateau(nbJoueur);
 		
 		// Affichage
-		tableur = new DefaultTableModel();
-		for(int i=0;i<8;i++){
+		tableur = new ModelAffichageMatrices();
+		/*for(int i=0;i<8;i++){
 			tableur.addColumn("");
 		}
-		tableur.setRowCount(8);
+		tableur.setRowCount(8);*/
+		
 		
 		table = new JTable(tableur);
 		table.setPreferredScrollableViewportSize(new Dimension(800, 800));
 		add(new JScrollPane(table), BorderLayout.CENTER);
 
-		tableur.addTableModelListener(this);
 		setLocation(200, 300);
 		setVisible(true);
 		table.setRowHeight(100);
@@ -45,7 +48,7 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		table.setAutoResizeMode(JTable.WIDTH);
 		
         table.setModel(tableur);
-        tm = table.getModel();
+        //tm = table.getModel();
         
         // Affichage
         afficherPlateau();
@@ -65,12 +68,6 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 		tableur.fireTableDataChanged();
 	}
 	
-	@Override
-	public void tableChanged(TableModelEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	// Getters et setters
 	public TableModel getTm() {
 		return tm;
@@ -78,10 +75,10 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	public void setTm(TableModel tm) {
 		this.tm = tm;
 	}
-	public DefaultTableModel getTableur() {
+	public ModelAffichageMatrices getTableur() {
 		return tableur;
 	}
-	public void setTableur(DefaultTableModel tableur) {
+	public void setTableur(ModelAffichageMatrices tableur) {
 		this.tableur = tableur;
 	}
 	public JTable getTable() {
@@ -96,4 +93,11 @@ public class PanelPlateau extends JPanel implements TableModelListener{
 	public void setP(Plateau plateau) {
 		this.plateau = plateau;
 	}
+
+	@Override
+	public void adjustmentValueChanged(AdjustmentEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
