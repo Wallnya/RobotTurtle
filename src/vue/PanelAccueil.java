@@ -1,11 +1,15 @@
 package vue;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,16 +24,26 @@ public class PanelAccueil extends JFrame implements ActionListener{
 	private JButton quitter_jeu = new JButton("Quitter le jeu");
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		new PanelAccueil();
 	}
 	
 	/**
 	 * Construit un objet API correspondant à un GridBagLayout qui est l'accueil de l'application
+	 * @throws IOException 
 	 */
-	public PanelAccueil() {
+	public PanelAccueil() throws IOException {
 		super("Accueil du jeu Robot Turtle");
-		JPanel pan = new JPanel();
+		JPanel pan = new JPanel()        {
+            protected void paintComponent(Graphics g) 
+            {
+                super.paintComponent(g);
+ 
+                ImageIcon m = new ImageIcon("images/fond.png");
+                Image monImage = m.getImage();
+                g.drawImage(monImage, 0, 0,this);
+            }
+        };
 		pan.setLayout(new GridBagLayout());
 		
 		// Taille
@@ -45,12 +59,6 @@ public class PanelAccueil extends JFrame implements ActionListener{
 		quitter_jeu.addActionListener(this);
 		quitter_jeu.setActionCommand("quitter");
 		
-		// Cellule où commence l'affichage
-		contrainte.gridx = 0; contrainte.gridy = 0;
-		// Nombre de cellules par colonne / ligne
-		contrainte.gridheight = 2; contrainte.gridwidth = 2;
-		pan.add(new JLabel("Bienvenue dans le jeu Robot Turtle!",SwingConstants.CENTER),contrainte);
-		
 		contrainte.gridx = 0; contrainte.gridy = 2;
 		contrainte.gridheight = 1; contrainte.gridwidth = 1;
 		pan.add(lancer_partie,contrainte);
@@ -58,11 +66,11 @@ public class PanelAccueil extends JFrame implements ActionListener{
 		contrainte.gridx = 1; contrainte.gridy = 2;
 		contrainte.gridheight = 1; contrainte.gridwidth = 1;
 		pan.add(quitter_jeu,contrainte);
-		
+
 		this.add(pan);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setSize(800,400);
+		this.setSize(700,410);
 	}
 		
 	public void actionPerformed(ActionEvent ev) {

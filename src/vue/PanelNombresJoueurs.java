@@ -1,10 +1,14 @@
 package vue;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -30,7 +34,18 @@ public class PanelNombresJoueurs extends JPanel{
 		chControleur = new Controleur(this);
 		
 		// Création du panel
-		JPanel pan = new JPanel();
+		JPanel pan = new JPanel()        {
+            protected void paintComponent(Graphics g) 
+            {
+                super.paintComponent(g);
+ 
+                ImageIcon m = new ImageIcon("images/background.jpeg");
+                Image monImage = m.getImage();
+                int x=(getWidth()-620)/2;
+                int y=(getHeight()-802)/2;
+                g.drawImage(monImage, x, y,this);
+            }
+        };
 		pan.setLayout(new GridBagLayout());
 			
 		contrainte.fill = GridBagConstraints.BOTH; contrainte.insets = new Insets(10,10,10,10);
