@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import controleur.Controleur;
 import modele.Carte;
-import modele.CarteVide;
-import modele.Data;
 import modele.Joueur;
 
 public class PanelMain extends JPanel{
@@ -106,9 +103,7 @@ public class PanelMain extends JPanel{
 	
 	public void boutonsMainEnableTrue(){
 		for (int i = 0; i < 5; i++) {
-			if (boutonsMain[i].getText() != "") {
-				oneBoutonEnabledTrue(boutonsMain[i]);
-			}
+			oneBoutonEnabledTrue(boutonsMain[i]);
 		}	
 	}
 	

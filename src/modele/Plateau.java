@@ -2,7 +2,6 @@ package modele;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Plateau{
@@ -10,6 +9,7 @@ public class Plateau{
 	private Tuile[][] contenuPlateau;
 	private int nbJoueurs;
 	private List<Joueur> joueurs;
+	private static int victoire = 0;
 	
 
 	public void preparationPlateau(int nbJoueurs) {
@@ -44,7 +44,9 @@ public class Plateau{
 
 				Joyau joyau1 = new Joyau("V","Vert");
 				deplacerTuile(joyau1, 7, 3);
-
+	
+				piocherCartes(joueur1);
+				piocherCartes(joueur2);
 				break;
 			}
 			case 3: {
@@ -82,6 +84,10 @@ public class Plateau{
 				deplacerTuile(joyau1, 7, 0);
 				deplacerTuile(joyau2, 7, 3);
 				deplacerTuile(joyau3, 7, 6);
+
+				piocherCartes(joueur1);
+				piocherCartes(joueur2);
+				piocherCartes(joueur3);
 	
 				break;
 			}
@@ -121,6 +127,11 @@ public class Plateau{
 				Joyau joyau2 = new Joyau("B","Bleu");
 				deplacerTuile(joyau1, 7, 1);
 				deplacerTuile(joyau2, 7, 6);
+				
+				piocherCartes(joueur1);
+				piocherCartes(joueur2);
+				piocherCartes(joueur3);
+				piocherCartes(joueur4);
 	
 				break;
 			}
@@ -167,25 +178,6 @@ public class Plateau{
 		
 		joueur.setPioche(pioche);
 		//System.out.println("Pioche : " + pioche);
-	}
-	
-	public void melangerDefausse(Joueur joueur) {
-		ArrayDeque<Carte> pioche = joueur.getPioche();
-		List<Carte> defausse = joueur.getDefausse();
-		
-		System.out.println("Défausse : " + defausse);
-		Collections.shuffle(defausse); // Mélanger la liste
-		System.out.println("Défausse : " + defausse);
-		
-		for (int i = 0; i < defausse.size(); i++) {
-			System.out.println("Pioche : " + pioche);
-			pioche.add(defausse.get(i));
-			defausse.remove(i);
-			System.out.println("Pioche : " + pioche);
-			i--;
-		}
-		
-		System.out.println("Défausse : " + defausse);
 	}
 	
 	public void piocherCarte(Joueur joueur, int i) {
@@ -282,5 +274,13 @@ public class Plateau{
 	public void viderCase(int ligne, int colonne) {
 		Tuile pionVide = new Vide();
 		contenuPlateau[ligne][colonne] = pionVide;
+	}
+
+	public static int getVictoire() {
+		return victoire;
+	}
+
+	public static void setVictoire(int victoire) {
+		Plateau.victoire = victoire;
 	}
 }

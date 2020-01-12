@@ -9,12 +9,7 @@ import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
-import controleur.Controleur;
 import modele.*;
 
 public class PanelPlateau extends JPanel implements AdjustmentListener{
@@ -22,7 +17,7 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 	private static final long serialVersionUID = 1L;
 	private Plateau plateau;
 	private JTable table;
-	private ModelAffichageMatrices tableur;
+	private ModelPlateau tableur;
 	private TableModel tm;
 
 	public PanelPlateau(int nbJoueur) throws IOException {	
@@ -30,7 +25,7 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 		plateau.preparationPlateau(nbJoueur);
 		
 		// Affichage
-		tableur = new ModelAffichageMatrices();
+		tableur = new ModelPlateau();
 		/*for(int i=0;i<8;i++){
 			tableur.addColumn("");
 		}
@@ -75,10 +70,10 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 	public void setTm(TableModel tm) {
 		this.tm = tm;
 	}
-	public ModelAffichageMatrices getTableur() {
+	public ModelPlateau getTableur() {
 		return tableur;
 	}
-	public void setTableur(ModelAffichageMatrices tableur) {
+	public void setTableur(ModelPlateau tableur) {
 		this.tableur = tableur;
 	}
 	public JTable getTable() {
