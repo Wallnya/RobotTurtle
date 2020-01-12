@@ -7,12 +7,14 @@ public class Tortue extends Tuile {
 	private Sens sens = Sens.SUD;
 	private final int ligne_debut;
 	private final int colonne_debut;
-	
+	private int victoire;
+
 	
 	public Tortue(int parNumero_joueur) {
 		numero_joueur = parNumero_joueur;
 		ligne_debut=0;
 		colonne_debut=0;
+		victoire=0;
 	}
 	
 	public Tortue(int numero_joueur, String symbole, String couleur, Sens sens, int ligne, int colonne) {
@@ -52,6 +54,14 @@ public class Tortue extends Tuile {
 
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
+	}
+	
+	public int getVictoire() {
+		return victoire;
+	}
+
+	public void setVictoire(int victoire) {
+		this.victoire = victoire;
 	}
 	
 }

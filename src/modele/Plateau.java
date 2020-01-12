@@ -2,6 +2,7 @@ package modele;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Plateau{
@@ -10,7 +11,6 @@ public class Plateau{
 	private int nbJoueurs;
 	private List<Joueur> joueurs;
 	private static int victoire = 0;
-	
 
 	public void preparationPlateau(int nbJoueurs) {
 		
@@ -178,6 +178,24 @@ public class Plateau{
 		
 		joueur.setPioche(pioche);
 		//System.out.println("Pioche : " + pioche);
+	}
+	public void melangerDefausse(Joueur joueur) {
+		ArrayDeque<Carte> pioche = joueur.getPioche();
+		List<Carte> defausse = joueur.getDefausse();
+
+		System.out.println("Défausse : " + defausse);
+		Collections.shuffle(defausse); // Mélanger la liste
+		System.out.println("Défausse : " + defausse);
+
+		for (int i = 0; i < defausse.size(); i++) {
+			System.out.println("Pioche : " + pioche);
+			pioche.add(defausse.get(i));
+			defausse.remove(i);
+			System.out.println("Pioche : " + pioche);
+			i--;
+		}
+
+		System.out.println("Défausse : " + defausse);
 	}
 	
 	public void piocherCarte(Joueur joueur, int i) {

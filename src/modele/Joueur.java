@@ -15,7 +15,6 @@ public class Joueur {
 	private Tortue tortue;
 	private int nbObstaclePierre = 3;
 	private int nbObstacleGlace = 2;
-	private int victoire;
 	
 	public Joueur(int pNum){
 		main = new ArrayList<Carte>();
@@ -27,7 +26,6 @@ public class Joueur {
 		
 		programme = new ArrayDeque<Carte>();
 		tortue = new Tortue(pNum);
-		this.victoire=0;
 	}
 	
 	// Getters et setters
@@ -72,13 +70,5 @@ public class Joueur {
 	}
 	public void setDefausse(List<Carte> defausse) {
 		this.defausse = defausse;
-	}
-
-	public int getVictoire() {
-		return victoire;
-	}
-
-	public void setVictoire(int victoire) {
-		this.victoire = victoire;
 	}
 }
