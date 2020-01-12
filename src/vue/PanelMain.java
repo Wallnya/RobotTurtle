@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import controleur.Controleur;
 import modele.Carte;
+import modele.CarteVide;
 import modele.Data;
 import modele.Joueur;
 
@@ -105,7 +106,9 @@ public class PanelMain extends JPanel{
 	
 	public void boutonsMainEnableTrue(){
 		for (int i = 0; i < 5; i++) {
-			oneBoutonEnabledTrue(boutonsMain[i]);
+			if (boutonsMain[i].getText() != "") {
+				oneBoutonEnabledTrue(boutonsMain[i]);
+			}
 		}	
 	}
 	
