@@ -18,6 +18,8 @@ public class PanelMain extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JButton[] boutonsMain = new JButton[5];
 	private JButton boutonPioche = new JButton();
+	private JButton boutonDefausse= new JButton();
+	private JLabel labelProgramme = new JLabel();
 	private JPanel container;
 
 	public PanelMain(Joueur joueurEnCours) throws IOException{
@@ -37,6 +39,8 @@ public class PanelMain extends JPanel{
 		container.add(boutonsMain[3]);
 		container.add(boutonsMain[4]);
 		container.add(boutonPioche);
+		container.add(boutonDefausse);
+		container.add(labelProgramme);
 		
 		this.setSize(600, 500);
         this.add(container);
@@ -96,5 +100,12 @@ public class PanelMain extends JPanel{
 	public JButton getBoutonPioche() {
 		return boutonPioche;
 	}
+	public JButton getBoutonDefausse() {
+		return boutonDefausse;
+	}
+	public JLabel getLabelProgramme() {
+		return labelProgramme;
+	}
+
 
 }

@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -7,9 +9,12 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 
 import modele.*;
@@ -62,13 +67,25 @@ public class Controleur implements ActionListener {
 			chPanJeu.getPanelAction().oneBoutonDisabled(bouton4);
 			chPanJeu.getPanelAction().oneBoutonDisabled(bouton5);
 			
-			System.out.println("Joueur " + numJoueurEnCours + ", ï¿½ vous de jouer !");
-			JLabel labelJoueurEnCours = chPanJeu.getPanelAction().getLabels()[0];
-			labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", ï¿½ vous de jouer !");
+			// Texte à afficher
+			System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
+			JTextArea textareaJoueurEnCours = chPanJeu.getPanelAction().getTextAreas()[0];
+			textareaJoueurEnCours.setText("Joueur " + numJoueurEnCours + ",\nà vous de jouer !");
+			
+			JTextArea textareaAction = chPanJeu.getPanelAction().getTextAreas()[1];
+			textareaAction.setText("Veuillez choisir une action.");
+			
+			JButton boutonDefausse = chPanJeu.getPanelMain().getBoutonDefausse();
+			int nbCartesDefausse = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getDefausse().size();
+			boutonDefausse.setText("Défausse (" + nbCartesDefausse + ")");
 			
 			JButton boutonPioche = chPanJeu.getPanelMain().getBoutonPioche();
 			int nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
 			boutonPioche.setText("Pioche (" + nbCartesPioche + ")");
+			
+			JLabel labelProgramme = chPanJeu.getPanelMain().getLabelProgramme();
+			int nbCartesProgramme = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme().size();
+			labelProgramme.setText("Programme (" + nbCartesProgramme + ")");
 		}
 
 		else {
@@ -128,7 +145,7 @@ public class Controleur implements ActionListener {
 				valeurObstacle = -1;
 				while (valeurObstacle == -1) {
 					valeurObstacle = JOptionPane.showOptionDialog(null, 
-			                "Voulez-vous mettre une pierre ou de la glace?", 
+			                "Voulez-vous mettre une pierre ou de la glace ?", 
 			                "Le choix est Ã  vous!", 
 			                JOptionPane.YES_NO_OPTION, 
 			                JOptionPane.QUESTION_MESSAGE, 
@@ -214,13 +231,26 @@ public class Controleur implements ActionListener {
 				chPanJeu.getPanelAction().oneBoutonAbled(bouton3);
 				chPanJeu.getPanelAction().oneBoutonDisabled(bouton4);
 
-				JLabel labelJoueurEnCours = chPanJeu.getPanelAction().getLabels()[0];
-				labelJoueurEnCours.setText("Joueur " + numJoueurEnCours + ", ï¿½ vous de jouer !");
-				System.out.println("Joueur " + numJoueurEnCours + ", ï¿½ vous de jouer !");
+				// Texte  à afficher
+				System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
+				JTextArea textareaJoueurEnCours = chPanJeu.getPanelAction().getTextAreas()[0];
+				textareaJoueurEnCours.setText("Joueur " + numJoueurEnCours + ",\nà vous de jouer !");
+				
+				JTextArea textareaAction = chPanJeu.getPanelAction().getTextAreas()[1];
+				textareaAction.setText("Veuillez choisir une action.");
+				
+				JButton boutonDefausse = chPanJeu.getPanelMain().getBoutonDefausse();
+				int nbCartesDefausse = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getDefausse().size();
+				boutonDefausse.setText("Défausse (" + nbCartesDefausse + ")");
 				
 				JButton boutonPioche = chPanJeu.getPanelMain().getBoutonPioche();
 				int nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
 				boutonPioche.setText("Pioche (" + nbCartesPioche + ")");
+				
+				JLabel labelProgramme = chPanJeu.getPanelMain().getLabelProgramme();
+				int nbCartesProgramme = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme().size();
+				labelProgramme.setText("Programme (" + nbCartesProgramme + ")");
+
 			}
 			//Si on appuie sur dï¿½fausser des cartes
 			else if(e.getActionCommand().equals(Data.ACTION[4])){
