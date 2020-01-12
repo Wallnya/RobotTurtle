@@ -43,9 +43,6 @@ public class Plateau{
 
 				Joyau joyau1 = new Joyau("V","Vert");
 				deplacerTuile(joyau1, 7, 3);
-	
-				piocherCartes(joueur1);
-				piocherCartes(joueur2);
 
 				break;
 			}

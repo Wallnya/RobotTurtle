@@ -36,7 +36,7 @@ public class PanelAction extends JPanel{
 		this.setBorder(BorderFactory.createCompoundBorder(raisedbevel, loweredbevel));
 		
 		this.setLayout(new BorderLayout());
-		boutons = new JButton[5];
+		boutons = new JButton[Data.ACTION.length];
 		textareas = new JTextArea[2];
 
 		panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
@@ -51,8 +51,11 @@ public class PanelAction extends JPanel{
 			textareas[i] = new JTextArea();
 			textareas[i].setFont(new Font(textareas[0].getName(), Font.PLAIN, 20));
 			textareas[i].setOpaque(false); // enlever le fond blanc
+			textareas[i].setLineWrap(true); // retour à la ligne automatique
+			textareas[i].setWrapStyleWord(true); // ne pas couper les mots lors des retours à la ligne
+
 			panel.add(textareas[i]);
-			panel.add(Box.createVerticalStrut(20));
+			panel.add(Box.createVerticalStrut(20));	
 		}
 
 		for (int i = 0; i < Data.ACTION.length; i++) {
