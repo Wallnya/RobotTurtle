@@ -44,9 +44,7 @@ public class Plateau{
 
 				Joyau joyau1 = new Joyau("V","Vert");
 				deplacerTuile(joyau1, 7, 3);
-	
-				piocherCartes(joueur1);
-				piocherCartes(joueur2);
+
 				break;
 			}
 			case 3: {
@@ -85,10 +83,6 @@ public class Plateau{
 				deplacerTuile(joyau2, 7, 3);
 				deplacerTuile(joyau3, 7, 6);
 
-				piocherCartes(joueur1);
-				piocherCartes(joueur2);
-				piocherCartes(joueur3);
-	
 				break;
 			}
 			case 4: {
@@ -127,11 +121,6 @@ public class Plateau{
 				Joyau joyau2 = new Joyau("B","Bleu");
 				deplacerTuile(joyau1, 7, 1);
 				deplacerTuile(joyau2, 7, 6);
-				
-				piocherCartes(joueur1);
-				piocherCartes(joueur2);
-				piocherCartes(joueur3);
-				piocherCartes(joueur4);
 	
 				break;
 			}

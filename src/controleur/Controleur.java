@@ -108,52 +108,105 @@ public class Controleur implements ActionListener {
 
 			// Piocher
 			if(e.getActionCommand().equals("pioche")) {
-				int i = 0;
-				while (i < 5) {
-					if (joueurEnCours.getMain().get(i) instanceof CarteVide) {
-						break;
-					} else {
-						i++;
-					}
-				}
-				joueurEnCours.getMain().remove(i);
-				chPanJeu.getPanelPlateau().getPlateau().piocherCarte(joueurEnCours, i);
-
-				nbCartesPioche--;
-				boutonPioche.setText("Pioche (" + nbCartesPioche + ")");
-
-				chPanJeu.getPanelMain().affichageMain(joueurEnCours.getMain());
-				System.out.println(joueurEnCours.getMain());
-
-				if (!(joueurEnCours.getMain().get(0) instanceof CarteVide) &&
-						!(joueurEnCours.getMain().get(1) instanceof CarteVide) &&
-						!(joueurEnCours.getMain().get(2) instanceof CarteVide) &&
-						!(joueurEnCours.getMain().get(3) instanceof CarteVide) &&
-						!(joueurEnCours.getMain().get(4) instanceof CarteVide)) {
-
-					// Cas de la pioche en fin de tour
-					if (actionEnCours == "Défausser") {
-						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
-						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton2);
-						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton3);
-						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
-						chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton5);
-						chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
-						chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonPioche);
-						chPanJeu.getPanelMain().boutonsMainEnableFalse();
-						textareaAction.setText("Votre tour est terminé.");
-
+				
+				// Si plus de cartes dans la pioche
+				if (nbCartesPioche == 0) {
+					// S'il n'y a plus de cartes dans la défausse
+					if (nbCartesDefausse == 0) {
+						int resultat = -1;
+						while (resultat == -1) {
+							resultat = JOptionPane.showConfirmDialog(null,"Il n'y a plus de cartes ni la pioche, "
+									+ "ni dans la défausse.", "Mélange",JOptionPane.DEFAULT_OPTION);
+						}
+						
+						// Cas de la pioche en fin de tour
+						if (actionEnCours == "Défausser") {
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton2);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton3);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton5);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonPioche);
+							chPanJeu.getPanelMain().boutonsMainEnableFalse();
+							textareaAction.setText("Votre tour est terminé.");
+							
 						// Cas de la première pioche
+						} else {
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton1);
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton2);
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton3);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton5);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonPioche);
+							chPanJeu.getPanelMain().boutonsMainEnableFalse();
+							textareaAction.setText("Veuillez choisir une action.");
+						}
+						
 					} else {
-						chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton1);
-						chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton2);
-						chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton3);
-						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
-						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton5);
-						chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
-						chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonPioche);
-						chPanJeu.getPanelMain().boutonsMainEnableFalse();
-						textareaAction.setText("Veuillez choisir une action.");
+						int resultat = -1;
+						while (resultat == -1) {
+							resultat = JOptionPane.showConfirmDialog(null,"Il n'y a plus de cartes dans la pioche.\n"
+									+ "La défausse va être mélangée.", "Mélange",JOptionPane.DEFAULT_OPTION);
+						}
+						
+						chPanJeu.getPanelPlateau().getPlateau().melangerDefausse(joueurEnCours);
+						
+						nbCartesDefausse = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getDefausse().size();
+						nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();				
+						boutonDefausse.setText("Défausse (" + nbCartesDefausse + ")");
+						boutonPioche.setText("Pioche (" + nbCartesPioche + ")");
+					}
+				// Sinon
+				} else {
+					int i = 0;
+					while (i < 5) {
+						if (joueurEnCours.getMain().get(i) instanceof CarteVide) {
+							break;
+						} else {
+							i++;
+						}
+					}
+					joueurEnCours.getMain().remove(i);
+					chPanJeu.getPanelPlateau().getPlateau().piocherCarte(joueurEnCours, i);
+					
+					nbCartesPioche--;
+					boutonPioche.setText("Pioche (" + nbCartesPioche + ")");
+					
+					chPanJeu.getPanelMain().affichageMain(joueurEnCours.getMain());
+					System.out.println(joueurEnCours.getMain());
+					
+					if (!(joueurEnCours.getMain().get(0) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(1) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(2) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(3) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(4) instanceof CarteVide)) {
+						
+						// Cas de la pioche en fin de tour
+						if (actionEnCours == "Défausser") {
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton2);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton3);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton5);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonPioche);
+							chPanJeu.getPanelMain().boutonsMainEnableFalse();
+							textareaAction.setText("Votre tour est terminé.");
+							
+						// Cas de la première pioche
+						} else {
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton1);
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton2);
+							chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton3);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
+							chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton5);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
+							chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonPioche);
+							chPanJeu.getPanelMain().boutonsMainEnableFalse();
+							textareaAction.setText("Veuillez choisir une action.");
+						}
 					}
 				}
 			}
@@ -265,7 +318,7 @@ public class Controleur implements ActionListener {
 								chPanJeu.getPanelMain().boutonsMainEnableFalse();
 								textareaAction.setText("Votre tour est terminé.");
 
-								// Cas où on a besoin de piocher
+							// Cas où on a besoin de piocher
 							} else {
 								chPanJeu.getPanelMain().affichageMain(joueurEnCours.getMain());
 								chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
@@ -319,7 +372,8 @@ public class Controleur implements ActionListener {
 				nbCartesDefausse++;
 				boutonDefausse.setText("Défausse (" + nbCartesDefausse + ")");
 			}
-			// Si on appuie sur contruire un mur 
+			
+			// Poser un obstacle
 			else if(e.getActionCommand().equals(Data.ACTION[1])) {
 				System.out.println(Data.ACTION[1].toString());
 				actionEnCours = "Obstacle";

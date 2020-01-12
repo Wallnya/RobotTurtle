@@ -103,7 +103,9 @@ public class PanelMain extends JPanel{
 	
 	public void boutonsMainEnableTrue(){
 		for (int i = 0; i < 5; i++) {
-			oneBoutonEnabledTrue(boutonsMain[i]);
+			if (boutonsMain[i].getText() != "") {
+				oneBoutonEnabledTrue(boutonsMain[i]);
+			}
 		}	
 	}
 	
