@@ -17,9 +17,15 @@ public class Joueur {
 	private int nbObstacleGlace = 2;
 	
 	public Joueur(int pNum){
-		this.main = new ArrayList<Carte>();
-		this.programme = new ArrayDeque<Carte>();
-		this.tortue = new Tortue(pNum);
+		main = new ArrayList<Carte>();
+		main.add(new CarteVide());
+		main.add(new CarteVide());
+		main.add(new CarteVide());
+		main.add(new CarteVide());
+		main.add(new CarteVide());
+		
+		programme = new ArrayDeque<Carte>();
+		tortue = new Tortue(pNum);
 	}
 	
 	// Getters et setters

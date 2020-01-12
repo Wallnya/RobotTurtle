@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 
 import controleur.Controleur;
 import modele.Carte;
+import modele.Data;
 import modele.Joueur;
 
 public class PanelMain extends JPanel{
@@ -29,46 +30,40 @@ public class PanelMain extends JPanel{
 		boutonsMain[2] = new JButton("");
 		boutonsMain[3] = new JButton("");
 		boutonsMain[4] = new JButton("");
-		boutonEnableFalse();
 
         container = new JPanel();
         container.setLayout(new GridLayout(1,5, 60, 60));
+        
+        boutonDefausse.setActionCommand("defausse");
+        boutonPioche.setActionCommand("pioche");
+        boutonsMain[0].setActionCommand(0+"");
+        boutonsMain[1].setActionCommand(1+"");
+        boutonsMain[2].setActionCommand(2+"");
+        boutonsMain[3].setActionCommand(3+"");
+        boutonsMain[4].setActionCommand(4+"");
+        
+        container.add(boutonDefausse);
+        container.add(boutonPioche);
+		container.add(labelProgramme);
 		container.add(boutonsMain[0]);
 		container.add(boutonsMain[1]);
 		container.add(boutonsMain[2]);
 		container.add(boutonsMain[3]);
 		container.add(boutonsMain[4]);
-		container.add(boutonPioche);
-		container.add(boutonDefausse);
-		container.add(labelProgramme);
 		
 		this.setSize(600, 500);
         this.add(container);
         this.setVisible(true);
-
+       
+        
         // Affichage de la main du joueur
-		affichageMain(joueurEnCours.getMain());
+		//affichageMain(joueurEnCours.getMain());
 	}
 	
 	public void affichageMain(ArrayList<Carte> main){
 		for (int i = 0; i < 5; i++){
 			boutonsMain[i].setText(main.get(i).toString());
-			boutonsMain[i].setActionCommand(i+"");
-			container.add(boutonsMain[i]);
 		}
-		this.add(container);
-	}
-	
-	public void boutonEnableFalse(){
-		for (int i = 0; i < 5; i++) {
-			boutonsMain[i].setEnabled(false);
-		}	
-	}
-	
-	public void boutonEnableTrue(){
-		for (int i = 0; i < 5; i++) {
-			boutonsMain[i].setEnabled(true);
-		}	
 	}
 	
 	public int nombreCartesSelectionnees(){
@@ -84,10 +79,28 @@ public class PanelMain extends JPanel{
 		for (int i = 0; i < 5; i++) {
 			boutonsMain[i].addActionListener(controleur);
 		}		
+	    boutonDefausse.addActionListener(controleur);
+	    boutonPioche.addActionListener(controleur);
 	}
 	
-	public void oneBoutonDisabled(JButton button){
+	public void oneBoutonEnabledFalse(JButton button){
 		button.setEnabled(false);
+	}
+	
+	public void oneBoutonEnabledTrue(JButton button){
+		button.setEnabled(true);
+	}
+	
+	public void boutonsMainEnableFalse(){
+		for (int i = 0; i < 5; i++) {
+			oneBoutonEnabledFalse(boutonsMain[i]);
+		}	
+	}
+	
+	public void boutonsMainEnableTrue(){
+		for (int i = 0; i < 5; i++) {
+			oneBoutonEnabledTrue(boutonsMain[i]);
+		}	
 	}
 	
 	// Getters et setters

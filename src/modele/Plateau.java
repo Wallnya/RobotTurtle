@@ -180,15 +180,11 @@ public class Plateau{
 		//System.out.println("Pioche : " + pioche);
 	}
 	
-	public void piocherCarte(Joueur joueur) {
-		
+	public void piocherCarte(Joueur joueur, int i) {
 		ArrayDeque<Carte> pioche = joueur.getPioche();
 		ArrayList<Carte> main = joueur.getMain();
-		
-		main.add(pioche.getFirst());
+		main.add(i, pioche.getFirst());
 		pioche.removeFirst();
-		
-		joueur.setMain(main); // Inutile ?
 	}
 	
 	public void piocherCartes(Joueur joueur) {
@@ -200,8 +196,6 @@ public class Plateau{
 			main.add(pioche.getFirst());
 			pioche.removeFirst();
 		}
-
-		joueur.setMain(main); // Inutile ?
 	}
 	
 	/*public void piocheUneCarte(Joueur joueur){

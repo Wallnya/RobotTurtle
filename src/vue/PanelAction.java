@@ -75,11 +75,11 @@ public class PanelAction extends JPanel{
 		}
 	}
 	
-	public void oneBoutonDisabled(JButton button){
+	public void oneBoutonEnabledFalse(JButton button){
 		button.setEnabled(false);
 	}
 	
-	public void oneBoutonAbled(JButton button){
+	public void oneBoutonEnabledTrue(JButton button){
 		button.setEnabled(true);
 	}
 	
