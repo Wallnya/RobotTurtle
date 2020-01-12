@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 import modele.*;
 import vue.*;
@@ -471,16 +472,31 @@ public class Controleur implements ActionListener {
 
 				for(Carte carte : programmeJoueur){
 					carte.action(tortueJoueur, plateau);
-					if (partie != Plateau.getVictoire()){
-						partie++;
-						JOptionPane.showMessageDialog(null, "Joueur "+
-						chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue().getNumero_joueur()+" , vous avez gagné, vous êtes "
-								+ partie+" !");
-						break;
+					if (partie != plateau.getNbJoueurs()-1){
+						if (partie != Plateau.getVictoire()){
+							partie++;
+							JOptionPane.showMessageDialog(null, "Joueur "+
+							chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue().getNumero_joueur()+" , vous avez gagné, vous êtes "
+									+ partie+" !");
+						}
 					}
-					//else if {
-						//Plateau.getVictoire() = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().
-					//}
+					if (partie == plateau.getNbJoueurs()-1){
+						String chaine = "";
+						int compteur = 1;
+						while (compteur <= chPanJeu.getPanelPlateau().getPlateau().getNbJoueurs()){
+							if (chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(compteur-1).getTortue().getVictoire() != 0){
+								chaine += "Joueur "+chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(compteur-1).getTortue().getNumero_joueur()+
+										", vous êtes "+chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(compteur-1).getTortue().getVictoire()+"\n\n";
+							}
+							else{
+								chaine += "Joueur "+chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(compteur-1).getTortue().getNumero_joueur()+
+										", vous êtes dernier\n\n";
+							}
+							compteur++;
+						}
+						JOptionPane.showMessageDialog(null, "Partie finie! \n\n"+chaine);
+						SwingUtilities.getWindowAncestor(chPanJeu).dispose();
+					}
 					programmeJoueur.removeFirst();
 				}
 				try {
@@ -494,9 +510,11 @@ public class Controleur implements ActionListener {
 
 			// Fin du tour
 			else if(e.getActionCommand().equals(Data.ACTION[4])) {
-
-				// On passe au joueur suivant
-				changementTour();
+				//On boucle pour tomber que sur des gens qui n'ont pas gagné!
+				//while (chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue().getVictoire() != 0){
+					// On passe au joueur suivant
+					changementTour();
+				//}
 				actionEnCours = "tourSuivant";
 
 				// On réinitialise la vue pour le nouveau tour
@@ -543,14 +561,23 @@ public class Controleur implements ActionListener {
 
 	public void changementTour() {
 		int nbJoueurs = panelNombresJoueurs.getTaille();
-		if (numJoueurEnCours < nbJoueurs) {
-			//s'il a pas gagné
-			//if (chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue().getVictoire() == 0) {
+		do
+        {
+			if (numJoueurEnCours < nbJoueurs) {
+				//s'il a pas gagné
+				//if (chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue().getVictoire() == 0) {
+					numJoueurEnCours++;
+				//}
+			} else {
+				numJoueurEnCours = 1;
+			}
+        }
+        while(chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue().getVictoire() != 0);
+		/*if (numJoueurEnCours < nbJoueurs) {
 				numJoueurEnCours++;
-			//}
 		} else {
 			numJoueurEnCours = 1;
-		}
+		}*/
 
 		// Si on est revenu au joueur 1, ça veut dire que tous les joueurs ont joué au moins 1 fois
 		if (numJoueurEnCours == 1) {

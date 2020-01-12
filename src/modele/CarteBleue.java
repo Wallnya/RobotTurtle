@@ -52,7 +52,7 @@ public class CarteBleue extends Carte{
 				if (plateau.getContenuCase(tortue.getLigne() + 1, tortue.getColonne()) instanceof Joyau){
 					Plateau.setVictoire(Plateau.getVictoire()+1);
 					tortue.setVictoire(Plateau.getVictoire());
-					plateau.setVide(tortue.getLigne()+1, tortue.getColonne(), new Vide());
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
 				}
 				else{
 					tortue.setLigne(tortue.getLigne() + 1);
@@ -100,7 +100,7 @@ public class CarteBleue extends Carte{
 				if (plateau.getContenuCase(tortue.getLigne()-1, tortue.getColonne()) instanceof Joyau){
 					Plateau.setVictoire(Plateau.getVictoire()+1);
 					tortue.setVictoire(Plateau.getVictoire());
-					plateau.setVide(tortue.getLigne()-1, tortue.getColonne(), new Vide());
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
 				}
 				else{
 					tortue.setLigne(tortue.getLigne()-1);
@@ -142,7 +142,7 @@ public class CarteBleue extends Carte{
 				if (plateau.getContenuCase(tortue.getLigne(), tortue.getColonne()+1) instanceof Joyau){
 					Plateau.setVictoire(Plateau.getVictoire()+1);
 					tortue.setVictoire(Plateau.getVictoire());
-					plateau.setVide(tortue.getLigne(), tortue.getColonne()+1, new Vide());
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
 				}
 				else{
 					tortue.setColonne(tortue.getColonne()+1);
@@ -185,7 +185,7 @@ public class CarteBleue extends Carte{
 				if (plateau.getContenuCase(tortue.getLigne(), tortue.getColonne()-1) instanceof Joyau){
 					Plateau.setVictoire(Plateau.getVictoire()+1);
 					tortue.setVictoire(Plateau.getVictoire());
-					plateau.setVide(tortue.getLigne(), tortue.getColonne()-1, new Vide());
+					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
 				}
 				else{
 					tortue.setColonne(tortue.getColonne()-1);

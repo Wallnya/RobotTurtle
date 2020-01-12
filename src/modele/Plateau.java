@@ -43,7 +43,7 @@ public class Plateau{
 				melangerCartes(joueur2);
 
 				Joyau joyau1 = new Joyau("V","Vert");
-				deplacerTuile(joyau1, 7, 3);
+				deplacerTuile(joyau1, 0, 3);
 
 				break;
 			}
@@ -79,9 +79,12 @@ public class Plateau{
 				Joyau joyau2 = new Joyau("V","Vert");
 				Joyau joyau3 = new Joyau("B","Bleu");
 				
-				deplacerTuile(joyau1, 7, 0);
+				/*deplacerTuile(joyau1, 7, 0);
 				deplacerTuile(joyau2, 7, 3);
-				deplacerTuile(joyau3, 7, 6);
+				deplacerTuile(joyau3, 7, 6);*/
+				deplacerTuile(joyau1, 0, 1);
+				deplacerTuile(joyau2, 0, 4);
+				deplacerTuile(joyau3, 0, 5);
 
 				break;
 			}
