@@ -31,8 +31,6 @@ public class PanelJeu extends JPanel{
 		this.add(panelPlateau, BorderLayout.CENTER);
 		this.add(panelMain, BorderLayout.SOUTH);
 		this.add(panelAction, BorderLayout.EAST);
-		
-		//panelPlateau.getPlateau().getJoueurs();
 	}
 
 	public void enregistreEcouteur(Controleur controleur) {
