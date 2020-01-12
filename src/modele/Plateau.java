@@ -81,10 +81,6 @@ public class Plateau{
 				deplacerTuile(joyau1, 7, 0);
 				deplacerTuile(joyau2, 7, 3);
 				deplacerTuile(joyau3, 7, 6);
-
-				piocherCartes(joueur1);
-				piocherCartes(joueur2);
-				piocherCartes(joueur3);
 	
 				break;
 			}
@@ -124,11 +120,6 @@ public class Plateau{
 				Joyau joyau2 = new Joyau("B","Bleu");
 				deplacerTuile(joyau1, 7, 1);
 				deplacerTuile(joyau2, 7, 6);
-				
-				piocherCartes(joueur1);
-				piocherCartes(joueur2);
-				piocherCartes(joueur3);
-				piocherCartes(joueur4);
 	
 				break;
 			}

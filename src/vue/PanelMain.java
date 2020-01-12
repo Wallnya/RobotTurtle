@@ -66,6 +66,12 @@ public class PanelMain extends JPanel{
 		}
 	}
 	
+	public void affichageMainFalse(){
+		for (int i = 0; i < 5; i++){
+			boutonsMain[i].setText("ererererere");
+		}
+	}
+	
 	public int nombreCartesSelectionnees(){
 		int compteur = 0;
 		for (int i = 0; i < 5; i++){
