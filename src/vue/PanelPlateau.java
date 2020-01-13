@@ -32,6 +32,7 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 		setLocation(100, 300);
 		setVisible(true);
 		table.setRowHeight(50);
+	    table.setTableHeader(null);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.setAutoResizeMode(JTable.HEIGHT);
 		
