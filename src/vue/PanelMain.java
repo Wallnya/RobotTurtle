@@ -145,7 +145,6 @@ public class PanelMain extends JPanel{
 	}
 	
 	public void setImageCard(){
-		System.out.println(boutonsMain[0].getText().toString());
 		for(int i=0;i<5;i++){
 			ImageIcon imageIcon=null;
 			if (boutonsMain[i].getText().toString().equals("Jaune")){
@@ -163,7 +162,6 @@ public class PanelMain extends JPanel{
 			else {
 				imageIcon = new ImageIcon("");
 			}
-			System.out.println(boutonsMain[i].getText().toString());
 			Image image = imageIcon.getImage(); // transform it 
 			Image newimg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 			imageIcon = new ImageIcon(newimg);
