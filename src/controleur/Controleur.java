@@ -1,6 +1,5 @@
 package controleur;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -578,7 +577,7 @@ public class Controleur implements ActionListener {
 				labelProgramme.setText("Programme (" + nbCartesProgramme + ")");
 				
 				chPanJeu.getPanelMain().affichageMain(joueurEnCours.getMain());
-
+				chPanJeu.getPanelMain().setImageCard();
 			}
 		}
 	}
