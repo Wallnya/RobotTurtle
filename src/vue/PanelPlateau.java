@@ -43,6 +43,7 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 		table.setAutoResizeMode(JTable.WIDTH);
 		
         table.setModel(tableur);
+        table.setDefaultRenderer(String.class, new CelluleRenderer());
         //tm = table.getModel();
         
         // Affichage
