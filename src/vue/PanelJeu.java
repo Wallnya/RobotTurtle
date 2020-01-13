@@ -25,7 +25,7 @@ public class PanelJeu extends JPanel{
 		panelMain = new PanelMain(joueurEnCours);
 		panelAction = new PanelAction();
 		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout(200,200));
 		this.setBorder(new EmptyBorder(100, 100, 100, 100));
 		
 		this.add(panelPlateau, BorderLayout.CENTER);

@@ -1,7 +1,5 @@
 package vue;
 
-import java.util.List;
-
 import javax.swing.table.DefaultTableModel;
 
 import modele.Data;

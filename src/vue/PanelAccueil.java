@@ -12,9 +12,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class PanelAccueil extends JFrame implements ActionListener{
 
@@ -35,7 +33,12 @@ public class PanelAccueil extends JFrame implements ActionListener{
 	public PanelAccueil() throws IOException {
 		super("Accueil du jeu Robot Turtle");
 		JPanel pan = new JPanel()        {
-            protected void paintComponent(Graphics g) 
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			protected void paintComponent(Graphics g) 
             {
                 super.paintComponent(g);
  

@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -35,7 +34,12 @@ public class PanelNombresJoueurs extends JPanel{
 		
 		// Création du panel
 		JPanel pan = new JPanel()        {
-            protected void paintComponent(Graphics g) 
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			protected void paintComponent(Graphics g) 
             {
                 super.paintComponent(g);
  

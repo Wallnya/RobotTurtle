@@ -24,23 +24,16 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 		plateau = new Plateau();
 		plateau.preparationPlateau(nbJoueur);
 		
-		// Affichage
 		tableur = new ModelPlateau();
-		/*for(int i=0;i<8;i++){
-			tableur.addColumn("");
-		}
-		tableur.setRowCount(8);*/
-		
-		
 		table = new JTable(tableur);
-		table.setPreferredScrollableViewportSize(new Dimension(800, 800));
+		table.setPreferredScrollableViewportSize(new Dimension(800, 400));
 		add(new JScrollPane(table), BorderLayout.CENTER);
 
-		setLocation(200, 300);
+		setLocation(100, 300);
 		setVisible(true);
-		table.setRowHeight(100);
+		table.setRowHeight(50);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		table.setAutoResizeMode(JTable.WIDTH);
+		table.setAutoResizeMode(JTable.HEIGHT);
 		
         table.setModel(tableur);
         table.setDefaultRenderer(String.class, new CelluleRenderer());

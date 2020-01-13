@@ -1,9 +1,12 @@
 package vue;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +23,7 @@ public class PanelMain extends JPanel{
 	private JButton boutonDefausse= new JButton();
 	private JLabel labelProgramme = new JLabel();
 	private JPanel container;
+	private JPanel intermedaire;
 
 	public PanelMain(Joueur joueurEnCours) throws IOException{
 		
@@ -30,7 +34,10 @@ public class PanelMain extends JPanel{
 		boutonsMain[4] = new JButton("");
 
         container = new JPanel();
-        container.setLayout(new GridLayout(1,5, 60, 60));
+        intermedaire = new JPanel();
+
+        container.setLayout(new GridLayout(1,5));
+
         
         boutonDefausse.setActionCommand("defausse");
         boutonPioche.setActionCommand("pioche");
@@ -39,9 +46,22 @@ public class PanelMain extends JPanel{
         boutonsMain[2].setActionCommand(2+"");
         boutonsMain[3].setActionCommand(3+"");
         boutonsMain[4].setActionCommand(4+"");
-        
-        container.add(boutonDefausse);
-        container.add(boutonPioche);
+       
+        boutonPioche.setPreferredSize(new Dimension(100,40));
+        boutonDefausse.setPreferredSize(new Dimension(120,40));
+        for(int i=0;i<5;i++){
+        	boutonsMain[i].setPreferredSize(new Dimension(100,120));
+        	boutonsMain[i].setBorder(null);
+        	boutonsMain[i].setBorderPainted(false);
+        	boutonsMain[i].setContentAreaFilled(false);
+        	boutonsMain[i].setOpaque(false);
+        }
+       /* boutonDefausse.setBounds(0, 50, 70, 22);
+        boutonPioche.setBounds(0, 50, 70, 22);*/
+
+        intermedaire.add(boutonDefausse);
+        intermedaire.add(boutonPioche);
+		container.add(intermedaire);
 		container.add(labelProgramme);
 		container.add(boutonsMain[0]);
 		container.add(boutonsMain[1]);
@@ -103,9 +123,7 @@ public class PanelMain extends JPanel{
 	
 	public void boutonsMainEnableTrue(){
 		for (int i = 0; i < 5; i++) {
-			if (boutonsMain[i].getText() != "") {
-				oneBoutonEnabledTrue(boutonsMain[i]);
-			}
+			oneBoutonEnabledTrue(boutonsMain[i]);
 		}	
 	}
 	
@@ -125,6 +143,31 @@ public class PanelMain extends JPanel{
 	public JLabel getLabelProgramme() {
 		return labelProgramme;
 	}
-
-
+	
+	public void setImageCard(){
+		System.out.println(boutonsMain[0].getText().toString());
+		for(int i=0;i<5;i++){
+			ImageIcon imageIcon=null;
+			if (boutonsMain[i].getText().toString().equals("Jaune")){
+				imageIcon = new ImageIcon("images/cards/YellowCard.png");
+			}
+			else if (boutonsMain[i].getText().toString().equals("Laser")){
+				imageIcon = new ImageIcon("images/cards/LaserCard.png");
+			}
+			else if (boutonsMain[i].getText().toString().equals("Bleu")){
+				imageIcon = new ImageIcon("images/cards/BlueCard.png");
+			}
+			else if (boutonsMain[i].getText().toString().equals("Violet")){
+				imageIcon = new ImageIcon("images/cards/PurpleCard.png");
+			}
+			else {
+				imageIcon = new ImageIcon("");
+			}
+			System.out.println(boutonsMain[i].getText().toString());
+			Image image = imageIcon.getImage(); // transform it 
+			Image newimg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+			imageIcon = new ImageIcon(newimg);
+			boutonsMain[i].setIcon(imageIcon);  
+		}
+	}
 }
