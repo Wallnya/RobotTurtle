@@ -540,6 +540,12 @@ public class Controleur implements ActionListener {
 				changementTour();
 				actionEnCours = "tourSuivant";
 
+				// Actualisation des variables
+				joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
+				nbCartesDefausse = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getDefausse().size();
+				nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
+				nbCartesProgramme = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme().size();
+				
 				// On réinitialise la vue pour le nouveau tour
 				if (premierTour == true) {
 					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
@@ -553,7 +559,11 @@ public class Controleur implements ActionListener {
 					textareaAction.setText("Veuillez piocher vos cartes.");
 				} else {
 					chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton1);
-					chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton2);
+					if (joueurEnCours.getNbObstacleGlace() == 0 && joueurEnCours.getNbObstaclePierre() == 0) {
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton2);
+					} else {
+						chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton2);
+					}
 					chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton3);
 					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
 					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton5);
@@ -562,12 +572,6 @@ public class Controleur implements ActionListener {
 					chPanJeu.getPanelMain().boutonsMainEnableFalse();
 					textareaAction.setText("Veuillez choisir une action.");
 				}
-
-				// Actualisation des variables
-				joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
-				nbCartesDefausse = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getDefausse().size();
-				nbCartesPioche = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getPioche().size();
-				nbCartesProgramme = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme().size();
 
 				// Texte à afficher
 				System.out.println("Joueur " + numJoueurEnCours + ", à vous de jouer !");
