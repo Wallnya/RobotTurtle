@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -494,6 +493,7 @@ public class Controleur implements ActionListener {
 				Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
 
 				for(Carte carte : programmeJoueur){
+
 					carte.action(tortueJoueur, plateau);
 					if (partie != plateau.getNbJoueurs()-1){
 						if (partie != Plateau.getVictoire()){
