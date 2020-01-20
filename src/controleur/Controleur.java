@@ -22,7 +22,6 @@ public class Controleur implements ActionListener {
 	private PanelJeu chPanJeu;
 	private int numJoueurEnCours = 1;
 	private static int valeurObstacle =-1;
-	private boolean creationMur = false;	
 	private String actionEnCours;
 	private boolean premierTour = true;
 	private int partie=0;
@@ -411,7 +410,17 @@ public class Controleur implements ActionListener {
 				textareaAction.setText("Veuillez choisir l'emplacement de votre obstacle.");
 				//Cellule disponible
 				chPanJeu.getPanelPlateau().getTable().setEnabled(true);
-				Object[] possibleValues = { "Pierre", "Glace"};	
+				
+				ArrayList<String> possibleValues = new ArrayList<String>();
+				if (joueurEnCours.getNbObstacleGlace() == 0) {
+					possibleValues.add("Pierre");	
+				} else if (joueurEnCours.getNbObstaclePierre() == 0){
+					possibleValues.add("Glace");
+				} else {
+					possibleValues.add("Pierre");	
+					possibleValues.add("Glace");
+				}
+				
 				String chaine="";
 				int nbPierre = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstaclePierre();
 				int nbGlace = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstacleGlace();
@@ -446,30 +455,9 @@ public class Controleur implements ActionListener {
 							"Le choix est à vous!", 
 							JOptionPane.YES_NO_OPTION, 
 							JOptionPane.QUESTION_MESSAGE, 
-							null, possibleValues, possibleValues[0]);
+							null, possibleValues.toArray(), null);
 				}
-				if (valeurObstacle == 0){
-					chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).setNbObstaclePierre(chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstaclePierre()-1);
-					nbPierre = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstaclePierre();
-					if (nbPierre < 0){
-						JOptionPane.showMessageDialog(null, "Plus de carte pierre :( ");
-						creationMur=false;
-					}
-					else{
-						creationMur = true;
-					}
-				}
-				else if (valeurObstacle == 1) {
-					chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).setNbObstacleGlace(chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstacleGlace()-1);
-					nbGlace = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstacleGlace();
-					if (nbGlace < 0){
-						JOptionPane.showMessageDialog(null, "Plus de carte glace :( ");
-						creationMur=false;
-					}
-					else{
-						creationMur = true;
-					}
-				}
+				
 				placerObstacle();
 				chPanJeu.getPanelPlateau().refresh();
 			}
@@ -662,35 +650,49 @@ public class Controleur implements ActionListener {
 			table.addMouseListener(new java.awt.event.MouseAdapter() {
 				@Override
 				public void mouseClicked(java.awt.event.MouseEvent evt) {
-					if (creationMur){
-						int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
-						int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
 
-						if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
-							if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
-								Tuile obstacle = null;
-								// Si pierre
+					int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
+					int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
+
+					if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
+						if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
+							Tuile obstacle = null;
+							
+							Joueur joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
+							int nbPierre = joueurEnCours.getNbObstaclePierre();
+							int nbGlace = joueurEnCours.getNbObstacleGlace();
+							
+							if (nbGlace == 0) {
+								joueurEnCours.setNbObstaclePierre(nbPierre - 1);
+								obstacle = new ObstaclePierre();
+							} else if (nbPierre == 0){
+								joueurEnCours.setNbObstacleGlace(nbGlace - 1);
+								obstacle = new ObstacleGlace();
+							} else {
 								if (valeurObstacle == 0){
+									joueurEnCours.setNbObstaclePierre(nbPierre - 1);
 									obstacle = new ObstaclePierre();
 								}
 								else if (valeurObstacle == 1) {
+									joueurEnCours.setNbObstacleGlace(nbGlace - 1);
 									obstacle = new ObstacleGlace();
 								}
-								plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
-								try {
-									chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
-								chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
-								// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
-							} else {
-								System.out.println("Case blocante.");
 							}
+
+							plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
+							
+							try {
+								chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
+							// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
 						} else {
-							System.out.println("Case déjà occupée.");
+							System.out.println("Case blocante.");
 						}
-						creationMur=false;
+					} else {
+						System.out.println("Case déjà occupée.");
 					}
 				}
 			});
