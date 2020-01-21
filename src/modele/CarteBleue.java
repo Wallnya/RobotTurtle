@@ -89,7 +89,9 @@ public class CarteBleue extends Carte{
 				Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()-1][tortue.getColonne()];
 				plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 				plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
-
+				tortue.setSens(Sens.SUD);
+				tortue2.setSens(Sens.SUD);
+				
 				// Et on met les anciennes cases à vide
 				if (!(tortue.getLigne() == tortue.getLigne_debut() && tortue.getColonne() == tortue.getColonne_debut())){
 					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
@@ -140,6 +142,9 @@ public class CarteBleue extends Carte{
 				Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()+1];
 				plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 				plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
+				tortue.setSens(Sens.SUD);
+				tortue2.setSens(Sens.SUD);
+				
 				// Et on met les anciennes cases à vide
 				if (!(tortue.getLigne() == tortue.getLigne_debut() && tortue.getColonne() == tortue.getColonne_debut())){
 					plateau.setVide(tortue.getLigne(), tortue.getColonne(), new Vide());
@@ -190,6 +195,8 @@ public class CarteBleue extends Carte{
 				Tortue tortue2 = (Tortue) plateau.getContenuPlateau()[tortue.getLigne()][tortue.getColonne()-1];
 				plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
 				plateau.setJoueur(tortue2.getLigne_debut(), tortue2.getColonne_debut(), tortue2);
+				tortue.setSens(Sens.SUD);
+				tortue2.setSens(Sens.SUD);
 
 				// Et on met les anciennes cases à vide
 				if (!(tortue.getLigne() == tortue.getLigne_debut() && tortue.getColonne() == tortue.getColonne_debut())){
