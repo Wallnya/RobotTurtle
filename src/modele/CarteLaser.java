@@ -89,7 +89,23 @@ public class CarteLaser extends Carte {
 					
 					break;
 				case "R" : case "V" : case "B" :
-					System.out.println("Un joyau a bloqué votre laser.");
+					System.out.println("Un joyau a réfléchi votre laser.");
+					
+					// Si 2 joueurs, demi-tour
+					if (plateau.getNbJoueurs() == 2) {
+						switch (tortue.getSens()) {
+						case NORD : tortue.setSens(Sens.SUD); break;
+						case SUD : tortue.setSens(Sens.NORD); break;
+						case OUEST : tortue.setSens(Sens.EST); break;
+						case EST : tortue.setSens(Sens.OUEST); break;
+						}
+					} 
+					// Sinon, case départ
+					else {
+						plateau.viderCase(tortue.getLigne(), tortue.getColonne());
+						plateau.setJoueur(tortue.getLigne_debut(), tortue.getColonne_debut(), tortue);
+					}
+					
 					break;
 				case "P" :
 					System.out.println("Le mur de pierre est indestructible !");
