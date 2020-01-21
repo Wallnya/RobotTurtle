@@ -704,11 +704,9 @@ public class Controleur implements ActionListener {
 							}
 						} else {
 							System.out.println("Case déjà occupée.");
-							int resultat = -1;
-							do {
-								resultat = JOptionPane.showConfirmDialog(null,"Cette case est déjà occupée !", 
-										"Case occupée",JOptionPane.DEFAULT_OPTION);
-							} while (resultat == -1); 
+							JOptionPane.showConfirmDialog(null,"Cette case est déjà occupée !", 
+								"Case occupée",JOptionPane.DEFAULT_OPTION);
+
 							creationMur = true;
 						}
 						
