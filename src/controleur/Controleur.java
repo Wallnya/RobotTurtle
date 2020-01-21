@@ -660,7 +660,9 @@ public class Controleur implements ActionListener {
 						int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
 						int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
 	
+						// On teste si la case est libre ...
 						if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
+							// ... et si la case ne bloque pas
 							if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
 								Tuile obstacle = null;
 								
@@ -694,13 +696,22 @@ public class Controleur implements ActionListener {
 								}
 								chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
 								// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
+								
+								creationMur = false;
 							} else {
 								System.out.println("Case blocante.");
+								creationMur = true;
 							}
 						} else {
 							System.out.println("Case déjà occupée.");
+							int resultat = -1;
+							do {
+								resultat = JOptionPane.showConfirmDialog(null,"Cette case est déjà occupée !", 
+										"Case occupée",JOptionPane.DEFAULT_OPTION);
+							} while (resultat == -1); 
+							creationMur = true;
 						}
-						creationMur = false;
+						
 					}
 				}
 			});
