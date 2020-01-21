@@ -477,6 +477,7 @@ public class Controleur implements ActionListener {
 				textareaAction.setText("Votre programme a été exécuté.");
 
 				ArrayDeque<Carte> programmeJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getProgramme();
+				List<Carte> defausseJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getDefausse();
 				Tortue tortueJoueur = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getTortue();
 				Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
 
@@ -509,6 +510,7 @@ public class Controleur implements ActionListener {
 						SwingUtilities.getWindowAncestor(chPanJeu).dispose();
 					}
 					programmeJoueur.removeFirst();
+					defausseJoueur.add(carte);
 				}
 				try {
 					chPanJeu.getPanelPlateau().afficherPlateau();
