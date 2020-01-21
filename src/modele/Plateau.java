@@ -3,6 +3,7 @@ package modele;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Plateau{
@@ -240,16 +241,68 @@ public class Plateau{
 	
 	/* A faire */
 	public boolean caseNonBlocante(int ligne, int colonne) {
-
-		int ligneCaseHaut = ligne - 1;
-		int colonneCaseHaut = colonne;
-		int ligneCaseBas = ligne + 1;
-		int colonneCaseBas = colonne;
-		int ligneCaseGauche = ligne;
-		int colonneCaseGauche = colonne - 1;
-		int ligneCaseDroite = ligne;
-		int colonneCaseDroite = colonne + 1;
+	
+		/*ArrayDeque<Tuile> queue = new ArrayDeque<Tuile>();
+		HashSet<Tuile> discovered = new HashSet<Tuile>();
+		ArrayList<Tuile> path = new ArrayList<Tuile>();
 		
+		Tuile node;
+		Tuile depart = contenuPlateau[ligne][colonne];
+		depart.setLigne(ligne);
+		depart.setColonne(colonne);
+		queue.addFirst(depart);
+		
+		while (!queue.isEmpty()) {
+			node = queue.getFirst();
+			
+			if (!discovered.contains(node)){
+				
+				path.add(node);
+				discovered.add(node);
+				System.out.println("Path : " + path);
+				
+				int ligneCase = node.getLigne();
+				int colonneCase = node.getColonne();
+				
+				int ligneCaseHaut = ligneCase - 1;
+				int colonneCaseHaut = colonneCase;
+				int ligneCaseBas = ligneCase + 1;
+				int colonneCaseBas = colonneCase;
+				int ligneCaseGauche = ligneCase;
+				int colonneCaseGauche = colonneCase - 1;
+				int ligneCaseDroite = ligneCase;
+				int colonneCaseDroite = colonneCase + 1;
+				
+				ArrayList<Tuile> voisins = new ArrayList<Tuile>();
+				if (ligneCaseHaut >= 0 && ligneCaseHaut <= 7 && colonneCaseHaut >= 0 && colonneCaseHaut <= 7) {	
+					Tuile caseHaut = contenuPlateau[ligneCaseHaut][colonneCaseHaut];
+					voisins.add(caseHaut);
+				}
+				if (ligneCaseBas >= 0 && ligneCaseBas <= 7 && colonneCaseBas >= 0 && colonneCaseBas <= 7) {
+					Tuile caseBas = new Tuile(ligneCaseBas, colonneCaseBas, contenuPlateau[ligneCaseBas][colonneCaseBas].getSymbole());
+					voisins.add(caseBas);
+				}
+				if (ligneCaseGauche >= 0 && ligneCaseGauche <= 7 && colonneCaseGauche >= 0 && colonneCaseGauche <= 7) {
+					Tuile caseGauche = new Tuile(ligneCaseGauche, colonneCaseGauche, contenuPlateau[ligneCaseGauche][colonneCaseGauche].getSymbole());
+					voisins.add(caseGauche);
+				}
+				if (ligneCaseDroite >= 0 && ligneCaseDroite <= 7 && colonneCaseDroite >= 0 && colonneCaseDroite <= 7) {
+					Tuile caseDroite = new Tuile(ligneCaseDroite, colonneCaseDroite, contenuPlateau[ligneCaseDroite][colonneCaseDroite].getSymbole());
+					voisins.add(caseDroite);
+				}
+				
+				queue.remove(node);
+				for (Tuile voisin : voisins) {
+					if (!discovered.contains(voisin)){
+						queue.add(voisin);
+					}
+				}
+				
+				System.out.println("Queue : " + queue);
+			}
+		}
+		
+		//System.out.println(path);*/
 		return true;
 	}
 	

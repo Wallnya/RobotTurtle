@@ -6,6 +6,15 @@ public class Tuile {
 	protected int ligne = -1;
 	protected int colonne = -1;
 	
+	public Tuile(int ligne, int colonne, String symbole) {
+		this.ligne = ligne;
+		this.colonne = colonne;
+		this.symbole = symbole;
+	}
+
+	public Tuile() {
+	}
+
 	public String toString() {
 		return this.symbole;
 	}

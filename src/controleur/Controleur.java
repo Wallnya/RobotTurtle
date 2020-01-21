@@ -25,6 +25,7 @@ public class Controleur implements ActionListener {
 	private String actionEnCours;
 	private boolean premierTour = true;
 	private int partie=0;
+	private boolean creationMur = false;	
 
 	public Controleur(PanelNombresJoueurs pPanNbJoueurs) {
 		panelNombresJoueurs = pPanNbJoueurs;
@@ -644,6 +645,7 @@ public class Controleur implements ActionListener {
 	}
 
 	public void placerObstacle() {
+		creationMur = true;
 		boolean ok = false;	
 		ok = true;
 		final Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
@@ -653,48 +655,52 @@ public class Controleur implements ActionListener {
 				@Override
 				public void mouseClicked(java.awt.event.MouseEvent evt) {
 
-					int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
-					int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
-
-					if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
-						if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
-							Tuile obstacle = null;
-							
-							Joueur joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
-							int nbPierre = joueurEnCours.getNbObstaclePierre();
-							int nbGlace = joueurEnCours.getNbObstacleGlace();
-							
-							if (nbGlace == 0) {
-								joueurEnCours.setNbObstaclePierre(nbPierre - 1);
-								obstacle = new ObstaclePierre();
-							} else if (nbPierre == 0){
-								joueurEnCours.setNbObstacleGlace(nbGlace - 1);
-								obstacle = new ObstacleGlace();
-							} else {
-								if (valeurObstacle == 0){
+					if (creationMur == true) {
+						
+						int ligneSelectionnee = table.rowAtPoint(evt.getPoint());
+						int colonneSelectionnee = table.columnAtPoint(evt.getPoint());
+	
+						if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
+							if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
+								Tuile obstacle = null;
+								
+								Joueur joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
+								int nbPierre = joueurEnCours.getNbObstaclePierre();
+								int nbGlace = joueurEnCours.getNbObstacleGlace();
+								
+								if (nbGlace == 0) {
 									joueurEnCours.setNbObstaclePierre(nbPierre - 1);
 									obstacle = new ObstaclePierre();
-								}
-								else if (valeurObstacle == 1) {
+								} else if (nbPierre == 0){
 									joueurEnCours.setNbObstacleGlace(nbGlace - 1);
 									obstacle = new ObstacleGlace();
+								} else {
+									if (valeurObstacle == 0){
+										joueurEnCours.setNbObstaclePierre(nbPierre - 1);
+										obstacle = new ObstaclePierre();
+									}
+									else if (valeurObstacle == 1) {
+										joueurEnCours.setNbObstacleGlace(nbGlace - 1);
+										obstacle = new ObstacleGlace();
+									}
 								}
+	
+								plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
+								
+								try {
+									chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+								chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
+								// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
+							} else {
+								System.out.println("Case blocante.");
 							}
-
-							plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
-							
-							try {
-								chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-							chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
-							// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
 						} else {
-							System.out.println("Case blocante.");
+							System.out.println("Case déjà occupée.");
 						}
-					} else {
-						System.out.println("Case déjà occupée.");
+						creationMur = false;
 					}
 				}
 			});
