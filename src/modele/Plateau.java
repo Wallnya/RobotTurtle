@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class Plateau{
 
 	private Tuile[][] contenuPlateau;
@@ -145,6 +147,8 @@ public class Plateau{
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				Tuile vide = new Vide();
+				vide.setLigne(i);
+				vide.setColonne(j);
 				contenuPlateau[i][j] = vide;
 			}
 		}
@@ -239,27 +243,28 @@ public class Plateau{
 		return false;
 	}
 	
-	/* A faire */
-	public boolean caseNonBlocante(int ligne, int colonne) {
+
+	public boolean caseNonBlocante(Joueur joueur, int ligne, int colonne) {
 	
-		/*ArrayDeque<Tuile> queue = new ArrayDeque<Tuile>();
-		HashSet<Tuile> discovered = new HashSet<Tuile>();
+		ArrayDeque<Tuile> queue = new ArrayDeque<Tuile>();
+		//ArrayList<Tuile> discovered = new ArrayList<Tuile>();
 		ArrayList<Tuile> path = new ArrayList<Tuile>();
 		
+		contenuPlateau[ligne][colonne] = new ObstaclePierre();
+				
 		Tuile node;
-		Tuile depart = contenuPlateau[ligne][colonne];
-		depart.setLigne(ligne);
-		depart.setColonne(colonne);
-		queue.addFirst(depart);
+		Tuile depart = joueur.getTortue();
 		
+		queue.addFirst(depart);
+
 		while (!queue.isEmpty()) {
-			node = queue.getFirst();
+			node = queue.getLast();
 			
-			if (!discovered.contains(node)){
+			if (!path.contains(node)){
 				
 				path.add(node);
-				discovered.add(node);
-				System.out.println("Path : " + path);
+				//discovered.add(node);
+				System.out.println("Path : (" + path.size() + ") : " + path);
 				
 				int ligneCase = node.getLigne();
 				int colonneCase = node.getColonne();
@@ -293,17 +298,45 @@ public class Plateau{
 				
 				queue.remove(node);
 				for (Tuile voisin : voisins) {
-					if (!discovered.contains(voisin)){
+					
+					boolean isJoyau = false;
+					if (voisin.getSymbole() == "R" || voisin.getSymbole() == "V" || voisin.getSymbole() == "B") {
+						isJoyau = true;
+					}
+					
+					// On a trouvé un chemin jusqu'à un joyau
+					if (isJoyau) {
+						contenuPlateau[ligne][colonne] = new Vide();
+						return true;
+					}
+					
+					boolean dejaDansPath = false;
+					for (Tuile tuile : path) {
+						if (voisin.equals(tuile)) {
+							dejaDansPath = true;
+						}
+					}
+					boolean dejaDansQueue = false;
+					for (Tuile tuile : queue) {
+						if (voisin.equals(tuile)) {
+							dejaDansQueue = true;
+						}
+					}
+					
+					// Si la case est un mur de pierre, on ne passe pas par lui 
+					// car ses voisins sont potentiellement inaccessibles
+					if (!dejaDansPath && !dejaDansQueue && voisin.getSymbole() != "P") {
 						queue.add(voisin);
 					}
 				}
-				
-				System.out.println("Queue : " + queue);
+				System.out.println("Queue : (" + queue.size() + ") : " + queue);
 			}
 		}
 		
-		//System.out.println(path);*/
-		return true;
+		// Si pas trouvé de joyau
+		contenuPlateau[ligne][colonne] = new Vide();
+		return false;
+		
 	}
 	
 	// Getters et setters

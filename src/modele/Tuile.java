@@ -19,6 +19,13 @@ public class Tuile {
 		return this.symbole;
 	}
 	
+	public boolean equals(Object obj) {
+		return (obj instanceof Tuile) && 
+					((Tuile)obj).getLigne() == ligne && 
+					((Tuile)obj).getColonne() == colonne &&
+					((Tuile)obj).getSymbole().equals(symbole);
+	    }
+	
 	// Getters et setters
 	public void setLigne(int ligne) {
 		this.ligne = ligne;

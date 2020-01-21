@@ -647,6 +647,7 @@ public class Controleur implements ActionListener {
 	public void placerObstacle() {
 		creationMur = true;
 		boolean ok = false;	
+		
 		ok = true;
 		final Plateau plateau = chPanJeu.getPanelPlateau().getPlateau();
 		final JTable table = chPanJeu.getPanelPlateau().getTable();
@@ -662,54 +663,68 @@ public class Controleur implements ActionListener {
 	
 						// On teste si la case est libre ...
 						if (plateau.caseLibre(ligneSelectionnee, colonneSelectionnee)) {
-							// ... et si la case ne bloque pas
-							if (plateau.caseNonBlocante(ligneSelectionnee, colonneSelectionnee)) {
-								Tuile obstacle = null;
-								
-								Joueur joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
-								int nbPierre = joueurEnCours.getNbObstaclePierre();
-								int nbGlace = joueurEnCours.getNbObstacleGlace();
-								
-								if (nbGlace == 0) {
-									joueurEnCours.setNbObstaclePierre(nbPierre - 1);
-									obstacle = new ObstaclePierre();
-								} else if (nbPierre == 0){
-									joueurEnCours.setNbObstacleGlace(nbGlace - 1);
-									obstacle = new ObstacleGlace();
-								} else {
-									if (valeurObstacle == 0){
-										joueurEnCours.setNbObstaclePierre(nbPierre - 1);
-										obstacle = new ObstaclePierre();
-									}
-									else if (valeurObstacle == 1) {
-										joueurEnCours.setNbObstacleGlace(nbGlace - 1);
-										obstacle = new ObstacleGlace();
-									}
-								}
-	
-								plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
-								
-								try {
-									chPanJeu.getPanelPlateau().afficherPlateau(); // refresh() marche pas
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
-								chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
-								// Rendre tableau non cliquable aprï¿½s avoir poser l'obstacle
-								
-								creationMur = false;
+
+							Tuile obstacle = null;		
+							Joueur joueurEnCours = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1);
+							int nbPierre = joueurEnCours.getNbObstaclePierre();
+							int nbGlace = joueurEnCours.getNbObstacleGlace();
+							
+							// Type d'obstacle choisi
+							if (nbGlace == 0) {
+								obstacle = new ObstaclePierre();
+							} else if (nbPierre == 0){
+								obstacle = new ObstacleGlace();
 							} else {
-								System.out.println("Case blocante.");
-								creationMur = true;
+								if (valeurObstacle == 0){
+									obstacle = new ObstaclePierre();
+								}
+								else if (valeurObstacle == 1) {
+									obstacle = new ObstacleGlace();
+								}
 							}
+							
+							if (obstacle instanceof ObstaclePierre) {							
+								// On teste si le mur de pierre bloque
+								boolean caseNonBlocante = true;
+								List<Joueur> joueurs = chPanJeu.getPanelPlateau().getPlateau().getJoueurs();
+								for (int i = 0; i < joueurs.size(); i++) {
+									if (!plateau.caseNonBlocante(joueurs.get(i), ligneSelectionnee, colonneSelectionnee)) {
+										int num = i + 1;
+										JOptionPane.showConfirmDialog(null,"Vous bloquez l'accès aux joyaux au joueur " + num + " !\n"
+												+ "Veuillez choisir une autre case.", 
+												"Bloqué",JOptionPane.DEFAULT_OPTION);
+										caseNonBlocante = false;
+									}
+								}
+								if (caseNonBlocante) {
+									joueurEnCours.setNbObstaclePierre(nbPierre - 1);
+									plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
+									creationMur = false;
+								} else {
+									System.out.println("Case blocante.");
+									creationMur = true;
+								}
+							} else if (obstacle instanceof ObstacleGlace) {
+								joueurEnCours.setNbObstacleGlace(nbGlace - 1);
+								plateau.deplacerTuile(obstacle, ligneSelectionnee, colonneSelectionnee);
+								creationMur = false;
+							}	
+
+							
+							try {
+								chPanJeu.getPanelPlateau().afficherPlateau();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							chPanJeu.getPanelPlateau().getPlateau().afficherPlateauConsole();
+
 						} else {
 							System.out.println("Case déjà occupée.");
 							JOptionPane.showConfirmDialog(null,"Cette case est déjà occupée !", 
 								"Case occupée",JOptionPane.DEFAULT_OPTION);
-
+		
 							creationMur = true;
 						}
-						
 					}
 				}
 			});
