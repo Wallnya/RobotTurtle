@@ -80,7 +80,6 @@ public class PanelNombresJoueurs extends JPanel{
 		this.add(pan);
 	}
 
-	
 	// Getters et setters
 	public Controleur getChControleur() {
 		return chControleur;

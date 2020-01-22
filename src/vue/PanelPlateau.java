@@ -38,7 +38,6 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 		
         table.setModel(tableur);
         table.setDefaultRenderer(String.class, new CelluleRenderer());
-        //tm = table.getModel();
         
         // Affichage
         afficherPlateau();
@@ -89,5 +88,4 @@ public class PanelPlateau extends JPanel implements AdjustmentListener{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

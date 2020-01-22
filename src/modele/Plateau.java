@@ -244,7 +244,6 @@ public class Plateau{
 	public boolean caseNonBlocante(Joueur joueur, int ligne, int colonne) {
 	
 		ArrayDeque<Tuile> queue = new ArrayDeque<Tuile>();
-		//ArrayList<Tuile> discovered = new ArrayList<Tuile>();
 		ArrayList<Tuile> path = new ArrayList<Tuile>();
 		
 		contenuPlateau[ligne][colonne] = new ObstaclePierre();
@@ -260,7 +259,6 @@ public class Plateau{
 			if (!path.contains(node)){
 				
 				path.add(node);
-				//discovered.add(node);
 				System.out.println("Path : (" + path.size() + ") : " + path);
 				
 				int ligneCase = node.getLigne();

@@ -56,8 +56,6 @@ public class PanelMain extends JPanel{
         	boutonsMain[i].setContentAreaFilled(false);
         	boutonsMain[i].setOpaque(false);
         }
-       /* boutonDefausse.setBounds(0, 50, 70, 22);
-        boutonPioche.setBounds(0, 50, 70, 22);*/
 
         intermedaire.add(boutonDefausse);
         intermedaire.add(boutonPioche);
@@ -72,10 +70,6 @@ public class PanelMain extends JPanel{
 		this.setSize(600, 500);
         this.add(container);
         this.setVisible(true);
-       
-        
-        // Affichage de la main du joueur
-		//affichageMain(joueurEnCours.getMain());
 	}
 	
 	public void affichageMain(ArrayList<Carte> main){
@@ -144,6 +138,9 @@ public class PanelMain extends JPanel{
 		return labelProgramme;
 	}
 	
+	/*
+	 * Fonction qui permet la mise en place des images pour la main du joueur
+	 * */
 	public void setImageCard(){
 		for(int i=0;i<5;i++){
 			ImageIcon imageIcon=null;
@@ -162,8 +159,8 @@ public class PanelMain extends JPanel{
 			else {
 				imageIcon = new ImageIcon("");
 			}
-			Image image = imageIcon.getImage(); // transform it 
-			Image newimg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+			Image image = imageIcon.getImage();
+			Image newimg = image.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH);
 			imageIcon = new ImageIcon(newimg);
 			boutonsMain[i].setIcon(imageIcon);  
 		}

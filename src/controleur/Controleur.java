@@ -422,6 +422,7 @@ public class Controleur implements ActionListener {
 					possibleValues.add("Glace");
 				}
 				
+				//Création de la chaine présente dans le popup
 				String chaine="";
 				int nbPierre = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstaclePierre();
 				int nbGlace = chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(numJoueurEnCours-1).getNbObstacleGlace();
@@ -450,6 +451,7 @@ public class Controleur implements ActionListener {
 						}
 					}
 				}
+				//On demande ensuite ce qu'il souhaite poser, en le forçant à choisir quelque chose. 
 				valeurObstacle = -1;
 				while (valeurObstacle == -1) {
 					valeurObstacle = JOptionPane.showOptionDialog(null,chaine, 
@@ -485,7 +487,9 @@ public class Controleur implements ActionListener {
 				for(Carte carte : programmeJoueur){
 
 					carte.action(tortueJoueur, plateau);
+					//On vérifie si la partie n'est pas finie
 					if (partie != plateau.getNbJoueurs()-1){
+						//On vérifie si quelqu'un vient de gagner.
 						if (partie != Plateau.getVictoire()){
 							partie++;
 							JOptionPane.showMessageDialog(null, "Joueur "+
@@ -493,9 +497,11 @@ public class Controleur implements ActionListener {
 									+ partie+" !");
 						}
 					}
+					//Si la partie est finie
 					if (partie == plateau.getNbJoueurs()-1){
 						String chaine = "";
 						int compteur = 1;
+						//On va afficher le popup avec la hierarchie des scores. 
 						while (compteur <= chPanJeu.getPanelPlateau().getPlateau().getNbJoueurs()){
 							if (chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(compteur-1).getTortue().getVictoire() != 0){
 								chaine += "Joueur "+chPanJeu.getPanelPlateau().getPlateau().getJoueurs().get(compteur-1).getTortue().getNumero_joueur()+
@@ -508,6 +514,7 @@ public class Controleur implements ActionListener {
 							compteur++;
 						}
 						JOptionPane.showMessageDialog(null, "Partie finie! \n\n"+chaine);
+						//On ferme ensuite le fenêtre. 
 						SwingUtilities.getWindowAncestor(chPanJeu).dispose();
 					}
 					programmeJoueur.removeFirst();
@@ -689,11 +696,10 @@ public class Controleur implements ActionListener {
 								List<Joueur> joueurs = chPanJeu.getPanelPlateau().getPlateau().getJoueurs();
 								for (int i = 0; i < joueurs.size(); i++) {
 									if (!plateau.caseNonBlocante(joueurs.get(i), ligneSelectionnee, colonneSelectionnee) ) {
-										int num = i + 1;
-										JOptionPane.showConfirmDialog(null,"Vous bloquez l'accès aux joyaux au joueur " + num + " !\n"
-												+ "Veuillez choisir une autre case.", 
-												"Bloqué",JOptionPane.DEFAULT_OPTION);
-										caseNonBlocante = false;
+										/*JOptionPane.showConfirmDialog(null,"Vous bloquez l'accès aux joyaux au joueur  !\n"
+										+ "Veuillez choisir une autre case.", 
+										"Bloqué",JOptionPane.DEFAULT_OPTION);*/
+											caseNonBlocante = false;
 									}
 								}
 								if (caseNonBlocante) {

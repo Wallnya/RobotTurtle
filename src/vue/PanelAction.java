@@ -25,7 +25,7 @@ public class PanelAction extends JPanel{
 
 	public PanelAction(){
 		
-		this.setPreferredSize(new Dimension(300, 10));
+		this.setPreferredSize(new Dimension(500, 10));
 		Border raisedbevel = BorderFactory.createRaisedBevelBorder();
 		Border loweredbevel = BorderFactory.createLoweredBevelBorder();
 		this.setBorder(BorderFactory.createCompoundBorder(raisedbevel, loweredbevel));
@@ -37,10 +37,7 @@ public class PanelAction extends JPanel{
 		panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-	/*	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		System.out.println(height/2);*/
-		
+
 		for (int i = 0; i < textareas.length; i++) {
 			panel.add(Box.createVerticalStrut(20));
 			textareas[i] = new JTextArea();
