@@ -1,203 +1,468 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="modele.Joueur" project="RobotTurtle" file="/RobotTurtle/src/modele/Joueur.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="918" y="503"/>    
+  <class id="1" language="java" name="modele.ObstacleGlace" project="RobotTurtle" 
+    file="/RobotTurtle/src/modele/ObstacleGlace.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="128" x="338" y="2318"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="modele.Vide" project="RobotTurtle" file="/RobotTurtle/src/modele/Vide.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-9" y="270"/>    
+  <class id="2" language="java" name="vue.PanelAction" project="RobotTurtle" 
+    file="/RobotTurtle/src/vue/PanelAction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="268" width="245" x="631" y="818"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="modele.Obstacle" project="RobotTurtle" 
-    file="/RobotTurtle/src/modele/Obstacle.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-1" y="444"/>    
+  <class id="3" language="java" name="modele.Vide" project="RobotTurtle" file="/RobotTurtle/src/modele/Vide.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="104" x="506" y="2318"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="4" language="java" name="modele.Data" project="RobotTurtle" file="/RobotTurtle/src/modele/Data.java" 
+  <class id="4" language="java" name="vue.CelluleRenderer" project="RobotTurtle" 
+    file="/RobotTurtle/src/vue/CelluleRenderer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="504" x="338" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="modele.Data" project="RobotTurtle" file="/RobotTurtle/src/modele/Data.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="111" y="80"/>    
+    <position height="124" width="139" x="646" y="1884"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="modele.CarteVide" project="RobotTurtle" 
-    file="/RobotTurtle/src/modele/CarteVide.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1208" y="65"/>    
+  <class id="6" language="java" name="vue.PanelJeu" project="RobotTurtle" file="/RobotTurtle/src/vue/PanelJeu.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="228" x="916" y="456"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="modele.CarteBleue" project="RobotTurtle" 
+  <class id="7" language="java" name="modele.CarteBleue" project="RobotTurtle" 
     file="/RobotTurtle/src/modele/CarteBleue.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1003" y="208"/>    
+    <position height="142" width="178" x="857" y="2734"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="modele.Carte" project="RobotTurtle" file="/RobotTurtle/src/modele/Carte.java" 
+  <class id="8" language="java" name="modele.Carte" project="RobotTurtle" file="/RobotTurtle/src/modele/Carte.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="804" y="128"/>    
+    <position height="141" width="180" x="1293" y="2318"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="modele.Tuile" project="RobotTurtle" file="/RobotTurtle/src/modele/Tuile.java" 
+  <class id="9" language="java" name="vue.FenetreMere" project="RobotTurtle" 
+    file="/RobotTurtle/src/vue/FenetreMere.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="153" x="1408" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="vue.PanelNombresJoueurs" project="RobotTurtle" 
+    file="/RobotTurtle/src/vue/PanelNombresJoueurs.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="222" x="1184" y="456"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="modele.Tuile" project="RobotTurtle" file="/RobotTurtle/src/modele/Tuile.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="123" y="344"/>    
+    <position height="304" width="163" x="825" y="1884"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="modele.CarteJaune" project="RobotTurtle" 
+  <class id="12" language="java" name="vue.PanelMain" project="RobotTurtle" file="/RobotTurtle/src/vue/PanelMain.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="466" width="245" x="1261" y="818"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="modele.CarteLaser" project="RobotTurtle" 
+    file="/RobotTurtle/src/modele/CarteLaser.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="178" x="1075" y="2734"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="modele.Plateau" project="RobotTurtle" file="/RobotTurtle/src/modele/Plateau.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="520" width="258" x="916" y="1324"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="controleur.Controleur" project="RobotTurtle" 
+    file="/RobotTurtle/src/controleur/Controleur.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="223" x="1145" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="modele.CarteViolette" project="RobotTurtle" 
+    file="/RobotTurtle/src/modele/CarteViolette.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="178" x="1293" y="2734"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="modele.Joyau" project="RobotTurtle" file="/RobotTurtle/src/modele/Joyau.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="163" x="650" y="2318"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="vue.PanelAccueil" project="RobotTurtle" 
+    file="/RobotTurtle/src/vue/PanelAccueil.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="223" x="882" y="130"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="modele.Joueur" project="RobotTurtle" file="/RobotTurtle/src/modele/Joueur.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="394" width="260" x="1293" y="1884"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="20" language="java" name="modele.Sens" project="RobotTurtle" file="/RobotTurtle/src/modele/Sens.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="144" x="673" y="2734"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="21" language="java" name="modele.ObstaclePierre" project="RobotTurtle" 
+    file="/RobotTurtle/src/modele/ObstaclePierre.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="131" x="853" y="2318"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="modele.CarteVide" project="RobotTurtle" 
+    file="/RobotTurtle/src/modele/CarteVide.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="178" x="1511" y="2734"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="vue.PanelPlateau" project="RobotTurtle" 
+    file="/RobotTurtle/src/vue/PanelPlateau.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="340" width="305" x="916" y="818"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="modele.CarteJaune" project="RobotTurtle" 
     file="/RobotTurtle/src/modele/CarteJaune.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1209" y="330"/>    
+    <position height="142" width="178" x="1729" y="2734"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="modele.Tortue" project="RobotTurtle" file="/RobotTurtle/src/modele/Tortue.java" 
+  <class id="25" language="java" name="modele.Tortue" project="RobotTurtle" file="/RobotTurtle/src/modele/Tortue.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="604" y="484"/>    
+    <position height="376" width="229" x="1024" y="2318"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="modele.Plateau" project="RobotTurtle" file="/RobotTurtle/src/modele/Plateau.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="322" y="227"/>    
+  <class id="26" language="java" name="vue.ModelPlateau" project="RobotTurtle" 
+    file="/RobotTurtle/src/vue/ModelPlateau.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="230" x="646" y="1324"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="modele.Joyau" project="RobotTurtle" file="/RobotTurtle/src/modele/Joyau.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="125" y="562"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="13">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="14" name="joueurs">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <association id="27">    
+    <bendpoint x="1427" y="2312"/>    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="28" name="defausse">        
+        <position height="20" width="60" x="1312" y="2277"/>      
       </attribute>      
-      <multiplicity id="15" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="16">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="18">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="20">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="21" name="plateau">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="29" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1476" y="2303"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="23">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="tortue">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <generalization id="30">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="32">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="33" name="contenuPlateau"/>      
+      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="36" name="panelAction"/>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="18" width="27" x="867" y="795"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="40">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="41" name="tortue">        
+        <position height="20" width="41" x="1238" y="2279"/>      
       </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="42" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1237" y="2299"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="44" name="plateau"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="47" name="chControleur">        
+        <position height="20" width="81" x="1274" y="437"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1295" y="419"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="50" name="contentPane">        
+        <position height="20" width="85" x="1392" y="406"/>      
+      </attribute>      
+      <multiplicity id="51" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1382" y="426"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="27" name="main">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <realization id="52">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <association id="53">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="54" name="panelNombresJoueurs">        
+        <position height="20" width="136" x="1156" y="417"/>      
       </attribute>      
-      <multiplicity id="28" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="55" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1207" y="433"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="7"/>  
+  <generalization id="56">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="11"/>  
   </generalization>  
-  <association id="30">    
-    <bendpoint x="976" y="308"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="31" name="programme">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="32" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="34">    
-    <end type="SOURCE" refId="2"/>    
+  <generalization id="57">    
+    <end type="SOURCE" refId="22"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="60">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="61" name="joueurs">        
+        <position height="20" width="50" x="1221" y="1881"/>      
+      </attribute>      
+      <multiplicity id="62" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <bendpoint x="1304" y="2296"/>    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="64" name="pioche">        
+        <position height="20" width="46" x="1373" y="2277"/>      
+      </attribute>      
+      <multiplicity id="65" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1332" y="2297"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="66">    
+    <bendpoint x="1368" y="2298"/>    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="67" name="main">        
+        <position height="20" width="36" x="1431" y="2278"/>      
+      </attribute>      
+      <multiplicity id="68" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1389" y="2295"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="70" name="panelMain"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="72">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="73">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="74" name="sens">        
+        <position height="20" width="36" x="816" y="2712"/>      
+      </attribute>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="76">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="77">    
+    <bendpoint x="1474" y="2297"/>    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="78" name="programme">        
+        <position height="20" width="73" x="1479" y="2282"/>      
+      </attribute>      
+      <multiplicity id="79" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1431" y="2296"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="80">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="81" name="tableur"/>      
+      <multiplicity id="82" minimum="0" maximum="1">        
+        <position height="18" width="27" x="835" y="1300"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="84" name="chPanJeu">        
+        <position height="20" width="65" x="1065" y="410"/>      
+      </attribute>      
+      <multiplicity id="85" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1126" y="435"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="87" name="panelPlateau"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
