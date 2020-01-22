@@ -279,17 +279,32 @@ public class Controleur implements ActionListener {
 			else if(e.getActionCommand().equals(Data.ACTION[3])) {
 				// Validation après défaussage : pioche
 				if (actionEnCours == "Défausser") {
-					chPanJeu.getPanelMain().affichageMain(joueurEnCours.getMain());
-					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
-					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton2);
-					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton3);
-					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
-					chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton5);
-					chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
-					chPanJeu.getPanelMain().oneBoutonEnabledTrue(boutonPioche);
-					chPanJeu.getPanelMain().boutonsMainEnableFalse();
-					textareaAction.setText("Veuillez piocher de nouvelles cartes.");
-
+					if (!(joueurEnCours.getMain().get(0) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(1) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(2) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(3) instanceof CarteVide) &&
+							!(joueurEnCours.getMain().get(4) instanceof CarteVide)) {
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton2);
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton3);
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
+						chPanJeu.getPanelAction().oneBoutonEnabledTrue(bouton5);
+						chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
+						chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonPioche);
+						chPanJeu.getPanelMain().boutonsMainEnableFalse();
+						textareaAction.setText("Votre tour est terminé.");
+					} else {
+						chPanJeu.getPanelMain().affichageMain(joueurEnCours.getMain());
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton1);
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton2);
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton3);
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton4);
+						chPanJeu.getPanelAction().oneBoutonEnabledFalse(bouton5);
+						chPanJeu.getPanelMain().oneBoutonEnabledFalse(boutonDefausse);
+						chPanJeu.getPanelMain().oneBoutonEnabledTrue(boutonPioche);
+						chPanJeu.getPanelMain().boutonsMainEnableFalse();
+						textareaAction.setText("Veuillez piocher de nouvelles cartes.");
+					}
 				} else {
 					// Validation après action : défaussage
 					String actionPrecedente = actionEnCours;
@@ -696,9 +711,9 @@ public class Controleur implements ActionListener {
 								List<Joueur> joueurs = chPanJeu.getPanelPlateau().getPlateau().getJoueurs();
 								for (int i = 0; i < joueurs.size(); i++) {
 									if (!plateau.caseNonBlocante(joueurs.get(i), ligneSelectionnee, colonneSelectionnee) ) {
-										/*JOptionPane.showConfirmDialog(null,"Vous bloquez l'accès aux joyaux au joueur  !\n"
+										JOptionPane.showConfirmDialog(null,"Vous bloquez l'accès aux joyaux à un joueur !\n"
 										+ "Veuillez choisir une autre case.", 
-										"Bloqué",JOptionPane.DEFAULT_OPTION);*/
+										"Bloqué",JOptionPane.DEFAULT_OPTION);
 											caseNonBlocante = false;
 									}
 								}
@@ -727,8 +742,8 @@ public class Controleur implements ActionListener {
 						} else {
 							System.out.println("Case déjà occupée.");
 							JOptionPane.showConfirmDialog(null,"Cette case est déjà occupée !", 
-								"Case occupée",JOptionPane.DEFAULT_OPTION);
-		
+									"Case occupée",JOptionPane.DEFAULT_OPTION);
+
 							creationMur = true;
 						}
 					}
