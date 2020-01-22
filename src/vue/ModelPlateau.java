@@ -17,9 +17,9 @@ public class ModelPlateau extends DefaultTableModel implements Data{
 			}
 		}
 	}
-	
-	public boolean isCellEditable(int indLigne, int indCol, boolean value) {
-		return value;
+	//On redéfinie le modèle de la table pour qu'aucune case ne soit modifiable. 
+	public boolean isCellEditable(int indLigne, int indCol) {
+		return false;
 	}
 	
 	@Override

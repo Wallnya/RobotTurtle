@@ -688,7 +688,7 @@ public class Controleur implements ActionListener {
 								boolean caseNonBlocante = true;
 								List<Joueur> joueurs = chPanJeu.getPanelPlateau().getPlateau().getJoueurs();
 								for (int i = 0; i < joueurs.size(); i++) {
-									if (!plateau.caseNonBlocante(joueurs.get(i), ligneSelectionnee, colonneSelectionnee)) {
+									if (!plateau.caseNonBlocante(joueurs.get(i), ligneSelectionnee, colonneSelectionnee) ) {
 										int num = i + 1;
 										JOptionPane.showConfirmDialog(null,"Vous bloquez l'accès aux joyaux au joueur " + num + " !\n"
 												+ "Veuillez choisir une autre case.", 
